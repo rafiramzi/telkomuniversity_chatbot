@@ -1,25 +1,31 @@
+# core/views.py
+from django.http import StreamingHttpResponse
 from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import status
-import ollama  
+import json, ollama
 
 class OllamaChatView(APIView):
     def post(self, request):
-        user_message = request.data.get("message", "")
+        message = request.data.get("message")
+        model = request.data.get("model")
 
-        if not user_message:
-            return Response({"error": "Message is required"}, status=status.HTTP_400_BAD_REQUEST)
-
-        try:
-            result = ollama.chat(
-                model="gpt-oss:20b-cloud",
-                messages=[
-                    {"role": "system", "content": "You are a helpful AI assistant."},
-                    {"role": "user", "content": user_message},
-                ]
+        if not message or not model:
+            return StreamingHttpResponse(
+                json.dumps({"error": "Message and model are required"}) + "\n",
+                content_type="application/json",
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-            reply = result["message"]["content"]
-            return Response({"reply": reply})
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        def stream():
+            try:
+                for chunk in ollama.chat(
+                    model=model,
+                    messages=[{"role": "user", "content": message}],
+                    stream=True
+                ):
+                    if "message" in chunk and "content" in chunk["message"]:
+                        yield json.dumps({"content": chunk["message"]["content"]}) + "\n"
+            except Exception as e:
+                yield json.dumps({"error": str(e)}) + "\n"
+
+        return StreamingHttpResponse(stream(), content_type="application/x-ndjson")
