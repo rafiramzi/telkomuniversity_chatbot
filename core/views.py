@@ -191,6 +191,7 @@ class ChatBot(APIView):
                         {"role": "user", "content": query},
                     ],
                     stream=True,
+                    options={"temperature":1.0}
                 )
 
                 for chunk in stream:
