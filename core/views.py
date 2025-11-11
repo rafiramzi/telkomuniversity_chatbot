@@ -159,13 +159,18 @@ class ChatBot(APIView):
         try:
             cat_query = ollama.chat(model="gpt-oss:20b-cloud", messages=[
                 {"role": "system", "content": f"Available categories: {categories}"},
-                {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name."}
-            ])
+                {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name. if the answer is not related about Telkom University Campus, the category is not relevant."}
+            ],
+            options={"temperature":1.0}
+            )
             category_guess = cat_query["message"]["content"].strip()
-            if category_guess not in categories:
-                category_guess = categories[0]
+            if category_guess is None:
+                print("⚠️ Query tidak cocok dengan kategori mana pun.")
+                print("📂 Kategori tersedia:", categories)
+                print("Saya hanya bisa menjawab topik sesuai dataset Anda.")
+                return "Pertanyaan di luar kategori dataset."
         except Exception as e:
-            category_guess = categories[0]
+            category_guess = "Not Relevant"
             print(f"Category detection failed: {e}")
 
         # Retrieve relevant context
@@ -185,7 +190,7 @@ class ChatBot(APIView):
                     messages=[
                         {
                             "role": "system",
-                            "content": f"You are a helpful assistant answering within '{category_guess}' category. you are not allowed to answer anything out of topic and out of the dataset. for greetings or conversation, tell the user that you are only answer about telkom university campus topic"
+                            "content": f"You are a helpful assistant answering within '{category_guess}' category. you are not allowed to answer anything out of topic and out of the dataset. for greetings or conversation, tell the user that you are only answer about telkom university campus topic. if category is Not Relevant, recomend the user to ask anything else about national campus"
                                        f"Use this context:\n{context}"
                         },
                         {"role": "user", "content": query},
