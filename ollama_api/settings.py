@@ -70,6 +70,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ollama_api.urls'
 
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

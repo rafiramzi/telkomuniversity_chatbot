@@ -1,0 +1,460 @@
+file,category,text,created_at
+User_Manual_Aplikasi_Registrasi_Sirama_Versi_2_Untuk_Kaprodi_2.pdf,User Manual,"USER MANUAL
+Aplikasi Registrasi – Sirama (Sistem registrasi akademik
+mahasiswa) versi 2.0
+For Head of Study Program
+Panduan Pengguna Aplikasi Registrasi
+Untuk Kaprodi
+Versi 2.0 (07 September 2022)
+https://sirama.telkomuniversity.ac.id
+Tel_U-UT-REK-DSI-RPSI-DI-UM-103
+Kampus Universitas Telkom Jl.Telekomunikasi, Dayeuhkolot, Bandung, Indonesia 40257
+Telp. 62-22-756, Fax.62-22 756 5200
+Copyright © 2018 – Direktorat Sistem Informasi
+Aplikasi Sirama
+DAFTAR PERUBAHAN
+Tanggal Versi Deskripsi Perubahan Pembuat
+Date Version Description of Changes Author
+07 September Inisiasi dokumen
+2.0 Ahmad Amin
+2022
+Hak Cipta ©2022 Pusat Teknologi Informasi | 2
+Aplikasi Sirama
+DAFTAR ISI
+DAFTAR PERUBAHAN ............................................................................................................................................................................................................................ 2
+DAFTAR ISI ............................................................................................................................................................................................................................................ 3
+DAFTAR GAMBAR ................................................................................................................................................................................................................................. 4
+SEKILAS TENTANG APLIKASI SIRAMA .................................................................................................................................................................................................... 5
+MENU APLIKASI REGISTRASI ................................................................................................................................................................................................................. 5
+CARA MEMBUKA APLIKASI ................................................................................................................................................................................................................... 6
+1. Login ............................................................................................................................................................................................................................................. 7
+2. Beranda ........................................................................................................................................................................................................................................ 7
+3. List Registrasi ............................................................................................................................................................................................................................... 8
+4. List Mahasiswa ........................................................................................................................................................................................................................... 15
+5. Keluar ......................................................................................................................................................................................................................................... 16
+Hak Cipta ©2022 Pusat Teknologi Informasi | 3
+Aplikasi Sirama
+DAFTAR GAMBAR
+Gambar 1 Tampilan Awal Aplikasi Sirama ............................................................................................................................................................................................ 6
+Gambar 2 Login Aplikasi Sirama ........................................................................................................................................................................................................... 7
+Gambar 3 Halaman Beranda Kaprodi ................................................................................................................................................................................................... 8
+Gambar 4 Halaman List Registrasi ........................................................................................................................................................................................................ 9
+Gambar 5 List Registrasi Cari ................................................................................................................................................................................................................ 9
+Gambar 6 List Registrasi Filter Kelas ................................................................................................................................................................................................... 10
+Gambar 7 List Registrasi Filter Data .................................................................................................................................................................................................... 10
+Gambar 8 List Registrasi Aksi Detil ..................................................................................................................................................................................................... 11
+Gambar 9 List Registrasi Aksi Registrasi ............................................................................................................................................................................................. 11
+Gambar 10 Halaman List Registrasi Mata Kuliah Mahasiswa ............................................................................................................................................................. 12
+Gambar 11 Halaman List Registrasi Preview Jadwal Mahasiswa........................................................................................................................................................ 13
+Gambar 12 Halaman List Registrasi Arsip KSM Mahasiswa ................................................................................................................................................................ 13
+Gambar 13 Halaman List Registrasi Pembayaran Mahasiswa ............................................................................................................................................................ 14
+Gambar 14 Halaman List Registrasi Riwayat Mahasiswa ................................................................................................................................................................... 15
+Gambar 15 Halaman List Mahasiswa .................................................................................................................................................................................................. 16
+Gambar 16 Keluar Aplikasi Sirama ...................................................................................................................................................................................................... 17
+Hak Cipta ©2022 Pusat Teknologi Informasi | 4
+Aplikasi Sirama
+SEKILAS TENTANG APLIKASI SIRAMA
+Aplikasi sirama merupakan aplikasi yang digunakan oleh mahasiswa untuk melakukan proses registrasi perkuliahan di Telkom University serta
+digunakan oleh admin untuk mengelola data mahasiswa yang akan registrasi maupun yang sudah melakukan registrasi. Aplikasi Sirama terintegrasi
+dengan database Igracias dan SITU. Pada aplikasi registrasi terdapat lima user yaitu mahasiswa dan dosen wali yang bisa melakukan proses
+registrasi. Sedangkan user admin dibagi menjadi tiga yaitu BSLA, Kaprodi, LAA dimana dapat melakukan kelola data registrasi mahasiswa.
+MENU APLIKASI REGISTRASI
+Dokumen user manual aplikasi sirama dibuat untuk memberikan penjelasan mengenai cara menggunakan aplikasi registrasi dari sisi user kaprodi
+sesuai kegunaan dan fungsi yang terdapat pada aplikasi tersebut.
+Struktur Menu
+Adapun struktur menu pada aplikasi registrasi dari sisi kaprodi yaitu sebagai berikut :
+1. Menu Beranda
+Menu setelah kaprodi login dan terdapat informasi seputar registrasi berupa teks.
+2. Menu List Registrasi
+Menu list registrasi merupakan menu yang digunakan kaprodi sebagai dosen wali untuk mengelola regitrasi mahasiswa, seperti :
+- List tampilan mahasiswa dan status registrasi mahasiswa.
+- Kaprodi yang menjadi dosen wali dapat menyetujui, mencetak KSM, atau mereset proses registrasi mahasiswa.
+- Kaprodi yang menjadi dosen wali dapat melihat informasi data mahasiswa berupa mata kuliah, arsip KSM, pembayaran dan riwayat.
+3. Menu List Mahasiswa
+Menu ini sama seperti list registrasi merupakan menu yang digunakan untuk mengelola regitrasi mahasiswa, yang membedakan menu list
+mahasiswa adalah semua data registrasi mahasiswa satu jurusan ada pada menu ini.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 5
+Aplikasi Sirama
+CARA MEMBUKA APLIKASI
+Untuk memulai akses aplikasi registrasi, bukalah aplikasi registrasi melalui web browser (Google Chrome, Mozilla, Firefox, dsb) dengan alamat URL sebagai
+berikut :
+https://sirama.telkomuniversity.ac.id
+Berikut merupakan tampilan halaman setelah mengakses alamat url diatas.
+Gambar 1 Tampilan Awal Aplikasi Sirama
+Hak Cipta ©2022 Pusat Teknologi Informasi | 6
+Aplikasi Sirama
+1. Login
+Sebelum masuk ke halaman utama aplikasi sirama, user diharuskan untuk login terlebih dahulu dengan memasukkan Username dan Password
+akun SSO yang telah didaftarkan sebelumnya pada form login yang tersedia.
+1. Masukkan
+Username SSO
+2. Masukkan
+Password
+3. Klik Login
+Gambar 2 Login Aplikasi Sirama
+2. Beranda
+Menu beranda artinya user sukses masuk ke aplikasi dan tampilan beranda hanya berupa informasi teks mengenai registrasi.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 7
+Aplikasi Sirama
+Gambar 3 Halaman Beranda Kaprodi
+3. List Registrasi
+List registrasi digunakan user dalam melakukan aktivitas registrasi mahasiswa terkait proses setuju, reset dan status mahasiswa.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 8
+Aplikasi Sirama
+3
+4 2
+1 5
+Gambar 4 Halaman List Registrasi
+1. User dapat melihat status mahasiswa.
+2. User dapat melakukan pencarian mahasiswa berdasarkan nama mahasiswa tersebut, seperti :
+Gambar 5 List Registrasi Cari
+Hak Cipta ©2022 Pusat Teknologi Informasi | 9
+Aplikasi Sirama
+3. User dapat melakukan pencarian berdasarkan semua kelas maupun memilih per kelas, seperti :
+Gambar 6 List Registrasi Filter Kelas
+4. User dapat menampilkan list data registrasi mahasiswa dengan 10, 25, 50 maupun all seperti :
+Gambar 7 List Registrasi Filter Data
+5. User melakukan pengecekan registrasi mahasiswa bisa melihat pada aksi registrasi dan detil, seperti :
+a. Ketika user memilih detil, maka akan muncul pop up mengenai registrasi. Akan ada tiga aksi yaitu :
+- “Setujui “ artinya user menyetujui registrasi mahasiswa.
+- “Cetak KSM” artinya user melakukan cetak KSM.
+- “Reset” artinya user melakukan tindakan menghapus dan mengatur ulang proses registrasi mahasiswa.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 10
+Aplikasi Sirama
+Gambar 8 List Registrasi Aksi Detil
+b. Ketika user memilih registrasi, maka akan ada empat aksi berupa Mata Kuliah, Arsip KSM, Pembayaran dan Riwayat. Dengan
+memilih salah satu atau semuanya user akan mendapatkan informasi mahasiswa seputar empat aksi tersebut.
+Gambar 9 List Registrasi Aksi Registrasi
+Hak Cipta ©2022 Pusat Teknologi Informasi | 11
+Aplikasi Sirama
+1. Mata Kuliah, setelah mengklik maka akan muncul pop up berupa tampilan berikut :
+Gambar 10 Halaman List Registrasi Mata Kuliah Mahasiswa
+- User dapat menghapus dan menambahkan mata kuliah jika yang mahasiswa pilih tidak sesuai.
+- User juga dapat melihat preview jadwal dari mata kuliah mahasiswa yang dipilih :
+Hak Cipta ©2022 Pusat Teknologi Informasi | 12
+Aplikasi Sirama
+Gambar 11 Halaman List Registrasi Preview Jadwal Mahasiswa
+2. Arsip KSM, setelah mengklik akan muncul pop up berupa tampilan berikut :
+- Terdapat informasi mata kuliah mahasiswa semester saat ini dan semester-semester sebelumnya.
+Gambar 12 Halaman List Registrasi Arsip KSM Mahasiswa
+3. Pembayaran, setelah mengklik akan muncul pop up berupa tampilan berikut :
+- Akan ada informasi berupa data tagihan mahasiswa, data pembayaran dan data mangkir
+Hak Cipta ©2022 Pusat Teknologi Informasi | 13
+Aplikasi Sirama
+Gambar 13 Halaman List Registrasi Pembayaran Mahasiswa
+4. Riwayat, setelah mengklik akan muncul pop up berupa tampilan berikut :
+- Akan ada informasi proses registrasi dari mahasiswa tersebut.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 14
+Aplikasi Sirama
+Gambar 14 Halaman List Registrasi Riwayat Mahasiswa
+4. List Mahasiswa
+Menu ini bisa user akses untuk mengecek semua status dan proses mahasiswa satu jurusan, untuk fitur dan fungsinya sama seperti list registrasi.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 15
+Aplikasi Sirama
+Gambar 15 Halaman List Mahasiswa
+5. Keluar
+Terdapat dua cara user untuk keluar, pertama menekan icon segitiga pada kiri atas setelah nama yang bisa user tekan, atau sebelah kanan atas
+icon profil setelah negara Indonesia seperti berikut :
+Hak Cipta ©2022 Pusat Teknologi Informasi | 16
+Aplikasi Sirama
+2
+1
+Gambar 16 Keluar Aplikasi Sirama
+Klik Keluar
+Hak Cipta ©2022 Pusat Teknologi Informasi | 17
+",2025-11-10 15:16:02
+PU_KRITERIA_TAMBAHAN_UNTUK_PREDIKAT_SUMMA_CUMLAUDE_DAN_CUMLAUDE.pdf,Cumlaude,"PERATURAN UNIVERSITAS TELKOM
+Nomor : PU.028/AKD03/AKD-BPA/2024
+T E N T A N G
+KRITERIA TAMBAHAN UNTUK
+PREDIKAT SUMMA CUMLAUDE DAN CUMLAUDE
+REKTOR UNIVERSITAS TELKOM
+Menimbang : a bahwa Pedoman Akademik Universitas Telkom 2024 telah
+ditetapkan sebagai penyesuaian terhadap regulasi Standar
+Nasional Pendidikan dan Penjaminan Mutu Pendidikan Tinggi;
+b bahwa dalam mengimplementasikan Pedoman Akademik
+Universitas Telkom 2024, perlu kriteria tambahan terkait
+predikat summa cumlaude dan cumlaude;
+c bahwa sehubungan dengan bur a dan b di atas, perlu
+menetapkan Peraturan Universitas Telkom tentang Kriteria
+Tambahan untuk Predikat Summa Cumlaude dan Cumlaude;
+Mengingat : 1 Undang-Undang Nomor 12 Tahun 2012 tentang Pendidikan
+Tinggi (Lembaran Negara Republik Indonesia Tahun 2012 Nomor
+158, Tambahan Lembaran Negara Nomor 5336);
+2 Undang-Undang Nomor 20 Tahun 2003 tentang Sistem
+Pendidikan Nasional (Lembaran Negara Republik Indonesia
+Tahun 2003 Nomor 78, Tambahan Lembaran Negara Nomor
+4301);
+3 Peraturan Pemerintah Nomor 4 Tahun 2014 tentang
+Penyelenggaraan Pendidikan Tinggi dan Pengelolaan Perguruan
+Tinggi (Lembaran Negara Republik Indonesia Tahun 2014 Nomor
+16, Tambahan Lembaran Negara Nomor 5500);
+4 Peraturan Pemerintah Nomor 4 Tahun 2022 tentang Perubahan
+atas Peraturan Pemerintah Nomor 57 Tahun 2021 tentang
+Standar Nasional Pendidikan (Lembaran Negara Republik
+Indonesia Tahun 2022 Nomor 14, Tambahan Lembaran Negara
+Nomor 6762) juncto Peraturan Pemerintah Nomor 57 Tahun
+2021 tentang Standar Nasional Pendidikan (Lembaran Negara
+Republik Indonesia Tahun 2021 Nomor 87, Tambahan Lembaran
+Negara Republik Indonesia Nomor 6676);
+5 Peraturan Presiden Republik Indonesia Nomor 8 Tahun 2012
+tentang Kerangka Kualifikasi Nasional Indonesia (Lembaran
+Negara Republik Indonesia Tahun 2012 Nomor 24);
+6 Peraturan Menteri Pendidikan, Kebudayaan, Riset, dan
+Teknologi Nomor 53 Tahun 2023 tentang Penjaminan Mutu
+Pendidikan Tinggi (Berita Negara Republik Indonesia Tahun 2023
+Nomor 638);
+7 Peraturan Menteri Pendidikan, Kebudayaan, Riset, dan
+Teknologi Nomor 39 Tahun 2021 tentang Integritas Akademik
+dalam Menghasilkan Karya Ilmiah (Berita Negara Republik
+Indonesia Tahun 2021 Nomor 1363);
+8 Peraturan Menteri Pendidikan dan Kebudayaan Nomor 73
+Tahun 2013 tentang Penerapan Kerangka Kualifikasi Nasional
+Indonesia Bidang Pendidikan Tinggi (Berita Negara Republik
+Indonesia Tahun 2013 Nomor 831);
+9 Keputusan Menteri Pendidikan dan Kebudayaan Republik
+Indonesia Nomor 270/E/O/2013 tentang Penggabungan
+Politeknik Telkom, Instut Teknologi Telkom, dan Instut
+Manajemen Telkom yang Diselenggarakan oleh Yayasan
+Pendidikan Telkom menjadi Universitas Telkom di Kabupaten
+Bandung Provinsi Jawa Barat yang beberapa kali mengalami
+Pertambahan Kampus menjadi Kampus Jakarta, Kampus
+Surabaya, dan Pertambahan Terakhir Kampus Purwokerto
+berdasarkan Keputusan Menteri Pendidikan, Kebudayaan, Riset,
+dan Teknologi Republik Indonesia Nomor 564/E/O/2024 tentang
+Izin Penyatuan Instut Teknologi Telkom Purwokerto di
+Kabupaten Banyumas yang Diselenggarakan oleh Yayasan
+Pendidikan Telkom;
+10 Keputusan Menteri Pendidikan Nasional Nomor 232/U/2000
+tentang Pedoman Penyusunan Kurikulum Perguruan Tinggi dan
+Penilaian Hasil Belajar Mahasiswa;
+11 Edaran Direktur Jenderal Pendidikan Tinggi Kementerian
+Pendidikan dan Kebudayaan Nomor 526/E.E3/MI/2014 tentang
+Penjelasan tentang Standar Nasional Pendidikan Tinggi untuk
+Program Pascasarjana;
+12 Keputusan Dewan Pengurus Yayasan Pendidikan Telkom Nomor
+KEP. 0037/00/DHE- PD01/YPT/2020 Tanggal 17 Januari 2020
+tentang Statuta Universitas Telkom;
+13 Peraturan Dewan Pengurus Yayasan Pendidikan Telkom Nomor
+PDP. 1081/00/DGS- HK01/YPT/2024 Tanggal 04 September 2024
+tentang Struktur Organisasi dan Tata Kerja Universitas Telkom;
+14 Peraturan Universitas Telkom Nomor PU.022/AKD01/AKD-
+BPA/2024 Tanggal 02 September 2024 tentang Pedoman
+Akademik Universitas Telkom;
+Memperhakan : Rekomendasi berbagai pembahasan pada Rapat Pimpinan, Rapat
+Koordinasi Akademik dan Sistem Informasi tentang kriteria
+tambahan untuk predikat Summa Cumlaude dan Cumlaude;
+MEMUTUSKAN
+Menetapkan : PERATURAN UNIVERSITAS TELKOM TENTANG KRITERIA
+TAMBAHAN UNTUK PREDIKAT SUMMA CUMLAUDE DAN
+CUMLAUDE.
+KESATU : Menetapkan kriteria tambahan untuk Predikat Summa Cumlaude
+dan Cumlaude sebagaimana tercantum pada Lampiran 1 Peraturan
+ini.
+KEDUA : Menetapkan contoh penerapan kriteria Predikat Summa Cumlaude
+dan Cumlaude sebagaimana tercantum pada Lampiran 2 Peraturan
+ini.
+KETIGA : Apabila terdapat kekeliruan pada Peraturan ini, maka akan dilakukan
+perubahan sebagaimana mesnya.
+KEEMPAT : Peraturan ini berlaku sejak tanggal ditetapkan.
+Ditetapkan di: Bandung
+Pada Tanggal: 23 September 2024
+UNIVERSITAS TELKOM
+TTD.
+Prof. Dr. Adiwijaya, S.Si., M.Si.
+Rektor
+Lampiran - 1 : Peraturan Universitas Telkom
+Perihal : Kriteria Tambahan untuk Predikat Summa Cumlaude dan Cumlaude
+Nomor : Disesuaikan oleh Sistem
+Tanggal : Disesuaikan oleh Sistem
+Kriteria Tambahan untuk Predikat Summa Cumlaude dan Cumlaude
+A. Kriteria tambahan umum untuk predikat summa cumlaude dan cumlaude:
+1. tidak pernah mendapat sanksi pelanggaran akademik maupun nonakademik;
+2. mendapat nilai indeks A pada mata kuliah Tugas Akhir;
+B. Kriteria tambahan khusus untuk predikat summa cumlaude:
+1. tidak pernah mengulang mata kuliah;
+2. program diploma tiga dan sarjana/sarjana terapan wajib menghasilkan luaran minimal satu
+publikasi ilmiah berbahasa Inggris bersama dengan dosen pembimbing/pengampu selama
+studi, terkait dengan bidang keilmuan, terafiliasi dengan Universitas Telkom sebagai penulis
+pertama, pada minimal Sinta-1 atau telah terindeks Scopus/Web of Science (WoS), dan
+sekurang-kurangnya telah memiliki Letter of Acceptance (LoA).
+3. program magister/magister terapan
+a. lulus semua mata kuliah dengan nilai indeks minimal AB;
+b. menghasilkan sekurang-kurangnya 1 (satu) luaran dalam bentuk publikasi di jurnal
+internasional bereputasi sebagai penulis pertama berafiliasi Universitas Telkom dengan
+status sekurang-kurangnya telah memiliki LoA.
+4. program doktor/doktor terapan
+a. lulus semua mata kuliah dengan nilai indeks minimal AB;
+b. menghasilkan luaran, yakni
+1) minimal 1 (satu) publikasi di jurnal internasional bereputasi sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang kurangnya telah memiliki LoA
+dari jurnal yang berada dalam kuartil satu (Q1) di Scimago, dan sesuai dengan bidang
+ilmu yang bersangkutan serta berkaitan dengan materi disertasi; atau
+2) minimal 2 (dua) publikasi di jurnal internasional bereputasi sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang kurangnya telah memiliki LoA
+dari jurnal yang berada dalam kuartil dua (Q2) di Scimago, dan sesuai dengan bidang
+ilmu yang bersangkutan serta berkaitan dengan materi disertasi.
+C. Kriteria tambahan khusus untuk predikat cumlaude:
+1. program diploma tiga dan sarjana/sarjana terapan
+a. menghasilkan sekurang-kurangnya 1 (satu) luaran dalam bentuk
+1) memiliki minimal satu publikasi ilmiah berbahasa Inggris bersama dengan dosen
+pembimbing/pengampu selama studi, terkait dengan bidang keilmuan, terafiliasi
+dengan Universitas Telkom sebagai penulis pertama, pada minimal Sinta-2, dan
+sekurang-kurangnya telah memiliki LoA; atau
+2) terdaftar sebagai penyaji karya yang terkait dengan bidang keilmuan dalam pameran
+minimal bertaraf nasional yang telah diselenggarakan secara berkala minimal 5 (lima)
+kali dengan peserta berasal lebih dari 3 (tiga) provinsi, dan sistem kurasi oleh kurator
+bereputasi, yaitu kurator independen yang berkiprah berkelanjutan minimal 10
+(sepuluh) tahun atau kurator lembaga tingkat nasional, serta membawa nama
+Universitas Telkom; atau
+3) berprestasi memperoleh capaian minimal 3 (tiga) besar tingkat
+nasional/internasional yang terkait dengan bidang keilmuan dan membawa nama
+Universitas Telkom, yaitu memenuhi kategori internasional klaster 1 atau 2, atau
+nasional klaster 1 atau 2 yang ditetapkan Direktorat Kemahasiswaan, Pengembangan
+Karir & Alumni; atau
+4) memiliki Hak Kekayaan Intelektual (HKI) bersama dengan dosen
+pembimbing/pengampu yang diajukan melalui unit HKI Universitas Telkom dan telah
+digunakan oleh minimal usaha menengah (sesuai regulasi yang berlaku tentang
+kriteria usaha mikro, kecil, dan menengah) yang dibuktikan dengan prototipe dan
+sertifikat dari mitra Dunia Usaha dan Dunia Industri (DUDI).
+2. program magister/magister terapan
+a. lulus semua mata kuliah dengan nilai indeks minimal B;
+b. menghasilkan sekurang-kurangnya 1 (satu) luaran dalam bentuk
+1) publikasi di jurnal internasional terindeks scopus/WoS sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang-kurangnya telah memiliki LoA;
+atau
+2) publikasi di jurnal nasional terakreditasi Sinta-1 atau Sinta-2 sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang-kurangnya telah memiliki LoA;
+atau
+3) karya yang dibuat dengan mencantumkan afiliasi Universitas Telkom yang
+dipresentasikan atau dipamerkan dalam forum internasional dengan peserta berasal
+dari 5 (lima) negara, dan kurator berasal minimal dari 2 (dua) negara; atau
+4) paten sederhana/lisensi industri berafiliasi Universitas Telkom yang telah didaftarkan
+dan memiliki nomor registrasi pada Direktorat Jenderal Kekayaan Intelektual
+Kementerian Hukum dan Hak Asasi Manusia Republik Indonesia dan telah memiliki
+pengakuan industri.
+3. program doktor/doktor terapan
+a. lulus semua mata kuliah dengan nilai indeks minimal B;
+b. menghasilkan luaran dalam bentuk
+1) minimal 1 (satu) publikasi di jurnal internasional bereputasi sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang kurangnya telah memiliki LoA
+dari jurnal yang berada dalam kuartil dua (Q2) di Scimago, dan sesuai dengan bidang
+ilmu yang bersangkutan serta berkaitan dengan materi disertasi; atau
+2) minimal 2 (dua) publikasi di jurnal internasional bereputasi sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang kurangnya telah memiliki LoA
+dari jurnal yang berada dalam kuartil tiga (Q3) di Scimago, dan sesuai dengan bidang
+ilmu yang bersangkutan serta berkaitan dengan materi disertasi; atau
+3) memiliki karya seni atau perancangan desain atau prototipe yang berafiliasi
+Universitas Telkom yang dipamerkan pada forum/dipublikasikan pada media bertaraf
+internasional dengan peserta berasal dari 5 (lima) negara, dan kurator berasal
+minimal dari 2 (dua) negara, dan sesuai dengan bidang ilmu yang bersangkutan serta
+berkaitan dengan materi disertasi; atau
+4) paten sederhana/ lisensi industri berafiliasi Universitas Telkom yang telah
+didaftarkan dan memiliki nomor registrasi pada Direktorat Jenderal Kekayaan
+Intelektual Kementerian Hukum dan Hak Asasi Manusia Republik Indonesia.
+Ditetapkan di : Bandung
+Pada tanggal : Disesuaikan oleh Sistem
+UNIVERSITAS TELKOM
+Prof. Dr. Adiwijaya
+Rektor
+Lampiran - 2 : Peraturan Universitas Telkom
+Perihal : Kriteria Tambahan untuk Predikat Summa Cumlaude dan Cumlaude
+Nomor : Disesuaikan oleh Sistem
+Tanggal : Disesuaikan oleh Sistem
+Contoh Penerapan Predikat
+Berikut contoh mahasiswa yang lulus yudisium dengan predikat kelulusan:
+Lama Masa Kriteria Tambahan Khusus
+Skor Nilai
+No IPK Studi Status Sanksi Status MK Predikat
+EPrT Indeks TA Publikasi Ilmiah Prestasi Karya HKI
+(Semester) Mengulang
+Program Diploma Tiga
+1 3,95 6 455 Tidak ada A Tidak ada Terindeks - - - Summa cumlaude
+scopus/WoS
+2 3,91 6 475 Tidak ada A Tidak ada Sinta-1 - - - Summa cumlaude
+3 3,95 6 460 Tidak ada A Tidak ada - - - HKI prototipe dan Cumlaude
+sertifikat dari industri
+usaha menengah
+4 3,55 6 450 Tidak ada AB Tidak ada - Juara 1 - - Sangat Memuaskan
+nasional
+5 3,60 7 470 Tidak ada AB Ada - - - HKI prototipe dan Sangat Memuaskan
+sertifikat dari industri
+usaha menengah
+6 3,52 8 455 Tidak ada A Tidak ada - - - HKI prototipe dan Sangat Memuaskan
+sertifikat dari industri
+usaha menengah
+Program Sarjana/Sarjana Terapan (kelas reguler)
+1 3,92 7 475 Tidak ada A Tidak ada Sinta-1 - - - Summa cumlaude
+2 3,95 8 510 Tidak ada A Tidak ada Terindeks - - - Summa cumlaude
+scopus/WoS
+3 3,95 8 510 Tidak ada A Tidak ada - Juara 1 - - Cumlaude
+nasional
+4 3,60 7 490 Tidak ada A Tidak ada - - Pameran - Cumlaude
+internasional
+5 3,58 9 500 Tidak ada AB Ada - Juara 2 - - Sangat Memuaskan
+internasional
+6 3,45 8 475 Tidak ada AB Tidak ada Terindeks - - - Sangat Memuaskan
+scopus/WoS
+Program Sarjana/Sarjana Terapan (kelas internasional)
+1 3,98 7 600 Tidak ada A Tidak ada Terindeks - - - Summa cumlaude
+scopus/WoS
+2 3,91 8 515 Tidak ada A Tidak ada Sinta-1 - - - Summa cumlaude
+3 3,93 8 575 Tidak ada A Tidak ada - Juara 3 - - Cumlaude
+internasional
+4 3,55 7 605 Tidak ada A Tidak ada - - Pameran - Cumlaude
+internasional
+5 3,05 9 510 Tidak ada A Ada - - - HKI prototipe dan Sangat Memuaskan
+sertifikat dari industri
+usaha menengah
+6 3,66 8 590 Tidak ada AB Tidak ada Terindeks - - Sangat Memuaskan
+scopus/WoS
+Lama Masa Nilai Kriteria Tambahan Khusus
+Skor Status
+No IPK Studi Indeks Status MK Nilai MK Predikat
+EPrT Sanksi Publikasi Ilmiah Prestasi Karya HKI
+(Semester) TA Mengulang Terendah
+Program Magister/Magister Terapan
+1 3,97 3 477 Tidak ada A Tidak ada AB Jurnal Bereputasi Q1 - - - Summa cumlaude
+2 3,97 4 500 Tidak ada A Tidak ada AB Jurnal Bereputasi Q4 - - - Summa cumlaude
+3 3,95 4 510 Tidak ada A Tidak ada B Jurnal Terindeks Q4 - - - Cumlaude
+4 3,87 4 525 Tidak ada A Tidak ada B - - Pameran - Cumlaude
+internasional
+5 3,97 5 475 Tidak ada AB ada AB Sinta-2 - - - Sangat Memuaskan
+6 3,55 7 500 Tidak ada B Tidak ada C Sinta-3 - - - Sangat Memuaskan
+Program Doktor/Doktor Terapan
+1 4 6 510 Tidak ada A Tidak ada A Jurnal Bereputasi Q1 - - - Summa cumlaude
+2 3,97 6 500 Tidak ada A Tidak ada AB 2 Jurnal Bereputasi Q2 - - - Summa cumlaude
+3 3,87 6 525 Tidak ada A Tidak ada B 2 Jurnal Bereputasi Q3 - - - Cumlaude
+4 3,78 8 500 Tidak ada A Tidak ada B Jurnal Bereputasi Q2 - - - Cumlaude
+5 3,95 8 510 Tidak ada A Tidak ada B Jurnal Bereputasi Q1 - - - Cumlaude
+6 3,76 10 500 Tidak ada B Ada C Jurnal Terindeks Q3 - - - Sangat Memuaskan
+Ditetapkan di : Bandung
+Pada tanggal : Disesuaikan oleh Sistem
+UNIVERSITAS TELKOM
+Prof. Dr. Adiwijaya
+Rektor
+",2025-11-10 15:17:35
+Kampus di Telkom University.pdf,Kampus Telkom University,"Telkom University sekarang tersedia di Jakarta! Selamat datang di Telkom University Jakarta! Kami
+memiliki dua lokasi kampus yang berbeda dan unik, yaitu Kampus A dan Kampus B, masing-masing
+dengan lokasi berbeda yang menawarkan pengalaman pendidikan berkualitas dan memiliki keunikan
+masing-masing.
+Kampus A, terletak di Jl. Raya Daan Mogot – Gedung Stasiun Bumi.KM. 11, RW.4, Kedaung Kali
+Angke, Kecamatan Cengkareng, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11710. Kampus
+A Telkom University Jakarta menjadi pusat kegiatan akademik dan administratif,
+menyediakan fasilitas modern untuk mendukung proses pembelajaran mahasiswa. Kampus A Telkom
+University Jakarta mencakup ruang kuliah D3 Teknik Telekomunikasi dan S1 Teknik Telekomunikasi,
+dan S1 Desain Komunikasi Visual, perpustakaan, laboratorium, kantin, mushalla, lapangan olahraga,
+dan fasilitas penelitian.
+Kampus B, Kampus Halimun yang berlokasi di Jl. Halimun Raya No.2, RT.15/RW.6, Guntur, Kecamatan
+Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12980. Kampus B Telkom University
+Jakarta menawarkan suasana belajar yang inspiratif dengan fasilitas yang memadai. Dengan desain
+yang modern dan teknologi terkini, Kampus B Telkom University Jakarta menjadi tempat bagi
+mahasiswa untuk menjalani pengalaman pendidikan yang unggul. Terdapat ruang kuliah S1 Teknologi
+Informasi, perpustakaan, laboratorium, kantin, mushalla, dan fasilitas penelitian.
+Kampus C, Kampus Minangkabau Sementara itu kampus C yang berlokasi di Jalan Minangkabau Barat
+No.50, RT.1/RW.1, Ps. Manggis, Kecamatan Setiabudi, Kota Jakarta Selatan, DKI Jakarta 12970.
+Kampus ini memiliki lingkungan belajar yang modern dan inspiratif, dirancang untuk mendukung
+kegiatan akademik dan pengembangan diri mahasiswa. Fasilitas yang tersedia meliputi ruang kuliah
+yang nyaman dan dilengkapi dengan teknologi terkini. Salah satu program studi di kampus
+Minangkabau adalah S1 Sistem Informasi
+",2025-11-10 15:18:02
