@@ -105,6 +105,41 @@ class UploadPDFView(APIView):
                 "created_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             })
 
+            chroma_client = chromadb.Client()
+            collection = chroma_client.get_or_create_collection(
+                name="pdf_docs",
+                embedding_function=embedding_functions.DefaultEmbeddingFunction()
+            )
+
+            def load_csv_data(file_path="dataset.csv"):
+                docs = []
+                with open(file_path, "r", encoding="utf-8") as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        docs.append({
+                            "id": row["file"],
+                            "category": row["category"],
+                            "text": row["text"],
+                            "created_at":row['created_at']
+                        })
+                return docs
+
+
+            data = load_csv_data("dataset.csv")
+
+            for d in data:
+                try:
+                    collection.add(
+                        ids=[d["id"]],
+                        documents=[d["text"]],
+                        metadatas=[{"category": d["category"]}]
+                    )
+                except Exception:
+                    # Already exists
+                    pass
+
+            categories = list({d["category"] for d in data})
+
         return Response({
             "message": f"✅ File '{pdf_file.name}' processed and added to dataset.csv",
             "category": category,
@@ -126,7 +161,8 @@ def load_csv_data(file_path="dataset.csv"):
             docs.append({
                 "id": row["file"],
                 "category": row["category"],
-                "text": row["text"]
+                "text": row["text"],
+                "created_at":row['created_at']
             })
     return docs
 
@@ -149,6 +185,38 @@ print(f"✅ Indexed {len(data)} documents into ChromaDB")
 print(f"📂 Found categories: {categories}")
 
 class ChatBot(APIView):
+    chroma_client = chromadb.Client()
+    collection = chroma_client.get_or_create_collection(
+        name="pdf_docs",
+        embedding_function=embedding_functions.DefaultEmbeddingFunction()
+    )
+    def load_csv_data(file_path="dataset.csv"):
+        docs = []
+        with open(file_path, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                docs.append({
+                    "id": row["file"],
+                    "category": row["category"],
+                    "text": row["text"],
+                    "created_at":row['created_at']
+                })
+        return docs
+    data = load_csv_data("dataset.csv")
+    for d in data:
+        try:
+            collection.add(
+                ids=[d["id"]],
+                documents=[d["text"]],
+                metadatas=[{"category": d["category"]}]
+            )
+        except Exception:
+            pass
+    categories = list({d["category"] for d in data})
+    print(f"✅ Indexed {len(data)} documents into ChromaDB")
+    print(f"📂 Found categories: {categories}")
+
+
     def post(self, request):
         query = request.data.get("query", "").strip()
         if not query:
@@ -196,7 +264,7 @@ class ChatBot(APIView):
                         {"role": "user", "content": query},
                     ],
                     stream=True,
-                    options={"temperature":1.0}
+                    options={"temperature":0.8}
                 )
 
                 for chunk in stream:
