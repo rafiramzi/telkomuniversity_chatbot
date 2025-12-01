@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import OllamaChatView, UploadPDFView, ChatBot
+from .views import UploadPDFView, ChatBot
 
 urlpatterns = [
     # path('chat/', OllamaChatView.as_view(), name='ollama_chat'),
