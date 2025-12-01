@@ -184,64 +184,54 @@ categories = list({d["category"] for d in data})
 print(f"✅ Indexed {len(data)} documents into ChromaDB")
 print(f"📂 Found categories: {categories}")
 
+
+CONVERSATION_MEMORY = {}
+MAX_MEMORY = 1
+USER_CATEGORY = {}   # kategori tiap session
+
 class ChatBot(APIView):
-    chroma_client = chromadb.Client()
-    collection = chroma_client.get_or_create_collection(
-        name="pdf_docs",
-        embedding_function=embedding_functions.DefaultEmbeddingFunction()
-    )
-    def load_csv_data(file_path="dataset.csv"):
-        docs = []
-        with open(file_path, "r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                docs.append({
-                    "id": row["file"],
-                    "category": row["category"],
-                    "text": row["text"],
-                    "created_at":row['created_at']
-                })
-        return docs
-    data = load_csv_data("dataset.csv")
-    for d in data:
-        try:
-            collection.add(
-                ids=[d["id"]],
-                documents=[d["text"]],
-                metadatas=[{"category": d["category"]}]
-            )
-        except Exception:
-            pass
-    categories = list({d["category"] for d in data})
-    print(f"✅ Indexed {len(data)} documents into ChromaDB")
-    print(f"📂 Found categories: {categories}")
 
-
+    ai_model = "gpt-oss:20b-cloud"
     def post(self, request):
+        session_id = request.data.get("session_id", "default_user")
+
+        # --- GET QUERY ---
         query = request.data.get("query", "").strip()
         if not query:
             return Response({"error": "Query text is required."},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        # Detect category
+        # --- DETECT CATEGORY ---
         try:
-            cat_query = ollama.chat(model="gpt-oss:20b-cloud", messages=[
-                {"role": "system", "content": f"Available categories: {categories}"},
-                {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name. if the answer is not related about Telkom University Campus, the category is not relevant."}
-            ],
-            options={"temperature":1.0}
+            cat_query = ollama.chat(
+                model=self.ai_model,
+                messages=[
+                    {"role": "system", "content": f"Available categories: {categories}"},
+                    {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name. if the answer is not related about Telkom University Campus, the category is not relevant."}
+                ],
+                options = { "temperature":1.0 }
             )
             category_guess = cat_query["message"]["content"].strip()
-            if category_guess is None:
-                print("⚠️ Query tidak cocok dengan kategori mana pun.")
-                print("📂 Kategori tersedia:", categories)
-                print("Saya hanya bisa menjawab topik sesuai dataset Anda.")
-                return "Pertanyaan di luar kategori dataset."
-        except Exception as e:
+        except:
             category_guess = "Not Relevant"
-            print(f"Category detection failed: {e}")
 
-        # Retrieve relevant context
+        # --- CHECK IF TOPIC CHANGED ---
+        prev_cat = USER_CATEGORY.get(session_id)
+
+        if prev_cat != category_guess:
+            # Reset history if topic changes
+            CONVERSATION_MEMORY[session_id] = []
+            USER_CATEGORY[session_id] = category_guess
+
+        # --- UPDATE HISTORY AFTER RESET ---
+        history = CONVERSATION_MEMORY.get(session_id, [])
+        history.append({"role": "user", "content": query})
+        if len(history) > MAX_MEMORY:
+            history = history[-MAX_MEMORY:]
+
+        CONVERSATION_MEMORY[session_id] = history
+
+        # --- VECTOR SEARCH ---
         results = collection.query(
             query_texts=[query],
             n_results=3,
@@ -251,30 +241,27 @@ class ChatBot(APIView):
 
         # --- STREAM RESPONSE ---
         def stream_generator():
-            start_time = time.time()
             try:
-                stream = ollama.chat(
-                    model="gpt-oss:20b-cloud",
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": f"You are a helpful assistant answering within '{category_guess}' category. you are not allowed to answer anything out of topic and out of the dataset. for greetings or conversation, tell the user that you are only answer about telkom university campus topic. if category is Not Relevant, recomend the user to ask anything else about national campus"
-                                       f"Use this context:\n{context}"
-                        },
-                        {"role": "user", "content": query},
-                    ],
-                    stream=True,
-                    options={"temperature":0.8}
-                )
+                messages = [
+                    {
+                        "role": "system",
+                        "content": (
+                            f"You are a helpful assistant. Current category: '{category_guess}'. you are not allowed to answer anything out of topic and out of the dataset. for greetings or conversation, tell the user that you are only answer about telkom university campus topic. if category is Not Relevant, recomend the user to ask anything else about national campus\n"
+                            f"If user goes off-topic, inform them.\n\n"
+                            f"Context:\n{context}"
+                        )
+                    }
+                ] + history
 
-                for chunk in stream:
+                for chunk in ollama.chat(
+                    model=self.ai_model,
+                    messages=messages,
+                    stream=True,
+                    options={"temperature": 0.9} 
+                ):
                     if "message" in chunk and "content" in chunk["message"]:
-                        # Each chunk is sent as a new line
                         yield chunk["message"]["content"]
-                        # flush each piece immediately
                         yield ""
-                elapsed = time.time() - start_time
-                yield f"\n\n\n(answer time: {elapsed:.2f} seconds)"
             except Exception as e:
                 yield f"\n\n[Error] {str(e)}"
 
