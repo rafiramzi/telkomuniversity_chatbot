@@ -163,7 +163,7 @@ def load_csv_data(file_path="dataset.csv"):
                 "id": row["file"],
                 "category": row["category"],
                 "text": row["text"],
-                "created_at": row["created_at"]
+                "created_at":row['created_at']
             })
     return docs
 
@@ -178,6 +178,7 @@ for d in data:
             metadatas=[{"category": d["category"]}]
         )
     except Exception:
+        # Already exists
         pass
 
 categories = list({d["category"] for d in data})
@@ -185,94 +186,45 @@ print(f"✅ Indexed {len(data)} documents into ChromaDB")
 print(f"📂 Found categories: {categories}")
 
 
-# Memory
 CONVERSATION_MEMORY = {}
 MAX_MEMORY = 2
 USER_CATEGORY = {}   # kategori tiap session
 
-
-
 class ChatBot(APIView):
 
     ai_model = "gpt-oss:20b-cloud"
-
-    @staticmethod
-    def find_best_category_by_content(query):
-        """
-        Cari kategori berdasarkan kemiripan konten vector.
-        """
-        results = collection.query(
-            query_texts=[query],
-            n_results=3
-        )
-
-        if not results["documents"]:
-            return None
-
-        top_metadata = results["metadatas"][0]
-        top_scores = results["distances"][0]
-
-        best_category = top_metadata[0]["category"]
-        best_score = top_scores[0]
-
-        # Threshold distance
-        if best_score < 1.0:
-            return best_category
-
-        return None
-
-
-
     def post(self, request):
         session_id = request.data.get("session_id", "default_user")
 
+        # --- GET QUERY ---
         query = request.data.get("query", "").strip()
         if not query:
             return Response({"error": "Query text is required."},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        # ----------------------------------------------------------------------
-        # 1. PREDIKSI KATEGORI DENGAN LLM
-        # ----------------------------------------------------------------------
+        # --- DETECT CATEGORY ---
         try:
             cat_query = ollama.chat(
                 model=self.ai_model,
                 messages=[
                     {"role": "system", "content": f"Available categories: {categories}"},
-                    {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name."}
+                    {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name. if the answer is not related about Telkom University Campus, the category is not relevant."}
                 ],
-                options={"temperature": 1.0}
+                options = { "temperature":1.0 }
             )
             category_guess = cat_query["message"]["content"].strip()
         except:
             category_guess = "Not Relevant"
 
-        # ----------------------------------------------------------------------
-        # 2. CATEGORY DETECTION HYBRID (LLM + CONTENT SIMILARITY)
-        # ----------------------------------------------------------------------
-        category_from_content = ChatBot.find_best_category_by_content(query)
-
-        if category_from_content:
-            final_category = category_from_content
-        else:
-            final_category = category_guess
-
-
-
-        # ----------------------------------------------------------------------
-        # 3. RESET MEMORY JIKA BERPINDAH TOPIK
-        # ----------------------------------------------------------------------
+        # --- CHECK IF TOPIC CHANGED ---
         prev_cat = USER_CATEGORY.get(session_id)
 
-        if prev_cat != final_category:
+        if prev_cat != category_guess:
+            # Reset history if topic changes
             CONVERSATION_MEMORY[session_id] = []
-            USER_CATEGORY[session_id] = final_category
+            USER_CATEGORY[session_id] = category_guess
 
-
-
-        # ----------------------------------------------------------------------
-        # 4. UPDATE HISTORY
-        # ----------------------------------------------------------------------
+        # --- UPDATE HISTORY AFTER RESET ---
         history = CONVERSATION_MEMORY.get(session_id, [])
         history.append({"role": "user", "content": query})
         if len(history) > MAX_MEMORY:
@@ -280,38 +232,23 @@ class ChatBot(APIView):
 
         CONVERSATION_MEMORY[session_id] = history
 
-
-
-        # ----------------------------------------------------------------------
-        # 5. VECTOR SEARCH BERDASARKAN final_category
-        # ----------------------------------------------------------------------
+        # --- VECTOR SEARCH ---
         results = collection.query(
             query_texts=[query],
             n_results=3,
-            where={"category": final_category}
+            where={"category": category_guess}
         )
+        context = "\n\n".join(results["documents"][0]) if results["documents"] else "No relevant context found."
 
-        context = (
-            "\n\n".join(results["documents"][0])
-            if results["documents"]
-            else "No relevant context found."
-        )
-
-
-
-        # ----------------------------------------------------------------------
-        # 6. STREAMING RESPON
-
-
+        # --- STREAM RESPONSE ---
         def stream_generator():
             try:
                 messages = [
                     {
                         "role": "system",
                         "content": (
-                            f"You are a helpful assistant. Current category: '{final_category}'. you are allowed to do conversation but not allowed to answer anything out of topic and out of the dataset. for greetings or conversation, tell the user that you are only answer about telkom university campus topic. if category is Not Relevant, recomend the user to ask anything else about national campus"
-                            f"You must only answer based on the dataset. "
-                            f"If off-topic, warn the user.\n\n"
+                            f"You are a helpful assistant. Current category: '{category_guess}'. you are not allowed to answer anything out of topic and out of the dataset. for greetings or conversation, tell the user that you are only answer about telkom university campus topic. if category is Not Relevant, recomend the user to ask anything else about national campus\n"
+                            f"If user goes off-topic, inform them.\n\n"
                             f"Context:\n{context}"
                         )
                     }
@@ -321,13 +258,12 @@ class ChatBot(APIView):
                     model=self.ai_model,
                     messages=messages,
                     stream=True,
-                    options={"temperature": 0.9}
+                    options={"temperature": 0.9} 
                 ):
                     if "message" in chunk and "content" in chunk["message"]:
                         yield chunk["message"]["content"]
                         yield ""
             except Exception as e:
                 yield f"\n\n[Error] {str(e)}"
-
 
         return StreamingHttpResponse(stream_generator(), content_type="text/plain")
