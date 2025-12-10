@@ -10,6 +10,10 @@ import time
 import chromadb
 import pdfplumber
 import os
+import cohere
+import numpy as np
+
+
 from django.conf import settings
 
 
@@ -193,8 +197,9 @@ USER_CATEGORY = {}   # kategori tiap session
 class ChatBot(APIView):
 
     ai_model = "gpt-oss:20b-cloud"
+    co = cohere.Client("NUmC8c9SPzKzoI8CW00zAA8L6SjCcHkIvTMqip2x")
+
     def post(self, request):
-        session_id = request.data.get("session_id", "default_user")
 
         # --- GET QUERY ---
         query = request.data.get("query", "").strip()
@@ -202,63 +207,63 @@ class ChatBot(APIView):
             return Response({"error": "Query text is required."},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        # --- DETECT CATEGORY ---
-        try:
-            cat_query = ollama.chat(
-                model=self.ai_model,
-                messages=[
-                    {"role": "system", "content": f"Available categories: {categories}"},
-                    {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name. if the answer is not related about Telkom University Campus, the category is not relevant."}
-                ],
-                options = { "temperature":1.0 }
-            )
-            category_guess = cat_query["message"]["content"].strip()
-        except:
-            category_guess = "Not Relevant"
-
-        # --- CHECK IF TOPIC CHANGED ---
-        prev_cat = USER_CATEGORY.get(session_id)
-
-        if prev_cat != category_guess:
-            # Reset history if topic changes
-            CONVERSATION_MEMORY[session_id] = []
-            USER_CATEGORY[session_id] = category_guess
-
-        # --- UPDATE HISTORY AFTER RESET ---
-        history = CONVERSATION_MEMORY.get(session_id, [])
-        history.append({"role": "user", "content": query})
-        if len(history) > MAX_MEMORY:
-            history = history[-MAX_MEMORY:]
-
-        CONVERSATION_MEMORY[session_id] = history
-
-        # --- VECTOR SEARCH ---
+        # --- VECTOR SEARCH (no category filtering) ---
         results = collection.query(
             query_texts=[query],
-            n_results=3,
-            where={"category": category_guess}
+            n_results=8
         )
-        context = "\n\n".join(results["documents"][0]) if results["documents"] else "No relevant context found."
+
+        retrieved_docs = results["documents"][0] if results["documents"] else []
+
+        # --- OPTIONAL: Cohere Rerank ---
+        final_docs = []
+
+        if retrieved_docs:
+            # Rerank membutuhkan format {"text": "..."}
+            docs_for_rerank = [{"text": d} for d in retrieved_docs]
+
+            reranked = self.co.rerank(
+                model="rerank-multilingual-v3.0",
+                query=query,
+                documents=docs_for_rerank,
+                top_n=4
+            )
+
+            # Ambil hasil yang valid
+            final_docs = [
+                item.document["text"]
+                for item in reranked.results
+                if item.document and "text" in item.document
+            ]
+
+        # Fallback jika rerank kosong
+        if not final_docs and retrieved_docs:
+            final_docs = retrieved_docs[:4]
+
+        # Fallback total
+        context = "\n\n".join(final_docs) if final_docs else "No relevant context found."
 
         # --- STREAM RESPONSE ---
         def stream_generator():
             try:
+                system_msg = (
+                    "You are a campus assistant for Telkom University. "
+                    "Answer ONLY based on the provided context. "
+                    "If the user asks general chit-chat or out-of-scope questions, "
+                    "remind them that you only answer questions about Telkom University.\n\n"
+                    f"Context:\n{context}"
+                )
+
                 messages = [
-                    {
-                        "role": "system",
-                        "content": (
-                            f"You are a helpful assistant. Current category: '{category_guess}'. you are not allowed to answer anything out of topic and out of the dataset. for greetings or conversation, tell the user that you are only answer about telkom university campus topic. if category is Not Relevant, recomend the user to ask anything else about national campus\n"
-                            f"If user goes off-topic, inform them.\n\n"
-                            f"Context:\n{context}"
-                        )
-                    }
-                ] + history
+                    {"role": "system", "content": system_msg},
+                    {"role": "user", "content": query}
+                ]
 
                 for chunk in ollama.chat(
                     model=self.ai_model,
                     messages=messages,
                     stream=True,
-                    options={"temperature": 0.9} 
+                    options={"temperature": 0.2}
                 ):
                     if "message" in chunk and "content" in chunk["message"]:
                         yield chunk["message"]["content"]
