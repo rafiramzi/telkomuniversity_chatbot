@@ -200,75 +200,156 @@ class ChatBot(APIView):
     co = cohere.Client("NUmC8c9SPzKzoI8CW00zAA8L6SjCcHkIvTMqip2x")
 
     def post(self, request):
+        model = request.data.get("model")
 
-        # --- GET QUERY ---
-        query = request.data.get("query", "").strip()
-        if not query:
-            return Response({"error": "Query text is required."},
-                            status=status.HTTP_400_BAD_REQUEST)
 
-        # --- VECTOR SEARCH (no category filtering) ---
-        results = collection.query(
-            query_texts=[query],
-            n_results=8
-        )
+        if model == "model1":
+                session_id = request.data.get("session_id", "default_user")
+                # --- GET QUERY ---
+                query = request.data.get("query", "").strip()
+                if not query:
+                    return Response({"error": "Query text is required."},
+                                    status=status.HTTP_400_BAD_REQUEST)
 
-        retrieved_docs = results["documents"][0] if results["documents"] else []
+                # --- DETECT CATEGORY ---
+                try:
+                    cat_query = ollama.chat(
+                        model=self.ai_model,
+                        messages=[
+                            {"role": "system", "content": f"Available categories: {categories}"},
+                            {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name. if the answer is not related about Telkom University Campus, the category is not relevant."}
+                        ],
+                        options = { "temperature":1.0 }
+                    )
+                    category_guess = cat_query["message"]["content"].strip()
+                except:
+                    category_guess = "Not Relevant"
 
-        # --- OPTIONAL: Cohere Rerank ---
-        final_docs = []
+                # --- CHECK IF TOPIC CHANGED ---
+                prev_cat = USER_CATEGORY.get(session_id)
 
-        if retrieved_docs:
-            # Rerank membutuhkan format {"text": "..."}
-            docs_for_rerank = [{"text": d} for d in retrieved_docs]
+                if prev_cat != category_guess:
+                    # Reset history if topic changes
+                    CONVERSATION_MEMORY[session_id] = []
+                    USER_CATEGORY[session_id] = category_guess
 
-            reranked = self.co.rerank(
-                model="rerank-multilingual-v3.0",
-                query=query,
-                documents=docs_for_rerank,
-                top_n=4
+                # --- UPDATE HISTORY AFTER RESET ---
+                history = CONVERSATION_MEMORY.get(session_id, [])
+                history.append({"role": "user", "content": query})
+                if len(history) > MAX_MEMORY:
+                    history = history[-MAX_MEMORY:]
+
+                CONVERSATION_MEMORY[session_id] = history
+
+                # --- VECTOR SEARCH ---
+                results = collection.query(
+                    query_texts=[query],
+                    n_results=3,
+                    where={"category": category_guess}
+                )
+                context = "\n\n".join(results["documents"][0]) if results["documents"] else "No relevant context found."
+
+                # --- STREAM RESPONSE ---
+                def stream_generator():
+                    try:
+                        messages = [
+                            {
+                                "role": "system",
+                                "content": (
+                                    f"You are a helpful assistant. Current category: '{category_guess}'. you are not allowed to answer anything out of topic and out of the dataset. for greetings or conversation, tell the user that you are only answer about telkom university campus topic. if category is Not Relevant, recomend the user to ask anything else about national campus\n"
+                                    f"If user goes off-topic, inform them.\n\n"
+                                    f"Context:\n{context}"
+                                )
+                            }
+                        ] + history
+
+                        for chunk in ollama.chat(
+                            model=self.ai_model,
+                            messages=messages,
+                            stream=True,
+                            options={"temperature": 0.9} 
+                        ):
+                            if "message" in chunk and "content" in chunk["message"]:
+                                yield chunk["message"]["content"]
+                                yield ""
+                    except Exception as e:
+                        yield f"\n\n[Error] {str(e)}"
+
+                return StreamingHttpResponse(stream_generator(), content_type="text/plain")
+
+
+        if model == "model2":
+            query = request.data.get("query", "").strip()
+            if not query:
+                return Response({"error": "Query text is required."},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+            # --- VECTOR SEARCH (no category filtering) ---
+            results = collection.query(
+                query_texts=[query],
+                n_results=8
             )
 
-            # Ambil hasil yang valid
-            final_docs = [
-                item.document["text"]
-                for item in reranked.results
-                if item.document and "text" in item.document
-            ]
+            retrieved_docs = results["documents"][0] if results["documents"] else []
 
-        # Fallback jika rerank kosong
-        if not final_docs and retrieved_docs:
-            final_docs = retrieved_docs[:4]
+            # --- OPTIONAL: Cohere Rerank ---
+            final_docs = []
 
-        # Fallback total
-        context = "\n\n".join(final_docs) if final_docs else "No relevant context found."
+            if retrieved_docs:
+                # Rerank membutuhkan format {"text": "..."}
+                docs_for_rerank = [{"text": d} for d in retrieved_docs]
 
-        # --- STREAM RESPONSE ---
-        def stream_generator():
-            try:
-                system_msg = (
-                    "You are a campus assistant for Telkom University. "
-                    "Answer ONLY based on the provided context. "
-                    "If the user asks general chit-chat or out-of-scope questions, "
-                    "remind them that you only answer questions about Telkom University.\n\n"
-                    f"Context:\n{context}"
+                reranked = self.co.rerank(
+                    model="rerank-multilingual-v3.0",
+                    query=query,
+                    documents=docs_for_rerank,
+                    top_n=4
                 )
 
-                messages = [
-                    {"role": "system", "content": system_msg},
-                    {"role": "user", "content": query}
+                # Ambil hasil yang valid
+                final_docs = [
+                    item.document["text"]
+                    for item in reranked.results
+                    if item.document and "text" in item.document
                 ]
 
-                for chunk in ollama.chat(
-                    model=self.ai_model,
-                    messages=messages,
-                    stream=True,
-                    options={"temperature": 0.2}
-                ):
-                    if "message" in chunk and "content" in chunk["message"]:
-                        yield chunk["message"]["content"]
-                        yield ""
-            except Exception as e:
-                yield f"\n\n[Error] {str(e)}"
+            # Fallback jika rerank kosong
+            if not final_docs and retrieved_docs:
+                final_docs = retrieved_docs[:4]
 
-        return StreamingHttpResponse(stream_generator(), content_type="text/plain")
+            # Fallback total
+            context = "\n\n".join(final_docs) if final_docs else "No relevant context found."
+
+            # --- STREAM RESPONSE ---
+            def stream_generator():
+                try:
+                    system_msg = (
+                        "You are a campus assistant for Telkom University. "
+                        "Answer ONLY based on the provided context. "
+                        "If the user asks general chit-chat or out-of-scope questions, "
+                        "remind them that you only answer questions about Telkom University.\n\n"
+                        f"Context:\n{context}"
+                    )
+
+                    messages = [
+                        {"role": "system", "content": system_msg},
+                        {"role": "user", "content": query}
+                    ]
+
+                    for chunk in ollama.chat(
+                        model=self.ai_model,
+                        messages=messages,
+                        stream=True,
+                        options={"temperature": 0.2}
+                    ):
+                        if "message" in chunk and "content" in chunk["message"]:
+                            yield chunk["message"]["content"]
+                            yield ""
+                except Exception as e:
+                    yield f"\n\n[Error] {str(e)}"
+
+            return StreamingHttpResponse(stream_generator(), content_type="text/plain")
+        return Response(
+            {"error": "Invalid model specified."},
+            status=status.HTTP_400_BAD_REQUEST
+        )
