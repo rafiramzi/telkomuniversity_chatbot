@@ -278,6 +278,9 @@ class ChatBot(APIView):
                 return StreamingHttpResponse(stream_generator(), content_type="text/plain")
 
 
+
+        # --- MODEL 2: NO CATEGORY, WITH RERANK ---
+
         if model == "model2":
             query = request.data.get("query", "").strip()
             if not query:
@@ -287,17 +290,25 @@ class ChatBot(APIView):
             # --- VECTOR SEARCH (no category filtering) ---
             results = collection.query(
                 query_texts=[query],
-                n_results=8
+                n_results=8,
+                include=["documents", "distances"]
             )
 
-            retrieved_docs = results["documents"][0] if results["documents"] else []
+            docs = results["documents"][0]
+            distances = results["distances"][0]
+
+            filtered_docs = [
+                d for d, dist in zip(docs, distances)
+                if dist < 0.35  # TUNING
+            ]
+
 
             # --- OPTIONAL: Cohere Rerank ---
             final_docs = []
 
-            if retrieved_docs:
+            if filtered_docs:
                 # Rerank membutuhkan format {"text": "..."}
-                docs_for_rerank = [{"text": d} for d in retrieved_docs]
+                docs_for_rerank = [{"text": d} for d in filtered_docs]
 
                 reranked = self.co.rerank(
                     model="rerank-multilingual-v3.0",
@@ -323,13 +334,21 @@ class ChatBot(APIView):
             # --- STREAM RESPONSE ---
             def stream_generator():
                 try:
-                    system_msg = (
-                        "You are a campus assistant for Telkom University. "
-                        "Answer ONLY based on the provided context. "
-                        "If the user asks general chit-chat or out-of-scope questions, "
-                        "remind them that you only answer questions about Telkom University.\n\n"
-                        f"Context:\n{context}"
-                    )
+                    system_msg = f"""
+                    You are a question-answering system for Telkom University.
+
+                    STRICT RULES:
+                    - You MUST answer using ONLY the information explicitly stated in the context.
+                    - DO NOT use prior knowledge.
+                    - DO NOT make assumptions.
+                    - DO NOT combine context with external knowledge.
+                    - If the answer is NOT clearly stated in the context, respond EXACTLY with:
+
+                    "Maaf, informasi tersebut tidak tersedia dalam data yang saya miliki."
+
+                    Context:
+                    {context}
+                    """
 
                     messages = [
                         {"role": "system", "content": system_msg},
