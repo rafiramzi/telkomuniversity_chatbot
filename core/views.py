@@ -12,6 +12,7 @@ import pdfplumber
 import os
 import cohere
 import numpy as np
+from chromadb.api.types import EmbeddingFunction
 
 
 from django.conf import settings
@@ -45,27 +46,43 @@ from chromadb.utils import embedding_functions
 
 #         return StreamingHttpResponse(stream(), content_type="application/x-ndjson")
 
+class CohereEmbeddingFunction(EmbeddingFunction):
+    def __init__(self, api_key, model="embed-multilingual-v3.0"):
+        self.co = cohere.Client(api_key)
+        self.model = model
 
+    def __call__(self, texts):
+        response = self.co.embed(
+            texts=texts,
+            model=self.model,
+            input_type="search_document"
+        )
+        return response.embeddings
+    
+cohere_ef = CohereEmbeddingFunction(
+    api_key="NUmC8c9SPzKzoI8CW00zAA8L6SjCcHkIvTMqip2x"
+)
+
+chroma_client = chromadb.Client()
+
+collection = chroma_client.get_or_create_collection(
+    name="pdf_docs_cohere",
+    embedding_function=cohere_ef
+)
 class UploadPDFView(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request):
-        """
-        Upload a single PDF file with a category.
-        Example form-data:
-        - file: <uploaded.pdf>
-        - category: "User Manual"
-        """
-        pdf_file = request.FILES.get('file')
-        category = request.data.get('category')
+        pdf_file = request.FILES.get("file")
+        category = request.data.get("category")
 
         if not pdf_file or not category:
             return Response(
-                {"error": "Both 'file' and 'category' are required."},
-                status=status.HTTP_400_BAD_REQUEST
+                {"error": "file and category are required"},
+                status=400
             )
 
-        # Save uploaded file temporarily
+        # Save file
         upload_dir = os.path.join(settings.MEDIA_ROOT, "uploads")
         os.makedirs(upload_dir, exist_ok=True)
         file_path = os.path.join(upload_dir, pdf_file.name)
@@ -74,89 +91,49 @@ class UploadPDFView(APIView):
             for chunk in pdf_file.chunks():
                 f.write(chunk)
 
-        # Extract text from PDF
-        try:
-            text = ""
-            with pdfplumber.open(file_path) as pdf:
-                for page in pdf.pages:
-                    page_text = page.extract_text()
-                    if page_text:
-                        text += page_text + "\n"
-        except Exception as e:
-            return Response(
-                {"error": f"Failed to extract text: {e}"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+        # Extract text
+        text = ""
+        with pdfplumber.open(file_path) as pdf:
+            for page in pdf.pages:
+                if page.extract_text():
+                    text += page.extract_text() + "\n"
 
-        # Append to CSV
-        csv_file = os.path.join(settings.BASE_DIR, "dataset.csv")
-        file_exists = os.path.exists(csv_file)
-        header_exists = False
+        if not text.strip():
+            return Response({"error": "PDF kosong"}, status=400)
 
-        if file_exists:
-            with open(csv_file, "r", encoding="utf-8") as f:
-                first_line = f.readline()
-                if "file,category,text,created_at" in first_line:
-                    header_exists = True
+        # 🔑 CHUNKING
+        CHUNK_SIZE = 800
+        chunks = [
+            text[i:i + CHUNK_SIZE]
+            for i in range(0, len(text), CHUNK_SIZE)
+        ]
 
-        with open(csv_file, "a", newline="", encoding="utf-8") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=["file", "category", "text", "created_at"])
-            if not header_exists:
-                writer.writeheader()
-            writer.writerow({
-                "file": pdf_file.name,
+        ids = [f"{pdf_file.name}_{i}" for i in range(len(chunks))]
+        metadatas = [
+            {
                 "category": category,
-                "text": text,
-                "created_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-            })
+                "source": pdf_file.name
+            }
+            for _ in chunks
+        ]
 
-            chroma_client = chromadb.Client()
-            collection = chroma_client.get_or_create_collection(
-                name="pdf_docs",
-                embedding_function=embedding_functions.DefaultEmbeddingFunction()
-            )
-
-            def load_csv_data(file_path="dataset.csv"):
-                docs = []
-                with open(file_path, "r", encoding="utf-8") as f:
-                    reader = csv.DictReader(f)
-                    for row in reader:
-                        docs.append({
-                            "id": row["file"],
-                            "category": row["category"],
-                            "text": row["text"],
-                            "created_at":row['created_at']
-                        })
-                return docs
-
-
-            data = load_csv_data("dataset.csv")
-
-            for d in data:
-                try:
-                    collection.add(
-                        ids=[d["id"]],
-                        documents=[d["text"]],
-                        metadatas=[{"category": d["category"]}]
-                    )
-                except Exception:
-                    # Already exists
-                    pass
-
-            categories = list({d["category"] for d in data})
+        # ✅ ADD ONCE
+        collection.add(
+            ids=ids,
+            documents=chunks,
+            metadatas=metadatas
+        )
 
         return Response({
-            "message": f"✅ File '{pdf_file.name}' processed and added to dataset.csv",
-            "category": category,
-            "created_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        }, status=status.HTTP_200_OK)
+            "message": "PDF berhasil di-embed",
+            "chunks": len(chunks),
+            "category": category
+        })
+
     
 
-chroma_client = chromadb.Client()
-collection = chroma_client.get_or_create_collection(
-    name="pdf_docs",
-    embedding_function=embedding_functions.DefaultEmbeddingFunction()
-)
+
+
 
 def load_csv_data(file_path="dataset.csv"):
     docs = []
@@ -185,6 +162,8 @@ for d in data:
         # Already exists
         pass
 
+
+
 categories = list({d["category"] for d in data})
 print(f"✅ Indexed {len(data)} documents into ChromaDB")
 print(f"📂 Found categories: {categories}")
@@ -196,13 +175,16 @@ USER_CATEGORY = {}   # kategori tiap session
 
 class ChatBot(APIView):
 
-    ai_model = "gpt-oss:20b-cloud"
+    ai_model = "gemini-3-flash-preview:cloud"
     co = cohere.Client("NUmC8c9SPzKzoI8CW00zAA8L6SjCcHkIvTMqip2x")
 
     def post(self, request):
         model = request.data.get("model")
 
 
+
+
+        # --- MODEL 1: WITH CATEGORY, NO RERANK ---
         if model == "model1":
                 session_id = request.data.get("session_id", "default_user")
                 # --- GET QUERY ---
@@ -217,7 +199,7 @@ class ChatBot(APIView):
                         model=self.ai_model,
                         messages=[
                             {"role": "system", "content": f"Available categories: {categories}"},
-                            {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name. if the answer is not related about Telkom University Campus, the category is not relevant."}
+                            {"role": "user", "content": f"Which category fits best for: {query}? Only answer with category name. if the answer is not related about Telkom University Campus, the category is not relevant. Normal conversation is allowed"}
                         ],
                         options = { "temperature":1.0 }
                     )
@@ -279,8 +261,9 @@ class ChatBot(APIView):
 
 
 
-        # --- MODEL 2: NO CATEGORY, WITH RERANK ---
 
+
+        # --- MODEL 2: NO CATEGORY, WITH RERANK ---
         if model == "model2":
             query = request.data.get("query", "").strip()
             if not query:
@@ -290,7 +273,7 @@ class ChatBot(APIView):
             # --- VECTOR SEARCH (no category filtering) ---
             results = collection.query(
                 query_texts=[query],
-                n_results=8,
+                n_results=12,
                 include=["documents", "distances"]
             )
 
@@ -299,7 +282,7 @@ class ChatBot(APIView):
 
             filtered_docs = [
                 d for d, dist in zip(docs, distances)
-                if dist < 0.35  # TUNING
+                if dist < 0.10  # TUNING
             ]
 
 
@@ -325,8 +308,9 @@ class ChatBot(APIView):
                 ]
 
             # Fallback jika rerank kosong
-            if not final_docs and retrieved_docs:
-                final_docs = retrieved_docs[:4]
+            if not final_docs and filtered_docs:
+                final_docs = filtered_docs[:4]
+
 
             # Fallback total
             context = "\n\n".join(final_docs) if final_docs else "No relevant context found."
@@ -337,6 +321,9 @@ class ChatBot(APIView):
                     system_msg = f"""
                     You are a question-answering system for Telkom University.
 
+                    ALLOWED :
+                    - Normal conversation is allowed but always steer back to campus-related topics.
+                    
                     STRICT RULES:
                     - You MUST answer using ONLY the information explicitly stated in the context.
                     - DO NOT use prior knowledge.

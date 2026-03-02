@@ -1,0 +1,11 @@
+gunicorn
+pdfplumber
+ollama
+chromadb
+cohere
+numpy
+csv
+django
+djangorestframework
+psycopg2-binary
+python-dotenv
