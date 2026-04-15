@@ -23,7 +23,6 @@ from django.http import StreamingHttpResponse
 
 from django.conf import settings
 
-
 from chromadb.utils import embedding_functions
 
 class CohereEmbeddingFunction(EmbeddingFunction):
@@ -40,15 +39,14 @@ class CohereEmbeddingFunction(EmbeddingFunction):
         return response.embeddings
     
 cohere_ef = CohereEmbeddingFunction(
-    api_key="NUmC8c9SPzKzoI8CW00zAA8L6SjCcHkIvTMqip2x"
+    api_key=os.getenv("COHERE_API_KEY")
 )
 
-chroma_client = chromadb.Client()
+from .services.vector_store import get_collection
 
-collection = chroma_client.get_or_create_collection(
-    name="pdf_docs_cohere",
-    embedding_function=cohere_ef
-)
+cohere_ef = CohereEmbeddingFunction(api_key=os.getenv("COHERE_API_KEY"))
+collection = get_collection(cohere_ef)
+
 class UploadPDFView(View):
     parser_classes = [MultiPartParser, FormParser]
 
@@ -147,6 +145,7 @@ for d in data:
 categories = list({d["category"] for d in data})
 print(f"✅ Indexed {len(data)} documents into ChromaDB")
 print(f"📂 Found categories: {categories}")
+print(f"Using API Key: {os.getenv('COHERE_API_KEY')[:4]}...")
 
 
 CONVERSATION_MEMORY = {}
@@ -196,21 +195,33 @@ class ChatBot(View):
                 results = search(query=query, n_results=12)
                 docs = results.get("documents", [[]])[0]
                 distances = results.get("distances", [[]])[0]
+                metadatas = results.get("metadatas", [[]])[0]
+
+                print("\n" + "="*60)
+                print(f"[MODEL2] QUERY: '{query}'")
+                print(f"[MODEL2] Total docs ditemukan: {len(docs)}")
+                print("-"*60)
+                for i, (doc, dist, meta) in enumerate(zip(docs, distances, metadatas)):
+                    print(f"  [{i+1}] dist={dist:.4f} | category={meta.get('category','?')} | text={doc[:80]}...")
+                print("-"*60)
 
                 filtered_docs = [
                     d for d, dist in zip(docs, distances)
-                    if dist < 0.15
+                    if dist < 0.6
                 ]
+                print(f"[MODEL2] Setelah filter dist<1.0: {len(filtered_docs)} docs tersisa")
 
                 final_docs = rerank(query, filtered_docs, top_n=4) if filtered_docs else []
-                context = "\n\n".join(final_docs)
-                strict = True
+                print(f"[MODEL2] Setelah rerank top_n=4: {len(final_docs)} docs")
+                for i, doc in enumerate(final_docs):
+                    print(f"  [{i+1}] {doc[:100]}...")
 
-            else:
-                return JsonResponse(
-                    {"error": "Invalid model"},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
+                context = "\n\n".join(final_docs)
+                print(f"[MODEL2] Context length: {len(context)} chars")
+                print(f"[MODEL2] Context kosong: {not context.strip()}")
+                print("="*60 + "\n")
+
+                strict = True
 
             # =========================
             # STREAM FUNCTION
@@ -219,8 +230,8 @@ class ChatBot(View):
                 print("STREAM STARTED")
                 try:
                     for chunk in generate_answer_stream(query, context, strict=strict):
-                        print("CHUNK:", chunk)
-                        yield f"data: {chunk}\n\n"
+                        encoded = chunk.replace("\n", "\\n")
+                        yield f"data: {encoded}\n\n"
                 except Exception as e:
                     print("ERROR:", e)
                     yield f"data: [ERROR] {str(e)}\n\n"

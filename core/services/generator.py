@@ -34,7 +34,7 @@ Context:
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": query},
             ],
-            temperature=0.3,
+            temperature=0.8,
         )
 
         for event in stream:
