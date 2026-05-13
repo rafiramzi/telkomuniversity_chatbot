@@ -1,0 +1,2054 @@
+-- Auto-generated SQL from CSV
+-- Table: datasets
+
+CREATE TABLE IF NOT EXISTS datasets (
+    id SERIAL PRIMARY KEY,
+    file VARCHAR(255) NOT NULL,
+    category VARCHAR(100),
+    text TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+INSERT INTO datasets (file, category, text, created_at) VALUES
+    ('User_Manual_Aplikasi_Registrasi_Sirama_Versi_2_Untuk_Kaprodi_2.pdf', 'User Manual', 'USER MANUAL
+Aplikasi Registrasi – Sirama (Sistem registrasi akademik
+mahasiswa) versi 2.0
+For Head of Study Program
+Panduan Pengguna Aplikasi Registrasi
+Untuk Kaprodi
+Versi 2.0 (07 September 2022)
+https://sirama.telkomuniversity.ac.id
+Tel_U-UT-REK-DSI-RPSI-DI-UM-103
+Kampus Universitas Telkom Jl.Telekomunikasi, Dayeuhkolot, Bandung, Indonesia 40257
+Telp. 62-22-756, Fax.62-22 756 5200
+Copyright © 2018 – Direktorat Sistem Informasi
+Aplikasi Sirama
+DAFTAR PERUBAHAN
+Tanggal Versi Deskripsi Perubahan Pembuat
+Date Version Description of Changes Author
+07 September Inisiasi dokumen
+2.0 Ahmad Amin
+2022
+Hak Cipta ©2022 Pusat Teknologi Informasi | 2
+Aplikasi Sirama
+DAFTAR ISI
+DAFTAR PERUBAHAN ............................................................................................................................................................................................................................ 2
+DAFTAR ISI ............................................................................................................................................................................................................................................ 3
+DAFTAR GAMBAR ................................................................................................................................................................................................................................. 4
+SEKILAS TENTANG APLIKASI SIRAMA .................................................................................................................................................................................................... 5
+MENU APLIKASI REGISTRASI ................................................................................................................................................................................................................. 5
+CARA MEMBUKA APLIKASI ................................................................................................................................................................................................................... 6
+1. Login ............................................................................................................................................................................................................................................. 7
+2. Beranda ........................................................................................................................................................................................................................................ 7
+3. List Registrasi ............................................................................................................................................................................................................................... 8
+4. List Mahasiswa ........................................................................................................................................................................................................................... 15
+5. Keluar ......................................................................................................................................................................................................................................... 16
+Hak Cipta ©2022 Pusat Teknologi Informasi | 3
+Aplikasi Sirama
+DAFTAR GAMBAR
+Gambar 1 Tampilan Awal Aplikasi Sirama ............................................................................................................................................................................................ 6
+Gambar 2 Login Aplikasi Sirama ........................................................................................................................................................................................................... 7
+Gambar 3 Halaman Beranda Kaprodi ................................................................................................................................................................................................... 8
+Gambar 4 Halaman List Registrasi ........................................................................................................................................................................................................ 9
+Gambar 5 List Registrasi Cari ................................................................................................................................................................................................................ 9
+Gambar 6 List Registrasi Filter Kelas ................................................................................................................................................................................................... 10
+Gambar 7 List Registrasi Filter Data .................................................................................................................................................................................................... 10
+Gambar 8 List Registrasi Aksi Detil ..................................................................................................................................................................................................... 11
+Gambar 9 List Registrasi Aksi Registrasi ............................................................................................................................................................................................. 11
+Gambar 10 Halaman List Registrasi Mata Kuliah Mahasiswa ............................................................................................................................................................. 12
+Gambar 11 Halaman List Registrasi Preview Jadwal Mahasiswa........................................................................................................................................................ 13
+Gambar 12 Halaman List Registrasi Arsip KSM Mahasiswa ................................................................................................................................................................ 13
+Gambar 13 Halaman List Registrasi Pembayaran Mahasiswa ............................................................................................................................................................ 14
+Gambar 14 Halaman List Registrasi Riwayat Mahasiswa ................................................................................................................................................................... 15
+Gambar 15 Halaman List Mahasiswa .................................................................................................................................................................................................. 16
+Gambar 16 Keluar Aplikasi Sirama ...................................................................................................................................................................................................... 17
+Hak Cipta ©2022 Pusat Teknologi Informasi | 4
+Aplikasi Sirama
+SEKILAS TENTANG APLIKASI SIRAMA
+Aplikasi sirama merupakan aplikasi yang digunakan oleh mahasiswa untuk melakukan proses registrasi perkuliahan di Telkom University serta
+digunakan oleh admin untuk mengelola data mahasiswa yang akan registrasi maupun yang sudah melakukan registrasi. Aplikasi Sirama terintegrasi
+dengan database Igracias dan SITU. Pada aplikasi registrasi terdapat lima user yaitu mahasiswa dan dosen wali yang bisa melakukan proses
+registrasi. Sedangkan user admin dibagi menjadi tiga yaitu BSLA, Kaprodi, LAA dimana dapat melakukan kelola data registrasi mahasiswa.
+MENU APLIKASI REGISTRASI
+Dokumen user manual aplikasi sirama dibuat untuk memberikan penjelasan mengenai cara menggunakan aplikasi registrasi dari sisi user kaprodi
+sesuai kegunaan dan fungsi yang terdapat pada aplikasi tersebut.
+Struktur Menu
+Adapun struktur menu pada aplikasi registrasi dari sisi kaprodi yaitu sebagai berikut :
+1. Menu Beranda
+Menu setelah kaprodi login dan terdapat informasi seputar registrasi berupa teks.
+2. Menu List Registrasi
+Menu list registrasi merupakan menu yang digunakan kaprodi sebagai dosen wali untuk mengelola regitrasi mahasiswa, seperti :
+- List tampilan mahasiswa dan status registrasi mahasiswa.
+- Kaprodi yang menjadi dosen wali dapat menyetujui, mencetak KSM, atau mereset proses registrasi mahasiswa.
+- Kaprodi yang menjadi dosen wali dapat melihat informasi data mahasiswa berupa mata kuliah, arsip KSM, pembayaran dan riwayat.
+3. Menu List Mahasiswa
+Menu ini sama seperti list registrasi merupakan menu yang digunakan untuk mengelola regitrasi mahasiswa, yang membedakan menu list
+mahasiswa adalah semua data registrasi mahasiswa satu jurusan ada pada menu ini.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 5
+Aplikasi Sirama
+CARA MEMBUKA APLIKASI
+Untuk memulai akses aplikasi registrasi, bukalah aplikasi registrasi melalui web browser (Google Chrome, Mozilla, Firefox, dsb) dengan alamat URL sebagai
+berikut :
+https://sirama.telkomuniversity.ac.id
+Berikut merupakan tampilan halaman setelah mengakses alamat url diatas.
+Gambar 1 Tampilan Awal Aplikasi Sirama
+Hak Cipta ©2022 Pusat Teknologi Informasi | 6
+Aplikasi Sirama
+1. Login
+Sebelum masuk ke halaman utama aplikasi sirama, user diharuskan untuk login terlebih dahulu dengan memasukkan Username dan Password
+akun SSO yang telah didaftarkan sebelumnya pada form login yang tersedia.
+1. Masukkan
+Username SSO
+2. Masukkan
+Password
+3. Klik Login
+Gambar 2 Login Aplikasi Sirama
+2. Beranda
+Menu beranda artinya user sukses masuk ke aplikasi dan tampilan beranda hanya berupa informasi teks mengenai registrasi.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 7
+Aplikasi Sirama
+Gambar 3 Halaman Beranda Kaprodi
+3. List Registrasi
+List registrasi digunakan user dalam melakukan aktivitas registrasi mahasiswa terkait proses setuju, reset dan status mahasiswa.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 8
+Aplikasi Sirama
+3
+4 2
+1 5
+Gambar 4 Halaman List Registrasi
+1. User dapat melihat status mahasiswa.
+2. User dapat melakukan pencarian mahasiswa berdasarkan nama mahasiswa tersebut, seperti :
+Gambar 5 List Registrasi Cari
+Hak Cipta ©2022 Pusat Teknologi Informasi | 9
+Aplikasi Sirama
+3. User dapat melakukan pencarian berdasarkan semua kelas maupun memilih per kelas, seperti :
+Gambar 6 List Registrasi Filter Kelas
+4. User dapat menampilkan list data registrasi mahasiswa dengan 10, 25, 50 maupun all seperti :
+Gambar 7 List Registrasi Filter Data
+5. User melakukan pengecekan registrasi mahasiswa bisa melihat pada aksi registrasi dan detil, seperti :
+a. Ketika user memilih detil, maka akan muncul pop up mengenai registrasi. Akan ada tiga aksi yaitu :
+- “Setujui “ artinya user menyetujui registrasi mahasiswa.
+- “Cetak KSM” artinya user melakukan cetak KSM.
+- “Reset” artinya user melakukan tindakan menghapus dan mengatur ulang proses registrasi mahasiswa.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 10
+Aplikasi Sirama
+Gambar 8 List Registrasi Aksi Detil
+b. Ketika user memilih registrasi, maka akan ada empat aksi berupa Mata Kuliah, Arsip KSM, Pembayaran dan Riwayat. Dengan
+memilih salah satu atau semuanya user akan mendapatkan informasi mahasiswa seputar empat aksi tersebut.
+Gambar 9 List Registrasi Aksi Registrasi
+Hak Cipta ©2022 Pusat Teknologi Informasi | 11
+Aplikasi Sirama
+1. Mata Kuliah, setelah mengklik maka akan muncul pop up berupa tampilan berikut :
+Gambar 10 Halaman List Registrasi Mata Kuliah Mahasiswa
+- User dapat menghapus dan menambahkan mata kuliah jika yang mahasiswa pilih tidak sesuai.
+- User juga dapat melihat preview jadwal dari mata kuliah mahasiswa yang dipilih :
+Hak Cipta ©2022 Pusat Teknologi Informasi | 12
+Aplikasi Sirama
+Gambar 11 Halaman List Registrasi Preview Jadwal Mahasiswa
+2. Arsip KSM, setelah mengklik akan muncul pop up berupa tampilan berikut :
+- Terdapat informasi mata kuliah mahasiswa semester saat ini dan semester-semester sebelumnya.
+Gambar 12 Halaman List Registrasi Arsip KSM Mahasiswa
+3. Pembayaran, setelah mengklik akan muncul pop up berupa tampilan berikut :
+- Akan ada informasi berupa data tagihan mahasiswa, data pembayaran dan data mangkir
+Hak Cipta ©2022 Pusat Teknologi Informasi | 13
+Aplikasi Sirama
+Gambar 13 Halaman List Registrasi Pembayaran Mahasiswa
+4. Riwayat, setelah mengklik akan muncul pop up berupa tampilan berikut :
+- Akan ada informasi proses registrasi dari mahasiswa tersebut.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 14
+Aplikasi Sirama
+Gambar 14 Halaman List Registrasi Riwayat Mahasiswa
+4. List Mahasiswa
+Menu ini bisa user akses untuk mengecek semua status dan proses mahasiswa satu jurusan, untuk fitur dan fungsinya sama seperti list registrasi.
+Hak Cipta ©2022 Pusat Teknologi Informasi | 15
+Aplikasi Sirama
+Gambar 15 Halaman List Mahasiswa
+5. Keluar
+Terdapat dua cara user untuk keluar, pertama menekan icon segitiga pada kiri atas setelah nama yang bisa user tekan, atau sebelah kanan atas
+icon profil setelah negara Indonesia seperti berikut :
+Hak Cipta ©2022 Pusat Teknologi Informasi | 16
+Aplikasi Sirama
+2
+1
+Gambar 16 Keluar Aplikasi Sirama
+Klik Keluar
+Hak Cipta ©2022 Pusat Teknologi Informasi | 17
+', NOW()),
+    ('PU_KRITERIA_TAMBAHAN_UNTUK_PREDIKAT_SUMMA_CUMLAUDE_DAN_CUMLAUDE.pdf', 'Cumlaude', 'PERATURAN UNIVERSITAS TELKOM
+Nomor : PU.028/AKD03/AKD-BPA/2024
+T E N T A N G
+KRITERIA TAMBAHAN UNTUK
+PREDIKAT SUMMA CUMLAUDE DAN CUMLAUDE
+REKTOR UNIVERSITAS TELKOM
+Menimbang : a bahwa Pedoman Akademik Universitas Telkom 2024 telah
+ditetapkan sebagai penyesuaian terhadap regulasi Standar
+Nasional Pendidikan dan Penjaminan Mutu Pendidikan Tinggi;
+b bahwa dalam mengimplementasikan Pedoman Akademik
+Universitas Telkom 2024, perlu kriteria tambahan terkait
+predikat summa cumlaude dan cumlaude;
+c bahwa sehubungan dengan bur a dan b di atas, perlu
+menetapkan Peraturan Universitas Telkom tentang Kriteria
+Tambahan untuk Predikat Summa Cumlaude dan Cumlaude;
+Mengingat : 1 Undang-Undang Nomor 12 Tahun 2012 tentang Pendidikan
+Tinggi (Lembaran Negara Republik Indonesia Tahun 2012 Nomor
+158, Tambahan Lembaran Negara Nomor 5336);
+2 Undang-Undang Nomor 20 Tahun 2003 tentang Sistem
+Pendidikan Nasional (Lembaran Negara Republik Indonesia
+Tahun 2003 Nomor 78, Tambahan Lembaran Negara Nomor
+4301);
+3 Peraturan Pemerintah Nomor 4 Tahun 2014 tentang
+Penyelenggaraan Pendidikan Tinggi dan Pengelolaan Perguruan
+Tinggi (Lembaran Negara Republik Indonesia Tahun 2014 Nomor
+16, Tambahan Lembaran Negara Nomor 5500);
+4 Peraturan Pemerintah Nomor 4 Tahun 2022 tentang Perubahan
+atas Peraturan Pemerintah Nomor 57 Tahun 2021 tentang
+Standar Nasional Pendidikan (Lembaran Negara Republik
+Indonesia Tahun 2022 Nomor 14, Tambahan Lembaran Negara
+Nomor 6762) juncto Peraturan Pemerintah Nomor 57 Tahun
+2021 tentang Standar Nasional Pendidikan (Lembaran Negara
+Republik Indonesia Tahun 2021 Nomor 87, Tambahan Lembaran
+Negara Republik Indonesia Nomor 6676);
+5 Peraturan Presiden Republik Indonesia Nomor 8 Tahun 2012
+tentang Kerangka Kualifikasi Nasional Indonesia (Lembaran
+Negara Republik Indonesia Tahun 2012 Nomor 24);
+6 Peraturan Menteri Pendidikan, Kebudayaan, Riset, dan
+Teknologi Nomor 53 Tahun 2023 tentang Penjaminan Mutu
+Pendidikan Tinggi (Berita Negara Republik Indonesia Tahun 2023
+Nomor 638);
+7 Peraturan Menteri Pendidikan, Kebudayaan, Riset, dan
+Teknologi Nomor 39 Tahun 2021 tentang Integritas Akademik
+dalam Menghasilkan Karya Ilmiah (Berita Negara Republik
+Indonesia Tahun 2021 Nomor 1363);
+8 Peraturan Menteri Pendidikan dan Kebudayaan Nomor 73
+Tahun 2013 tentang Penerapan Kerangka Kualifikasi Nasional
+Indonesia Bidang Pendidikan Tinggi (Berita Negara Republik
+Indonesia Tahun 2013 Nomor 831);
+9 Keputusan Menteri Pendidikan dan Kebudayaan Republik
+Indonesia Nomor 270/E/O/2013 tentang Penggabungan
+Politeknik Telkom, Instut Teknologi Telkom, dan Instut
+Manajemen Telkom yang Diselenggarakan oleh Yayasan
+Pendidikan Telkom menjadi Universitas Telkom di Kabupaten
+Bandung Provinsi Jawa Barat yang beberapa kali mengalami
+Pertambahan Kampus menjadi Kampus Jakarta, Kampus
+Surabaya, dan Pertambahan Terakhir Kampus Purwokerto
+berdasarkan Keputusan Menteri Pendidikan, Kebudayaan, Riset,
+dan Teknologi Republik Indonesia Nomor 564/E/O/2024 tentang
+Izin Penyatuan Instut Teknologi Telkom Purwokerto di
+Kabupaten Banyumas yang Diselenggarakan oleh Yayasan
+Pendidikan Telkom;
+10 Keputusan Menteri Pendidikan Nasional Nomor 232/U/2000
+tentang Pedoman Penyusunan Kurikulum Perguruan Tinggi dan
+Penilaian Hasil Belajar Mahasiswa;
+11 Edaran Direktur Jenderal Pendidikan Tinggi Kementerian
+Pendidikan dan Kebudayaan Nomor 526/E.E3/MI/2014 tentang
+Penjelasan tentang Standar Nasional Pendidikan Tinggi untuk
+Program Pascasarjana;
+12 Keputusan Dewan Pengurus Yayasan Pendidikan Telkom Nomor
+KEP. 0037/00/DHE- PD01/YPT/2020 Tanggal 17 Januari 2020
+tentang Statuta Universitas Telkom;
+13 Peraturan Dewan Pengurus Yayasan Pendidikan Telkom Nomor
+PDP. 1081/00/DGS- HK01/YPT/2024 Tanggal 04 September 2024
+tentang Struktur Organisasi dan Tata Kerja Universitas Telkom;
+14 Peraturan Universitas Telkom Nomor PU.022/AKD01/AKD-
+BPA/2024 Tanggal 02 September 2024 tentang Pedoman
+Akademik Universitas Telkom;
+Memperhakan : Rekomendasi berbagai pembahasan pada Rapat Pimpinan, Rapat
+Koordinasi Akademik dan Sistem Informasi tentang kriteria
+tambahan untuk predikat Summa Cumlaude dan Cumlaude;
+MEMUTUSKAN
+Menetapkan : PERATURAN UNIVERSITAS TELKOM TENTANG KRITERIA
+TAMBAHAN UNTUK PREDIKAT SUMMA CUMLAUDE DAN
+CUMLAUDE.
+KESATU : Menetapkan kriteria tambahan untuk Predikat Summa Cumlaude
+dan Cumlaude sebagaimana tercantum pada Lampiran 1 Peraturan
+ini.
+KEDUA : Menetapkan contoh penerapan kriteria Predikat Summa Cumlaude
+dan Cumlaude sebagaimana tercantum pada Lampiran 2 Peraturan
+ini.
+KETIGA : Apabila terdapat kekeliruan pada Peraturan ini, maka akan dilakukan
+perubahan sebagaimana mesnya.
+KEEMPAT : Peraturan ini berlaku sejak tanggal ditetapkan.
+Ditetapkan di: Bandung
+Pada Tanggal: 23 September 2024
+UNIVERSITAS TELKOM
+TTD.
+Prof. Dr. Adiwijaya, S.Si., M.Si.
+Rektor
+Lampiran - 1 : Peraturan Universitas Telkom
+Perihal : Kriteria Tambahan untuk Predikat Summa Cumlaude dan Cumlaude
+Nomor : Disesuaikan oleh Sistem
+Tanggal : Disesuaikan oleh Sistem
+Kriteria Tambahan untuk Predikat Summa Cumlaude dan Cumlaude
+A. Kriteria tambahan umum untuk predikat summa cumlaude dan cumlaude:
+1. tidak pernah mendapat sanksi pelanggaran akademik maupun nonakademik;
+2. mendapat nilai indeks A pada mata kuliah Tugas Akhir;
+B. Kriteria tambahan khusus untuk predikat summa cumlaude:
+1. tidak pernah mengulang mata kuliah;
+2. program diploma tiga dan sarjana/sarjana terapan wajib menghasilkan luaran minimal satu
+publikasi ilmiah berbahasa Inggris bersama dengan dosen pembimbing/pengampu selama
+studi, terkait dengan bidang keilmuan, terafiliasi dengan Universitas Telkom sebagai penulis
+pertama, pada minimal Sinta-1 atau telah terindeks Scopus/Web of Science (WoS), dan
+sekurang-kurangnya telah memiliki Letter of Acceptance (LoA).
+3. program magister/magister terapan
+a. lulus semua mata kuliah dengan nilai indeks minimal AB;
+b. menghasilkan sekurang-kurangnya 1 (satu) luaran dalam bentuk publikasi di jurnal
+internasional bereputasi sebagai penulis pertama berafiliasi Universitas Telkom dengan
+status sekurang-kurangnya telah memiliki LoA.
+4. program doktor/doktor terapan
+a. lulus semua mata kuliah dengan nilai indeks minimal AB;
+b. menghasilkan luaran, yakni
+1) minimal 1 (satu) publikasi di jurnal internasional bereputasi sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang kurangnya telah memiliki LoA
+dari jurnal yang berada dalam kuartil satu (Q1) di Scimago, dan sesuai dengan bidang
+ilmu yang bersangkutan serta berkaitan dengan materi disertasi; atau
+2) minimal 2 (dua) publikasi di jurnal internasional bereputasi sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang kurangnya telah memiliki LoA
+dari jurnal yang berada dalam kuartil dua (Q2) di Scimago, dan sesuai dengan bidang
+ilmu yang bersangkutan serta berkaitan dengan materi disertasi.
+C. Kriteria tambahan khusus untuk predikat cumlaude:
+1. program diploma tiga dan sarjana/sarjana terapan
+a. menghasilkan sekurang-kurangnya 1 (satu) luaran dalam bentuk
+1) memiliki minimal satu publikasi ilmiah berbahasa Inggris bersama dengan dosen
+pembimbing/pengampu selama studi, terkait dengan bidang keilmuan, terafiliasi
+dengan Universitas Telkom sebagai penulis pertama, pada minimal Sinta-2, dan
+sekurang-kurangnya telah memiliki LoA; atau
+2) terdaftar sebagai penyaji karya yang terkait dengan bidang keilmuan dalam pameran
+minimal bertaraf nasional yang telah diselenggarakan secara berkala minimal 5 (lima)
+kali dengan peserta berasal lebih dari 3 (tiga) provinsi, dan sistem kurasi oleh kurator
+bereputasi, yaitu kurator independen yang berkiprah berkelanjutan minimal 10
+(sepuluh) tahun atau kurator lembaga tingkat nasional, serta membawa nama
+Universitas Telkom; atau
+3) berprestasi memperoleh capaian minimal 3 (tiga) besar tingkat
+nasional/internasional yang terkait dengan bidang keilmuan dan membawa nama
+Universitas Telkom, yaitu memenuhi kategori internasional klaster 1 atau 2, atau
+nasional klaster 1 atau 2 yang ditetapkan Direktorat Kemahasiswaan, Pengembangan
+Karir & Alumni; atau
+4) memiliki Hak Kekayaan Intelektual (HKI) bersama dengan dosen
+pembimbing/pengampu yang diajukan melalui unit HKI Universitas Telkom dan telah
+digunakan oleh minimal usaha menengah (sesuai regulasi yang berlaku tentang
+kriteria usaha mikro, kecil, dan menengah) yang dibuktikan dengan prototipe dan
+sertifikat dari mitra Dunia Usaha dan Dunia Industri (DUDI).
+2. program magister/magister terapan
+a. lulus semua mata kuliah dengan nilai indeks minimal B;
+b. menghasilkan sekurang-kurangnya 1 (satu) luaran dalam bentuk
+1) publikasi di jurnal internasional terindeks scopus/WoS sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang-kurangnya telah memiliki LoA;
+atau
+2) publikasi di jurnal nasional terakreditasi Sinta-1 atau Sinta-2 sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang-kurangnya telah memiliki LoA;
+atau
+3) karya yang dibuat dengan mencantumkan afiliasi Universitas Telkom yang
+dipresentasikan atau dipamerkan dalam forum internasional dengan peserta berasal
+dari 5 (lima) negara, dan kurator berasal minimal dari 2 (dua) negara; atau
+4) paten sederhana/lisensi industri berafiliasi Universitas Telkom yang telah didaftarkan
+dan memiliki nomor registrasi pada Direktorat Jenderal Kekayaan Intelektual
+Kementerian Hukum dan Hak Asasi Manusia Republik Indonesia dan telah memiliki
+pengakuan industri.
+3. program doktor/doktor terapan
+a. lulus semua mata kuliah dengan nilai indeks minimal B;
+b. menghasilkan luaran dalam bentuk
+1) minimal 1 (satu) publikasi di jurnal internasional bereputasi sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang kurangnya telah memiliki LoA
+dari jurnal yang berada dalam kuartil dua (Q2) di Scimago, dan sesuai dengan bidang
+ilmu yang bersangkutan serta berkaitan dengan materi disertasi; atau
+2) minimal 2 (dua) publikasi di jurnal internasional bereputasi sebagai penulis pertama
+berafiliasi Universitas Telkom dengan status sekurang kurangnya telah memiliki LoA
+dari jurnal yang berada dalam kuartil tiga (Q3) di Scimago, dan sesuai dengan bidang
+ilmu yang bersangkutan serta berkaitan dengan materi disertasi; atau
+3) memiliki karya seni atau perancangan desain atau prototipe yang berafiliasi
+Universitas Telkom yang dipamerkan pada forum/dipublikasikan pada media bertaraf
+internasional dengan peserta berasal dari 5 (lima) negara, dan kurator berasal
+minimal dari 2 (dua) negara, dan sesuai dengan bidang ilmu yang bersangkutan serta
+berkaitan dengan materi disertasi; atau
+4) paten sederhana/ lisensi industri berafiliasi Universitas Telkom yang telah
+didaftarkan dan memiliki nomor registrasi pada Direktorat Jenderal Kekayaan
+Intelektual Kementerian Hukum dan Hak Asasi Manusia Republik Indonesia.
+Ditetapkan di : Bandung
+Pada tanggal : Disesuaikan oleh Sistem
+UNIVERSITAS TELKOM
+Prof. Dr. Adiwijaya
+Rektor
+Lampiran - 2 : Peraturan Universitas Telkom
+Perihal : Kriteria Tambahan untuk Predikat Summa Cumlaude dan Cumlaude
+Nomor : Disesuaikan oleh Sistem
+Tanggal : Disesuaikan oleh Sistem
+Contoh Penerapan Predikat
+Berikut contoh mahasiswa yang lulus yudisium dengan predikat kelulusan:
+Lama Masa Kriteria Tambahan Khusus
+Skor Nilai
+No IPK Studi Status Sanksi Status MK Predikat
+EPrT Indeks TA Publikasi Ilmiah Prestasi Karya HKI
+(Semester) Mengulang
+Program Diploma Tiga
+1 3,95 6 455 Tidak ada A Tidak ada Terindeks - - - Summa cumlaude
+scopus/WoS
+2 3,91 6 475 Tidak ada A Tidak ada Sinta-1 - - - Summa cumlaude
+3 3,95 6 460 Tidak ada A Tidak ada - - - HKI prototipe dan Cumlaude
+sertifikat dari industri
+usaha menengah
+4 3,55 6 450 Tidak ada AB Tidak ada - Juara 1 - - Sangat Memuaskan
+nasional
+5 3,60 7 470 Tidak ada AB Ada - - - HKI prototipe dan Sangat Memuaskan
+sertifikat dari industri
+usaha menengah
+6 3,52 8 455 Tidak ada A Tidak ada - - - HKI prototipe dan Sangat Memuaskan
+sertifikat dari industri
+usaha menengah
+Program Sarjana/Sarjana Terapan (kelas reguler)
+1 3,92 7 475 Tidak ada A Tidak ada Sinta-1 - - - Summa cumlaude
+2 3,95 8 510 Tidak ada A Tidak ada Terindeks - - - Summa cumlaude
+scopus/WoS
+3 3,95 8 510 Tidak ada A Tidak ada - Juara 1 - - Cumlaude
+nasional
+4 3,60 7 490 Tidak ada A Tidak ada - - Pameran - Cumlaude
+internasional
+5 3,58 9 500 Tidak ada AB Ada - Juara 2 - - Sangat Memuaskan
+internasional
+6 3,45 8 475 Tidak ada AB Tidak ada Terindeks - - - Sangat Memuaskan
+scopus/WoS
+Program Sarjana/Sarjana Terapan (kelas internasional)
+1 3,98 7 600 Tidak ada A Tidak ada Terindeks - - - Summa cumlaude
+scopus/WoS
+2 3,91 8 515 Tidak ada A Tidak ada Sinta-1 - - - Summa cumlaude
+3 3,93 8 575 Tidak ada A Tidak ada - Juara 3 - - Cumlaude
+internasional
+4 3,55 7 605 Tidak ada A Tidak ada - - Pameran - Cumlaude
+internasional
+5 3,05 9 510 Tidak ada A Ada - - - HKI prototipe dan Sangat Memuaskan
+sertifikat dari industri
+usaha menengah
+6 3,66 8 590 Tidak ada AB Tidak ada Terindeks - - Sangat Memuaskan
+scopus/WoS
+Lama Masa Nilai Kriteria Tambahan Khusus
+Skor Status
+No IPK Studi Indeks Status MK Nilai MK Predikat
+EPrT Sanksi Publikasi Ilmiah Prestasi Karya HKI
+(Semester) TA Mengulang Terendah
+Program Magister/Magister Terapan
+1 3,97 3 477 Tidak ada A Tidak ada AB Jurnal Bereputasi Q1 - - - Summa cumlaude
+2 3,97 4 500 Tidak ada A Tidak ada AB Jurnal Bereputasi Q4 - - - Summa cumlaude
+3 3,95 4 510 Tidak ada A Tidak ada B Jurnal Terindeks Q4 - - - Cumlaude
+4 3,87 4 525 Tidak ada A Tidak ada B - - Pameran - Cumlaude
+internasional
+5 3,97 5 475 Tidak ada AB ada AB Sinta-2 - - - Sangat Memuaskan
+6 3,55 7 500 Tidak ada B Tidak ada C Sinta-3 - - - Sangat Memuaskan
+Program Doktor/Doktor Terapan
+1 4 6 510 Tidak ada A Tidak ada A Jurnal Bereputasi Q1 - - - Summa cumlaude
+2 3,97 6 500 Tidak ada A Tidak ada AB 2 Jurnal Bereputasi Q2 - - - Summa cumlaude
+3 3,87 6 525 Tidak ada A Tidak ada B 2 Jurnal Bereputasi Q3 - - - Cumlaude
+4 3,78 8 500 Tidak ada A Tidak ada B Jurnal Bereputasi Q2 - - - Cumlaude
+5 3,95 8 510 Tidak ada A Tidak ada B Jurnal Bereputasi Q1 - - - Cumlaude
+6 3,76 10 500 Tidak ada B Ada C Jurnal Terindeks Q3 - - - Sangat Memuaskan
+Ditetapkan di : Bandung
+Pada tanggal : Disesuaikan oleh Sistem
+UNIVERSITAS TELKOM
+Prof. Dr. Adiwijaya
+Rektor
+', NOW()),
+    ('Kampus di Telkom University.pdf', 'Kampus Telkom University', 'Telkom University sekarang tersedia di Jakarta! Selamat datang di Telkom University Jakarta! Kami
+memiliki dua lokasi kampus yang berbeda dan unik, yaitu Kampus A dan Kampus B, masing-masing
+dengan lokasi berbeda yang menawarkan pengalaman pendidikan berkualitas dan memiliki keunikan
+masing-masing.
+Kampus A, terletak di Jl. Raya Daan Mogot – Gedung Stasiun Bumi.KM. 11, RW.4, Kedaung Kali
+Angke, Kecamatan Cengkareng, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11710. Kampus
+A Telkom University Jakarta menjadi pusat kegiatan akademik dan administratif,
+menyediakan fasilitas modern untuk mendukung proses pembelajaran mahasiswa. Kampus A Telkom
+University Jakarta mencakup ruang kuliah D3 Teknik Telekomunikasi dan S1 Teknik Telekomunikasi,
+dan S1 Desain Komunikasi Visual, perpustakaan, laboratorium, kantin, mushalla, lapangan olahraga,
+dan fasilitas penelitian.
+Kampus B, Kampus Halimun yang berlokasi di Jl. Halimun Raya No.2, RT.15/RW.6, Guntur, Kecamatan
+Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12980. Kampus B Telkom University
+Jakarta menawarkan suasana belajar yang inspiratif dengan fasilitas yang memadai. Dengan desain
+yang modern dan teknologi terkini, Kampus B Telkom University Jakarta menjadi tempat bagi
+mahasiswa untuk menjalani pengalaman pendidikan yang unggul. Terdapat ruang kuliah S1 Teknologi
+Informasi, perpustakaan, laboratorium, kantin, mushalla, dan fasilitas penelitian.
+Kampus C, Kampus Minangkabau Sementara itu kampus C yang berlokasi di Jalan Minangkabau Barat
+No.50, RT.1/RW.1, Ps. Manggis, Kecamatan Setiabudi, Kota Jakarta Selatan, DKI Jakarta 12970.
+Kampus ini memiliki lingkungan belajar yang modern dan inspiratif, dirancang untuk mendukung
+kegiatan akademik dan pengembangan diri mahasiswa. Fasilitas yang tersedia meliputi ruang kuliah
+yang nyaman dan dilengkapi dengan teknologi terkini. Salah satu program studi di kampus
+Minangkabau adalah S1 Sistem Informasi
+', NOW()),
+    ('Surat_SK_Akreditasi_S1_Teknologi-Informasi_Jakarta-2023.pdf', 'PERINGKAT AKREDITASI PROGRAM STUDI TEKNOLOGI INFORMASI', 'KEPUTUSAN
+LEMBAGA AKREDITASI MANDIRI INFORMATIKA DAN KOMPUTER
+Nomor:013/SK/LAM-INFOKOM/Ak.P/S/VIII/2023
+TENTANG
+PERINGKAT AKREDITASI PROGRAM STUDI TEKNOLOGI INFORMASI
+(KAMPUS JAKARTA) PADA PROGRAM SARJANA, UNIVERSITAS
+TELKOM,
+LEMBAGA AKREDITASI MANDIRI INFORMATIKA DAN KOMPUTER
+Menimbang : bahwa untuk melaksanakan ketentuan Pasal 4 Peraturan Menteri Pendidikan dan
+Kebudayaan Nomor 5 Tahun 2020 tentang Akreditasi Program Studi dan Perguruan
+Tinggi, perlu menetapkan Keputusan Lembaga Akreditasi Mandiri Informatika dan
+Komputer tentang Akreditasi Program Studi Teknologi Informasi (kampus Jakarta) pada
+Universitas Telkom, .
+Mengingat : 1.Undang-undang Nomor 12 Tahun 2012 tentang Pendidikan Tinggi (Lembaran Negara
+Republik Indonesia Tahun 2012 Nomor 158, Tambahan Lembaran Negara Republik
+Indonesia Nomor 5336);
+2.Peraturan Menteri Pendidikan dan Kebudayaan Republik Indonesia Nomor 3 Tahun
+2020 tentang Standar Nasional Pendidikan Tinggi (Berita Negara Republik Indonesia
+Tahun 2020 Nomor 47);
+3.Peraturan Menteri Pendidikan dan Kebudayaan Republik Indonesia Nomor 5 Tahun
+2020 tentang Akreditasi Program Studi dan Perguruan Tinggi (Berita Negara Republik
+Indonesia Tahun 2020 Nomor 49);
+4.Peraturan Menteri Pendidikan dan Kebudayaan Republik Indonesia Nomor 7 Tahun
+2020 tentang Pendirian, Perubahan, Pembubaran Perguruan Tinggi Negeri, dan
+Pendirian, Perubahan, Pencabutan Izin Perguruan Tinggi Swasta (Berita Negara
+Republik Indonesia Tahun 2020 Nomor 52);
+5.Surat Persetujuan Menteri Pendidikan dan Kebudayaan nomor.
+75865/MPK.A/HK/2020, tanggal 3 September 2020, tentang Persetujuan pengakuan
+terhadap usul pendirian Lembaga Akreditasi Mandiri Informatika dan Komputer.
+MEMUTUSKAN
+Menetapkan : KEPUTUSAN LEMBAGA AKREDITASI MANDIRI INFORMATIKA DAN
+KOMPUTER TENTANG AKREDITASI PROGRAM STUDI TEKNOLOGI
+INFORMASI (KAMPUS JAKARTA), PADA PROGRAM SARJANA
+UNIVERSITAS TELKOM, .
+KESATU : Menetapkan peringkat akreditasi Program Studi Teknologi Informasi (kampus Jakarta)
+pada Program Sarjana Universitas Telkom, sebagai berikut:
+Peringkat Akreditasi : Baik Sekali
+Nilai : 314
+KEDUA : Peringkat Akreditasi Program Studi sebagaimana dimaksud dalam diktum KESATU
+berlaku mulai tanggal 18 Agustus 2023 sampai dengan tanggal 18 Agustus 2028.
+KETIGA : Peringkat akreditasi Program Studi sebagaimana dimaksud dalam Diktum KESATU
+dapat dicabut sebelum masa berlakunya berakhir, apabila Program Studi Teknologi
+Informasi (kampus Jakarta) pada program Sarjana Universitas Telkom, , terbukti tidak
+memenuhi syarat peringkat akreditasi.
+KEEMPAT : Dengan berlakunya SK akreditasi ini, maka SK akreditasi LAM INFOKOM
+sebelumnya dinyatakan tidak berlaku lagi.
+KELIMA : Keputusan ini mulai berlaku pada tanggal ditetapkan.
+Ditetapkan di Jakarta
+pada tanggal 18 Agustus 2023
+Lembaga Akreditasi Mandiri Informatika dan Komputer
+Prof. Dra. Sri Hartati, M.Sc., Ph.D.
+Ketua Dewan Eksekutif LAM INFOKOM
+', NOW()),
+    ('1._Usulan_Tarif_Akomodasi_Kegiatan_Kemahasiswaan_2024.pdf', 'Liga Mahasiswa', 'Tarif Kompetisi Internal
+“Liga Mahasiswa Telkom University Jakarta”
+A. SYARAT DAN KETENTUAN PEMBERIAN AKOMODASI KOMPETISI INTERNAL YANG
+DISELENGGARAKAN OLEH UNIVERSITAS TELKOM JAKARTA
+1. Diberikan kepada mahasiswa peserta kompetisi internal sesuai kategori juara.
+2. Mengunggah foto sertifikat juara.
+3. Mengunggah foto piala atau medali (jika ada).
+4. Pengajuan TAK mahasiswa telah disetujui Urusan Kemahasiswaan Telkom University Jakarta.
+B. DAFTAR TARIF KOMPETISI INTERNAL MAHASISWA YANG DISELENGGARAKAN
+UNIVERSITAS TELKOM JAKARTA
+Kelompok Individu
+Kategori Juara
+Jumlah Anggota Tarif Tarif
+>5 Rp 1.500.000
+Juara I 3-5 Rp 1.000.000 Rp 500.000
+2 Rp 500.000
+>5 Rp 1.000.000
+Juara II 3-5 Rp 750.000 Rp 300.000
+2 Rp 500.000
+>5 Rp 750.000
+Juara III 3-5 Rp 500.000 Rp 200.000
+2 Rp 250.000
+Jakartra, 11 Juni 2024
+Pengusul,
+Kepala Bagian LA, Alumni, & Kemahasiswaan
+Demi Adidrana, S.T., M.T.I.
+NIP. 24880005
+', NOW()),
+    ('1._Usulan_Tarif_Akomodasi_Kegiatan_Kemahasiswaan_2024.pdf', 'Akomodasi Kompetisi', 'Tarif Kompetisi Internal
+“Liga Mahasiswa Telkom University Jakarta”
+A. SYARAT DAN KETENTUAN PEMBERIAN AKOMODASI KOMPETISI INTERNAL YANG
+DISELENGGARAKAN OLEH UNIVERSITAS TELKOM JAKARTA
+1. Diberikan kepada mahasiswa peserta kompetisi internal sesuai kategori juara.
+2. Mengunggah foto sertifikat juara.
+3. Mengunggah foto piala atau medali (jika ada).
+4. Pengajuan TAK mahasiswa telah disetujui Urusan Kemahasiswaan Telkom University Jakarta.
+B. DAFTAR TARIF KOMPETISI INTERNAL MAHASISWA YANG DISELENGGARAKAN
+UNIVERSITAS TELKOM JAKARTA
+Kelompok Individu
+Kategori Juara
+Jumlah Anggota Tarif Tarif
+>5 Rp 1.500.000
+Juara I 3-5 Rp 1.000.000 Rp 500.000
+2 Rp 500.000
+>5 Rp 1.000.000
+Juara II 3-5 Rp 750.000 Rp 300.000
+2 Rp 500.000
+>5 Rp 750.000
+Juara III 3-5 Rp 500.000 Rp 200.000
+2 Rp 250.000
+Jakartra, 11 Juni 2024
+Pengusul,
+Kepala Bagian LA, Alumni, & Kemahasiswaan
+Demi Adidrana, S.T., M.T.I.
+NIP. 24880005
+', NOW()),
+    ('SK AKOMODASI KOMPETISI KEPADA MAHASISWA SERTA APRESIASI PEMBIMBING DAN REVIEWER 2024_4.pdf', 'Akomodasi Kompetisi', 'KEPUTUSAN REKTOR UNIVERSITAS TELKOM
+Nomor : KR.083/KMH02/KMH/2024
+T E N T A N G
+PEMBERIAN FASILITAS AKOMODASI KOMPETISI KEPADA MAHASISWA SERTA
+APRESIASI KEPADA PEMBIMBING DAN REVIEWER DI UNIVERSITAS TELKOM
+REKTOR UNIVERSITAS TELKOM
+Menimbang : a bahwa dalam rangka mendorong dan meningkatkan prestasi
+mahasiswa diperlukan pemberian penghargaan kepada
+mahasiswa, pembimbing, dan reviewer;
+b bahwa dalam rangka pemenuhan penilaian aspek penghargaan
+prestasi dalam Sistem Informasi Kinerja Tata Kelola
+Kemahasiswaan (SIMKATMAWA) di Perguruan Tinggi;
+c bahwa pemberian akomodasi kompesi kepada mahasiswa dan
+apresiasi kepada pembimbing dan reviewer perlu diatur dalam
+sebuah ketentuan;
+d bahwa memperhakan bur (a), (b) dan (c) di atas, maka perlu
+ditetapkan keputusan Rektor Universitas Telkom tentang
+Pemberian Fasilitas Akomodasi Kompesi kepada Mahasiswa
+serta Apresiasi kepada Pembimbing dan Reviewer di Universitas
+Telkom;
+Mengingat : 1 Undang-Undang Nomor 12 Tahun 2012 tentang Pendidikan
+Tinggi (Lembaran Negara Republik Indonesia Tahun 2012 Nomor
+158, Tambahan Lembaran Negara Republik Indonesia Nomor
+5336);
+2 Undang-Undang Nomor 20 Tahun 2003 tentang Sistem
+Pendidikan Nasional (Lembaran Negara Republik Indonesia
+Tahun 2003 Nomor 78, Tambahan Lembaran Negara Nomor
+4301);
+3 Peraturan Pemerintah Nomor 4 Tahun 2014 tentang
+Penyelenggaraan Pendidikan Tinggi dan Pengelolaan Perguruan
+Tinggi (Berita Negara Republik Indonesia Tahun 2003 Nomor 16,
+Tambahan Lembaran Negara Nomor 5500);
+4 Peraturan Pemerintah Nomor 4 Tahun 2022 tentang Perubahan
+atas Peraturan Pemerintah Nomor 57 Tahun 2021 tentang
+Standar Nasional Pendidikan (Lembaran Negara Republik
+Indonesia Tahun 2022 Nomor 14, Tambahan Lembaran Negara
+Nomor 6762) juncto Peraturan Pemerintah Nomor 57 Tahun
+2O21 tentang Standar Nasional Pendidikan (Lembaran Negara
+Republik Indonesia Tahun 2O21 Nomor 87, Tambahan Lembaran
+Negara Nomor 6676);
+5 Peraturan Menteri Pendidikan, Kebudayaan, Riset, dan
+Teknologi Nomor 53 Tahun 2023 tentang Penjaminan Mutu
+Pendidikan Tinggi (Berita Negara Republik Indonesia Tahun 2023
+Nomor 638);
+6 Peraturan Menteri Pendidikan dan Kebudayaan Nomor 14
+Tahun 2014 tentang Kerja Sama Perguruan Tinggi (Berita Negara
+Republik Indonesia Tahun 2014 Nomor Nomor 253);
+7 Keputusan Menteri Pendidikan dan Kebudayaan Nomor
+754/P/2020 tentang Indikator Kinerja Utama Perguruan Tinggi
+Negeri dan Lembaga Layanan Pendidikan Tinggi di Lingkungan
+Kementerian Pendidikan dan Kebudayaan Tahun 2000;
+8 Keputusan Menteri Pendidikan dan Kebudayaan Nomor
+270/E/O/2013 tentang Penggabungan Politeknik Telkom,
+Instut Teknologi Telkom, dan Instut Manajemen Telkom yang
+diselenggarakan oleh Yayasan Pendidikan Telkom menjadi
+Universitas Telkom di Kabupaten Bandung Provinsi Jawa Barat
+yang diselenggarakan oleh Yayasan Pendidikan Telkom di
+Bandung Provinsi Jawa Barat dan yang telah mengalami
+beberapa kali Perubahan dengan Perubahan Terakhir dalam
+Keputusan Menteri Pendidikan, Kebudayaan, Riset, dan
+Teknologi Nomor 931/E/O/2023 tanggal 07 Desember 2023
+tentang Izin Penyatuan Instut Teknologi Telkom Surabaya di
+Kota Surabaya ke Universitas Telkom di Kabupaten Bandung
+yang diselenggarakan oleh Yayasan Pendidikan Telkom;
+9 Keputusan Dewan Pengurus Yayasan Pendidikan Telkom Nomor
+KEP. 0037/00/DHE-PD01/YPT/2020 tanggal 17 Januari 2020
+tentang Statuta Universitas Telkom 2020;
+10 Peraturan Dewan Pengurus Yayasan Pendidikan Telkom Nomor
+PDP.1325/01/DGS-HK01/YPT/2023 tanggal 8 Desember 2023
+tentang Struktur Organisasi dan Tata Kerja Universitas Telkom;
+11 Peraturan Dewan Pengurus Yayasan Pendidikan Telkom Nomor
+PDP.1616/01/DHE-PD01/YPT 2021 tentang Pedoman Beasiswa
+Yayasan Pendidikan Telkom;
+MEMUTUSKAN
+Menetapkan : KEPUTUSAN REKTOR UNIVERSITAS TELKOM TENTANG
+PEMBERIAN FASILITAS AKOMODASI KOMPETISI KEPADA
+MAHASISWA SERTA APRESIASI KEPADA PEMBIMBING DAN
+REVIEWER DI UNIVERSITAS TELKOM.
+KESATU : Menetapkan pemberian fasilitas akomodasi kompesi kepada
+mahasiswa serta apresiasi kepada pembimbing dan reviewer yang
+berhasil mendapatkan juara dalam kompesi sebagaimana terlampir
+dalam Keputusan ini.
+KEDUA : Sumber dana akomodasi kompesi kepada mahasiswa dan apresiasi
+kepada pembimbing dan reviewer dibebankan pada anggaran
+Direktorat Kemahasiswaan Universitas Telkom berupa uang tunai.
+KETIGA : Dengan ditetapkannya Keputusan ini, maka Keputusan Rektor
+Universitas Telkom Nomor KR.292/KMH02/KMH/2023 tanggal 29
+Mei 2023 tentang Pemberian Akomodasi Kompesi kepada
+Mahasiswa dan Apresiasi kepada Pembimbing dan Reviewer di
+Universitas Telkom dinyatakan dak berlaku.
+KEEMPAT : Keputusan ini berlaku sejak tanggal 1 Februari 2024, apabila terdapat
+kekeliruan pada Keputusan ini, maka akan dilakukan perubahan
+sebagaimana mesnya.
+Ditetapkan di: Bandung
+Pada Tanggal: 12 Februari 2024
+UNIVERSITAS TELKOM
+TTD.
+Prof. Dr. Adiwijaya, S.Si., M.Si.
+Rektor
+Tembusan, Yth.:
+1. WAKIL REKTOR BIDANG AKADEMIK
+2. WAKIL REKTOR BIDANG SUMBER DAYA
+3. WAKIL REKTOR BIDANG ADMISI, KEMAHASISWAAN DAN ALUMNI
+4. WAKIL REKTOR BIDANG RISET, INOVASI DAN KERJASAMA
+5. DIREKTUR AKADEMIK
+6. DIREKTUR KEUANGAN
+7. DIREKTUR PUSAT TEKNOLOGI INFORMASI
+8. DEKAN FAKULTAS EKONOMI DAN BISNIS (FEB)
+9. DEKAN FAKULTAS ILMU TERAPAN (FIT)
+10. DEKAN FAKULTAS INDUSTRI KREATIF (FIK)
+11. DEKAN FAKULTAS INFORMATIKA (FIF)
+12. DEKAN FAKULTAS KOMUNIKASI DAN BISNIS (FKB)
+13. DEKAN FAKULTAS REKAYASA INDUSTRI (FRI)
+14. DEKAN FAKULTAS TEKNIK ELEKTRO (FTE)
+15. YAYASAN PENDIDIKAN TELKOM
+LAMPIRAN : KEPUTUSAN REKTOR UNIVERSITAS TELKOM TENTANG PEMBERIAN AKOMODASI
+KOMPETISI KEPADA MAHASISWA DAN APRESIASI KEPADA PEMBIMBING DAN
+REVIEWER DI UNIVERSITAS TELKOM
+NOMOR : DISESUAIKAN DENGAN SISTEM
+TANGGAL : DISESUAIKAN DENGAN SISTEM
+BAB I
+KETENTUAN UMUM
+Pasal 1
+Pengertian
+(1) Akomodasi Kompetisi merupakan salah satu bentuk penghargaan yang diberikan oleh pihak
+universitas atas prestasi yang diraih oleh mahasiswa, pembimbing, dan reviewer dalam
+kompetisi;
+(2) Mahasiswa merupakan peserta kompetisi jenjang diploma dan sarjana yang berhasil meraih
+prestasi juara kompetisi atau penghargaan lainnya;
+(3) Pembimbing kompetisi merupakan dosen Universitas Telkom yang berperan membimbing
+mahasiswa dalam penyusunan proposal atau karya mahasiswa yang akan dikompetisikan;
+(4) Reviewer kompetisi merupakan dosen atau tenaga kependidikan Universitas Telkom yang
+berperan mereview proposal atau karya mahasiswa yang akan dikompetisikan serta
+merekomendasikan proposal atau karya mahasiswa terbaik.
+BAB II
+MAKSUD DAN TUJUAN
+Pasal 1
+Maksud
+Maksud dari Keputusan Rektor Universitas Telkom ini:
+(1) Sebagai pedoman pemberian akomodasi kompetisi bagi mahasiswa, pembimbing, dan reviewer
+kompetisi;
+(2) Sebagai implementasi kebijakan kampus terutama pemenuhan hak mahasiswa untuk
+mendapatkan apresiasi sebagai juara kompetisi.
+Pasal 2
+Tujuan
+(1) Sebagai salah satu pendorong bagi mahasiswa dalam mengikuti kompetisi dan meraih prestasi
+terbaik;
+(2) Sebagai apresiasi terhadap kinerja dosen dan tenaga kependidikan yang memiliki beban kerja
+lebih dari yang ditetapkan.
+BAB III
+SYARAT DAN KETENTUAN
+Pasal 1
+Syarat dan Ketentuan Pemberian Akomodasi Kompetisi yang diselenggarakan
+Kementerian terkait Pendidikan Tinggi (Kompetisi Belmawa)
+(1) Diberikan kepada mahasiswa, pembimbing, dan reviewer;
+(2) Seluruh prestasi juara kompetisi yang diselenggarakan oleh Kementerian terkait Pendidikan
+Tinggi tingkat Wilayah, Nasional, dan Internasional;
+(3) Mengunggah foto sertifikat juara;
+(4) Mengunggah foto piala atau medali;
+(5) Mengunggah foto saat menerima piala atau medali;
+(6) Mengunggah surat tugas sebagai peserta kompetisi;
+(7) Mencantumkan URL informasi kompetisi;
+(8) Untuk pembimbing dan reviewer menyertakan surat tugas dari Direktorat kemahasiswaan dan
+bukti kinerja.
+Pasal 2
+Syarat dan Ketentuan Pemberian Akomodasi Kompetisi Selain yang diselenggarakan
+Kementerian terkait Pendidikan Tinggi (Kompetisi Mandiri)
+(1) Diberikan kepada mahasiswa;
+(2) Seluruh prestasi juara kompetisi selain yang diselenggarakan oleh Kementerian terkait
+Pendidikan Tinggi tingkat, Nasional, dan Internasional;
+(3) Mengunggah foto sertifikat juara (sertifikat sekurang – kurangnya ditandatangani oleh Pejabat
+setara Dekan atau Direktur jika penyelenggara kompetisi adalah Perguruan Tinggi);
+(4) Mengunggah foto piala atau medali (jika ada);
+(5) Mengunggah foto saat menerima piala atau medali;
+(6) Mengunggah surat tugas;
+(7) Mencantumkan URL informasi kompetisi;
+(8) Melaporkan jumlah peserta Perguruan Tinggi (PT)/ Negara;
+a. Kategori Internasional – Cluster 1: peserta pada lingkup minimal 3 negara di luar suatu
+wilayah regional. Contoh wilayah regional adalah ASEAN, Asia, Asia Pasifik, Eropa, dll.
+b. Kategori Internasional – Cluster 2: peserta pada lingkup minimal 2 negara.
+c. Kategori Internasional – Cluster 3: peserta pada lingkup kategori internasional di luar cluster
+1 dan 2 yang dapat dimasuklan ke dalam kategori nasional cluster 1, cluster 2 atau cluster 3
+d. Kategori Nasional – Cluster 1: peserta pada lingkup minimal 4 Provinsi.
+e. Kategori Nasional – Cluster 2: peserta pada lingkup minimal 2 Provinsi.
+f. Kategori Nasional – Cluster 3: peserta pada lingkup minimal 4 Perguruan Tinggi dalam 1
+Provinsi.
+g. Kategori Wilayah: peserta pada lingkup minimal 2 Perguruan Tinggi dalam 1 Provinsi.
+LAMPIRAN : KEPUTUSAN REKTOR UNIVERSITAS TELKOM TENTANG PEMBERIAN AKOMODASI KOMPETISI KEPADA MAHASISWA DAN APRESIASI KEPADA PEMBIMBING DAN
+REVIEWER DI UNIVERSITAS TELKOM
+NOMOR : DISESUAIKAN DENGAN SISTEM
+TANGGAL : DISESUAIKAN DENGAN SISTEM
+A. DAFTAR TARIF AKOMODASI KOMPETISI KEPADA MAHASISWA DAN APRESIASI KEPADA PEMBIMBING DAN REVIEWER YANG DISELENGGARAKAN KEMENTERIAN TERKAIT PENDIDIKAN
+TINGGI (KOMPETISI BELMAWA)
+1. MAHASISWA
+Kelompok Individu
+Kelompok
+Internasional Nasional Wilayah Internasional Nasional Wilayah
+Juara I
+Rp 30.000.000 Rp 25.000.000 Rp 5.000.000 Rp 20.000.000 Rp 15.000.000 Rp 4.000.000
+Juara II
+Rp 25.000.000 Rp 20.000.000 Rp 4.000.000 Rp 15.000.000 Rp 12.500.000 Rp 3.000.000
+Juara III
+Rp 20.000.000 Rp 15.000.000 Rp 3.000.000 Rp 12.500.000 Rp 10.000.000 Rp 2.000.000
+Juara Harapan
+Rp 15.000.000 Rp 10.000.000 Rp 2.000.000 Rp 7.500.000 Rp 5.000.000 Rp 1.000.000
+Finalis/Lolos Pendanaan
+Rp 5.000.000 Rp 4.000.000 Rp 200.000 Rp 3.500.000 Rp 2.500.000 -
+Kategori khusus lainnya
+Rp 7.500.000 Rp 2.500.000 - Rp 1.500.000 Rp 1.000.000 -
+2. PEMBIMBING
+Kelompok dan Individu
+Kategori Juara
+Internasional Nasional Wilayah
+Juara I Rp 6.000.000 Rp 5.000.000 Rp 1.500.000
+Juara II Rp 5.000.000 Rp 4.000.000 Rp 1.250.000
+Juara III Rp 4.000.000 Rp 3.000.000 Rp 1.000.000
+Juara Harapan Rp 3.500.000 Rp 2.500.000 Rp 750.000
+Finalis/Lolos Pendanaan Rp 2.500.000 Rp 1.500.000 -
+Kategori khusus lainnya Rp 1.500.000 Rp 1.000.000 -
+3. REVIEWER
+Kelompok dan Individu
+Kategori Juara
+Internasional Nasional Wilayah
+Juara I Rp 4.000.000 Rp 3.000.000 Rp 1.000.000
+Juara II Rp 3.500.000 Rp 2.500.000 Rp 750.000
+Juara III Rp 3.000.000 Rp 2.000.000 Rp 500.000
+Juara Harapan Rp 2.500.000 Rp 1.500.000 -
+Finalis/Lolos Pendanaan Rp 1.500.000 Rp 1.000.000 -
+*Insentif kompetisi diberikan berdasarkan bukti kinerja yang telah dilakukan.
+B. DAFTAR TARIF AKOMODASI KOMPETISI KEPADA MAHASISWA SELAIN YANG DISELENGGARAKAN KEMENTERIAN TERKAIT PENDIDIKAN TINGGI (KOMPETISI MANDIRI) TINGKAT INTERNASIONAL
+Internasional (Cluster 1) Internasional (Cluster 2)
+Kategori
+Juara Jumlah Jumlah
+Negara Kelompok Individu Negara Kelompok Individu
+Juara I > 20 Rp 6.000.000 Rp 3.500.000 > 20 Rp 5.000.000 Rp 3.000.000
+11 – 20 Rp 5.500.000 Rp 3.250.000 11 – 20 Rp 4.500.000 Rp 2.750.000
+< 11 Rp 5.000.000 Rp 3.000.000 < 11 Rp 3.750.000 Rp 2.500.000
+Juara II > 20 Rp 4.500.000 Rp 2.750.000 > 20 Rp 3.500.000 Rp 2.250.000
+11 – 20 Rp 4.000.000 Rp2.500.000 11 – 20 Rp 3.000.000 Rp 2.000.000
+< 11 Rp 3.500.000 Rp 2.250.000 < 11 Rp 2.750.000 Rp 1.750.000
+Juara III > 20 Rp 3.000.000 Rp 2.000.000 > 20 Rp 2.500.000 Rp 1.500.000
+11 – 20 Rp 2.500.000 Rp 1.750.000 11 – 20 Rp 1.750.000 Rp 1.250.000
+< 11 Rp 2.000.000 Rp 1.500.000 < 11 Rp 1.500.000 Rp 1.000.000
+C. DAFTAR TARIF AKOMODASI KOMPETISI KEPADA MAHASISWA SELAIN YANG DISELENGGARAKAN KEMENTERIAN TERKAIT PENDIDIKAN TINGGI (KOMPETISI MANDIRI) TINGKAT NASIONAL
+Nasional (Cluster 1) Nasional (Cluster 2) Nasional (Cluster 3)
+Kategori
+Juara
+Jumlah PT* Kelompok Individu Jumlah PT* Kelompok Individu Jumlah PT Kelompok Individu
+Juara I > 50 Rp 4.000.000 Rp 2.500.000 > 50 Rp 3.500.000 Rp 2.000.000 > 50 Rp 2.000.000 Rp 1.750.000
+31 – 50 Rp 3.750.000 Rp 2.250.000 31 – 50 Rp 3.250.000 Rp 1.750.000 31 – 50 Rp 1.750.000 Rp 1.500.000
+< 31 Rp 3.250.000 Rp 2.000.000 < 31 Rp 3.000.000 Rp 1.500.000 < 31 Rp 1.500.000 Rp 1.250.000
+Juara II > 50 Rp 3.000.000 Rp 1.750.000 > 50 Rp 2.750.000 Rp 1.250.000 > 50 Rp 1.250.000 Rp 1.000.000
+31 – 50 Rp 2.500.000 Rp 1.500.000 31 – 50 Rp 2.250.000 Rp 1.000.000 31 – 50 Rp 1.000.000 Rp 750.000
+< 31 Rp 2.250.000 Rp 1.250.000 < 31 Rp 2.000.000 Rp 750.000 < 31 Rp 750.000 Rp 650.000
+Juara III > 50 Rp 2.000.000 Rp 1.000.000 > 50 Rp 1.750.000 Rp 650.000 > 50 Rp 650.000 Rp 500.000
+31 – 50 Rp 1.500.000 Rp 750.000 31 – 50 Rp 1.250.000 Rp 500.000 31 – 50 Rp 500.000 Rp 350.000
+< 31 Rp 1.250.000 Rp 500.000 < 31 Rp 1.000.000 Rp 350.000 < 31 Rp 350.000 Rp 250.000
+D. DAFTAR TARIF AKOMODASI KOMPETISI KEPADA MAHASISWA SELAIN YANG DISELENGGARAKAN KEMENTERIAN TERKAIT PENDIDIKAN TINGGI (KOMPETISI MANDIRI) TINGKAT WILAYAH
+Wilayah
+Kategori
+Juara
+Jumlah PT Kelompok Individu
+Juara I > 50 Rp 1.750.000 Rp 1.500.000
+31 – 50 Rp 1.500.000 Rp 1.250.000
+< 31 Rp 1.250.000 Rp 1.000.000
+Juara II > 50 Rp 1.000.000 Rp 750.000
+31 – 50 Rp 750.000 Rp 650.000
+< 31 Rp 650.000 Rp 500.000
+Juara III > 50 Rp 500.000 Rp 350.000
+31 – 50 Rp 350.000 Rp 250.000
+< 31 Rp 200.000 Rp 150.000
+Note: *Jika tidak dapat memberikan bukti jumlah peserta (Negara/ PT) yang mengikuti kompetisi maka skema perhitungan akomodasi kompetisi menggunakan jumlah kepesertaan yang paling rendah.
+Ditetapkan di : Bandung
+Pada tanggal : Disesuaikan dengan sistem
+Universitas Telkom
+Prof. Dr. Adiwijaya, S.Si., M.Si.
+Rektor
+', NOW()),
+    ('SK TAK 2022.pdf', 'TAK', 'PERATUAN REKTOR UNIVERSITAS TELKOM
+Nomor : KR.362/MHS6/KMH-KKM/2022
+T E N T A N G
+PEDOMAN TRANSKRIP AKTIVITAS KEMAHASISWAAN
+UNIVERSITAS TELKOM
+REKTOR UNIVERSITAS TELKOM
+Menimbang : a Bahwa dalam rangka menunjang pengembangan kualitas
+mahasiswa di Universitas Telkom khususnya ekstrakurikuler,
+minat, bakat, dan penalaran, maka perlu adanya Transkrip
+Akvitas Kemahasiswaan (TAK) sebagai peraturan yang harus
+diketahui dan dijadikan pedoman oleh seluruh sivitas akademika
+Universitas Telkom;
+b TAK merupakan rekap penilaian keakfan mahasiswa dalam
+kegiatan kemahasiswaan selama menempuh pendidikan di
+Universitas Telkom yang bertujuan membantu dan memberikan
+pembekalan so skill kepada mahasiswa;
+c Bahwa Universitas Telkom perlu mempertahankan dan
+meningkatkan peringkat pada Pemeringkatan Kemahasiswaan
+yang ditetapkan oleh Direktorat Jenderal Pendidikan Tinggi,
+Kementerian Pendidikan, Kebudayaan, Riset dan Teknologi
+Republik Indonesia;
+d Bahwa memperhakan bur (a), (b), dan (c) di atas, maka perlu
+ditetapkan Peraturan Universitas Telkom Tentang Transkrip
+Akvitas Kemahasiswaan (TAK);
+Mengingat : 1 Undang-Undang Nomor 12 Tahun 2012 tentang Pendidikan
+Tinggi.
+2 Undang-Undang Nomor 20 Tahun 2003 tentang Sistem
+Pendidikan Nasional.
+3 Peraturan Pemerintah Nomor 04 Tahun 2014 tentang
+Penyelenggaraan Pendidikan Tinggi dan Pengelolaan Perguruan
+Tinggi.
+4 Keputusan Menteri Pendidikan dan Kebudayaan Nomor
+155/U/1998 tentang Pedoman Umum Organisasi
+Kemahasiswaan di Perguruan Tinggi tanggal 30 Juni 1998.
+5 Keputusan Menteri Pendidikan dan Kebudayaan Republik
+Indonesia Nomor 270/E/O/2013 tanggal 17 Juli 2013 tentang
+Penggabungan Politeknik Telkom, Instut Teknologi Telkom dan
+Instut Manajemen Telkom yang diselenggarakan oleh Yayasan
+Pendidikan Telkom menjadi Universitas Telkom di Kabupaten
+Bandung Provinsi Jawa Barat yang diselenggarakan oleh Yayasan
+Pendidikan Telkom di Bandung Provinsi Jawa Barat.
+6 Keputusan Menteri Pendidikan dan Kebudayaan Republik
+Indonesia Nomor 309/E/O/2013 tanggal 14 Agustus 2013
+tentang izin peleburan Sekolah Tinggi Seni Rupa dan Desain
+Indonesia Telkom yang diselenggarakan oleh Yayasan
+Pendidikan Mandiri ke Universitas Telkom yang diselenggarakan
+oleh Yayasan Pendidikan Telkom di Bandung Provinsi Jawa
+Barat.
+7 Keputusan Dewan Pengurus Yayasan Pendidikan Telkom Nomor
+KEP. 0037/00/DHE-PD01/YPT/2020 tahun 2020, Tentang Statuta
+Universitas Telkom Tahun 2020.
+8 Keputusan Rektor Universitas Telkom Nomor
+KR.297/KMHS7/BKA/2014 Tanggal 30 April 2014 tentang
+Transkrip Akvitas Kemahasiswaan (TAK) Universitas Telkom.
+9 Keputusan Rektor Universitas Telkom Nomor
+KR.0010/MHS6/KMH/2021 Tentang Perubahan Keputusan
+Rektor Universitas Telkom Nomor 297/KMHS7/BKA/2014
+Tentang Transkrip Akvitas Kemahasiswaan (TAK) Universitas
+Telkom.
+MEMUTUSKAN
+Menetapkan : PERATURAN UNIVERSITAS TELKOM TENTANG PEDOMAN
+TRANSKRIP AKTIVITAS KEMAHASISWAAN UNIVERSITAS
+TELKOM.
+KESATU : Menetapkan Pedoman, Daar Kegiatan, dan Rekomendasi
+Pengambilan Kegiatan untuk Pemenuhan Nilai Kumulaf Minimal
+Transkrip Akvitas Kemahasiswaan (TAK) sebagaimana terlampir
+pada Lampiran I, Lampiran II, dan Lampiran III peraturan ini.
+KEDUA : Perubahan definisi, nilai, penambahan kegiatan, sistem pelaporan
+dan persetujuan pada Transkrip Akvitas Kemahasiswaan (TAK)
+sesuai dengan tabel dimaksud dalam Diktum KESATU didasarkan
+pada buk dokumen sesuai kegiatan yang dilaksanakan.
+KETIGA : Dengan diberlakukannya peraturan ini, maka keputusan Rektor
+Universitas Telkom Nomor KR.0010/MHS6/KMH/2021 dinyatakan
+dak berlaku, dan Keputusan Rektor Nomor 297/KMHS7/BKA/2014
+dinyatakan tetap berlaku selama dak bertentangan dengan
+peraturan ini.
+KEEMPAT : Peraturan Universitas Telkom ini berlaku sejak Tahun Akademik
+2022/2023, apabila terdapat kekeliruan pada peraturan ini maka
+akan dilakukan perubahan sebagaimana mesnya.
+Ditetapkan di: Bandung
+Pada Tanggal: 2 Agustus 2022
+UNIVERSITAS TELKOM
+TTD.
+Prof. Dr. Adiwijaya, S.Si., M.Si.
+Rektor
+Tembusan, Yth.:
+1. WAKIL REKTOR BIDANG AKADEMIK
+2. WAKIL REKTOR BIDANG SUMBER DAYA
+3. WAKIL REKTOR BIDANG RISET, INOVASI DAN KERJASAMA
+4. DEKAN FAKULTAS EKONOMI DAN BISNIS (FEB)
+5. DEKAN FAKULTAS ILMU TERAPAN (FIT)
+6. DEKAN FAKULTAS INDUSTRI KREATIF (FIK)
+7. DEKAN FAKULTAS INFORMATIKA (FIF)
+8. DEKAN FAKULTAS KOMUNIKASI DAN BISNIS (FKB)
+9. DEKAN FAKULTAS REKAYASA INDUSTRI (FRI)
+10. DEKAN FAKULTAS TEKNIK ELEKTRO (FTE)
+11. DIREKTUR SEKRETARIAT DAN PERENCANAAN STRATEGIS
+LAMPIRAN I : PERATURAN UNIVERSITAS TELKOM TENTANG TRANSKRIP AKTIVITAS
+KEMAHASISWAAN (TAK) UNIVERSITAS TELKOM
+NOMOR : DISESUAIKAN DENGAN SISTEM
+TANGGAL : DISESUAIKAN DENGAN SISTEM
+PEDOMAN TRANSKRIP AKTIVITAS KEMAHASISWAAN (TAK)
+UNIVERSITAS TELKOM
+Pasal 1
+Pengertian
+(1) Transkrip Aktivitas Kemahasiswaan (TAK) merupakan rekap penilaian keaktifan mahasiswa dalam
+Kegiatan Kemahasiswaan selama menempuh pendidikan di Universitas Telkom yang dinyatakan dalam
+Indeks Keaktifan Kumulatif (IKK).
+(2) Indeks Keaktifan Kumulatif (IKK) adalah indeks kumulatif yang menunjukkan prestasi dan keaktifan
+seorang mahasiswa Universitas Telkom di Bidang Kemahasiswaan.
+(3) Nilai Kumulatif minimal TAK adalah total nilai terendah yang harus dicapai mahasiswa untuk dapat lulus
+dari Universitas Telkom sesuai dengan jenjang studi yang ditempuh.
+(4) Nilai Kumulatif maksimal TAK adalah total nilai tertinggi yang dapat dicapai mahasiswa Universitas Telkom
+selama menempuh kuliah sesuai jenjang studi yang ditempuh.
+(5) Kompetisi Belmawa adalah kompetisi yang diselenggarakan oleh Kementerian Pendidikan, Kebudayaan,
+Riset dan Teknologi Republik Indonesia (KEMENDIKBUD-RISTEK).
+(6) Kompetisi Mandiri adalah kompetisi yang diselenggarakan secara mandiri oleh lembaga selain
+Kementerian Pendidikan, Kebudayaan, Riset dan Teknologi Republik Indonesia.
+(7) Kegiatan Wajib adalah jenis-jenis kegiatan yang dipersyaratkan untuk diikuti dan dipenuhi oleh mahasiswa
+selama menempuh pendidikan di Universitas Telkom yang selanjutnya dapat dikonversi menjadi nilai TAK.
+(8) Kegiatan Pilihan adalah jenis-jenis kegiatan yang dapat dipilih mahasiswa untuk diikuti selama menempuh
+pendidikan di Universitas Telkom yang selanjutnya dapat dikonversi menjadi nilai TAK.
+(9) Organisasi Kemahasiswaan (Ormawa) merupakan wadah pengembangan diri dalam rangka meningkatkan
+soft skills dan karakter serta mengembangkan jiwa kepemimpinan, minat, bakat, kegemaran, dan
+keahlian.
+(10) Rekognisi merupakan prestasi non kompetisi yang diberikan oleh pemerintah, komunitas, organisasi, atau
+masyarakat kepada mahasiswa.
+Pasal 2
+Fungsi TAK
+Fungsi TAK adalah mendukung pengembangan karakter mahasiswa Universitas Telkom dan sebagai syarat
+bagi mahasiswa untuk:
+(1) Kelulusan di tingkat pertama, berupa kewajiban mahasiswa mengikuti dan lulus Pengenalan
+Kehidupan Kampus bagi Mahasiswa Baru (PKKMB).
+(2) Mengajukan beasiswa.
+(3) Mengikuti seleksi mahasiswa berprestasi.
+(4) Mengikuti seleksi wisudawan berprestasi.
+(5) Kelulusan sidang yudisium.
+Pasal 3
+Lingkup Penilaian TAK
+1) Kegiatan mahasiswa yang mendapatkan nilai TAK antara lain sebagai berikut:
+a. Kegiatan pengembangan karakter
+b. Keikutsertaan dalam kompetisi
+c. Keaktifan dalam organisasi
+d. Keikutsertaan seminar
+e. Kegiatan sertifikasi
+f. Keikutsertaan dalam kepanitiaan
+g. Keaktifan dalam mendukung Tridharma Perguruan Tinggi
+h. Keikutsertaan dalam persiapan perencanaan karir
+i. Kegiatan Kemahasiswaan lainnya
+2) Penilaian TAK meliputi Kegiatan Wajib dan Kegiatan Pilihan:
+a. Kegiatan wajib dengan total nilai 40, terdiri dari:
+1. PKKMB (6 nilai)
+2. Pengembangan Karakter (8 nilai) yang terdiri dari:
+• Self-Management (2 nilai)
+• Relationship Management (2 nilai)
+• Leadership (2 nilai)
+• Entrepreneur Mindset (2 nilai)
+3. Wawasan Kebangsaan (10 nilai) yang terdiri dari:
+• Anti Korupsi (2 nilai)
+• Anti Napza (2 nilai)
+• Anti Radikalisme (2 nilai)
+• Pencegahan Kekerasan Seksual dan Perundungan (2 nilai)
+• Green Campus (2 nilai)
+4. Persiapan Perencanaan Karir (6 nilai) hang terdiri dari:
+• Psikotes (2 nilai)
+• Career Preparation Training I (soft skill) (2 nilai)
+• Career Preparation Training II (Industrial Seminar) (2 nilai)
+5. Organisasi (minimal 4 nilai)
+6. Kompetisi (minimal 6 nilai)
+b. Untuk mahasiswa ekstensi, Kegiatan Wajib meliputi Pengembangan Karakter, Wawasan
+Kebangsaan, dan Persiapan Pengembangan Karir. Untuk mahasiswa ekstensi yang berasal dari
+Universitas Telkom dapat menggunakan nilai kegiatan Pengembangan Karakter, Wawasan
+Kebangsaan, dan Persiapan Pengembangan Karir pada jenjang sebelumnya.
+c. Kegiatan Pilihan yaitu kegiatan-kegiatan selain yang diwajibkan dan mendapatkan nilai TAK.
+3) Cara pelaporan nilai TAK:
+a. Pelaporan kegiatan untuk mendapatkan TAK dilakukan oleh mahasiswa melalui Sistem
+Pelaporan TAK Universitas Telkom dengan mengunggah bukti keikutsertaan kegiatan atau
+prestasi sesuai dengan ketentuan.
+b. Pelaporan kegiatan paling lambat tiga bulan setelah pelaksanaan kegiatan.
+c. Kegiatan yang diselenggarakan oleh Universitas Telkom (Direktorat, Fakultas, Program Studi,
+Research Center), pelaporan dan penilaiannya dilakukan oleh penyelenggara berkoordinasi
+dengan Direktorat Kemahasiswaan.
+Pasal 4
+Nilai Kumulatif Transkrip Aktivitas Kemahasiswaan (TAK) dan
+Indeks Keaktifan Kemahasiswaan (IKK)
+1) Mahasiswa Universitas Telkom wajib memiliki dan memenuhi nilai minimal TAK yang dapat dikonversi ke
+dalam IKK.
+2) Pada setiap jenjang pendidikan ditetapkan nilai kumulatif minimal TAK yang harus dipenuhi mahasiswa
+serta batas nilai kumulatif maksimal TAK yang dapat dicapai mahasiswa.
+3) Rentang nilai kumulatif TAK yang dimaksud pada Pasal 4 ayat (2) peraturan ini, setara dengan nilai IKK
+sebagai berikut:
+Nilai Kumulatif Nilai Kumulatif Nilai Minimal Nilai Maksimal
+No Jenjang
+Minimal TAK Maksimal TAK IKK IKK
+1 Sarjana 60 120 2,00 4,00
+2 Diploma 45 90 2,00 4,00
+3 Ekstensi 25 50 2,00 4,00
+4) Nilai IKK mahasiswa ditentukan dengan menggunakan perhitungan sebagai berikut:
+𝑁𝑖
+𝐼𝐾𝐾 = × 4
+𝑁𝑚
+dengan N adalah nilai TAK yang dicapai mahasiswa dan N adalah nilai maksimal TAK pada tiap jenjang.
+i m
+5) Jika total nilai mahasiswa melebihi nilai kumulatif maksimal TAK pada tiap jenjangnya, maka mahasiswa
+dapat memilih kegiatan atau capaian yang akan ditampilkan dalam TAK.
+Pasal 5
+Predikat Kelulusan Berdasarkan Nilai IKK
+1) Berdasarkan nilai IKK yang dicapai dalam TAK, predikat kelulusan mahasiswa Universitas Telkom
+dinyatakan sebagai berikut:
+Predikat Kelulusan
+IKK
+Dalam Bahasa Indonesia Dalam Bahasa Inggris
+< 2,00 Memprihatinkan Poor
+2,00 – 2,75 Cukup Fair
+2,76 – 3,00 Memuaskan Satisfactory
+3,01 – 3,50 Sangat Memuaskan Very Good
+3,51 – 4,00 Dengan Pujian Excellent
+2) Mahasiswa yang tidak melaksanakan seluruh kegiatan wajib yang diatur pada pasal 3 serta tidak
+memenuhi nilai kumulatif minimal TAK sebagaimana dimaksud pada pasal 4 ayat (3), maka tidak dapat
+mengikuti kesempatan sebagaimana tercantum pada pasal 2 ayat (4) dan (5) peraturan ini, kecuali dengan
+ketetapan khusus yang dikeluarkan oleh Rektor melalui Wakil Rektor atau Direktur Bidang
+Kemahasiswaan.
+Pasal 6
+Pengurangan Nilai TAK
+Mahasiswa yang dinyatakan melanggar ketentuan yang berlaku di Universitas Telkom dapat dikenakan sanksi
+pengurangan nilai TAK yang akan diatur dalam ketentuan tersendiri.
+Pasal 7
+Ketentuan Pemberlakuan TAK
+Ketentuan pemberlakuan aturan TAK pada Tabel berikut:
+No Tahun Masuk (Angkatan) Pemberlakuan Pasal
+1 2022 – setelahnya Berlaku seluruh pasal
+2 2021 Berlaku seluruh pasal kecuali Pasal 2 ayat 1
+3 2020 – sebelumnya Berlaku seluruh pasal kecuali Pasal 2 ayat 1 dan Pasal 3 ayat 2a.
+Jika pada saat pemberlakuan Peraturan TAK ini sistem aplikasi belum siap diterapkan untuk mahasiswa
+seluruh angkatan, maka mahasiswa angakatan Tahun 2021/ 2022 dan sebelumnya menggunakan aturan TAK
+Tahun 2014.
+Ditetapkan di: Bandung
+Pada tanggal : Disesuaikan dengan system
+UNIVERSITAS TELKOM
+Prof. Dr. Adiwijaya, S.Si., M.Si.
+Rektor
+LAMPIRAN II : PERATURAN UNIVERSITAS TELKOM TENTANG TRANSKRIP AKTIVITAS
+KEMAHASISWAAN (TAK) UNIVERSITAS TELKOM
+NOMOR : DISESUAIKAN DENGAN SISTEM
+TANGGAL : DISESUAIKAN DENGAN SISTEM
+DAFTAR
+KEGIATAN DAN NILAI TRANSKRIP AKTIVITAS KEMAHASISWAAN
+NO JENIS KEGIATAN TINGKAT/ BENTUK DESKRIPSI NILAI
+Orientasi Mahasiswa
+1 PKKMB* KAMPUS 6
+Baru
+Self Management 2
+KAMPUS
+Relationship
+PENGEMBANGAN 2
+2 Management
+KARAKTER*
+Leadership 2
+Entrepreneur Mindset 2
+Anti Korupsi 2
+Anti Napza 2
+Anti Radikalisme 2
+WAWASAN
+3 KAMPUS
+KEBANGSAAN* Pencegahan Kekerasan
+Seksual dan 2
+Perundungan
+Green Campus 2
+Psikotes 2
+Career Preparation
+2
+PENGEMBANGAN Training I (Soft Skill)
+4 KAMPUS
+KARIR* Career Preparation
+Training II (Industrial 2
+Seminar)
+Ketua atau Wakil Ketua 13
+Sekretaris, Bendahara,
+11
+INTERNASIONAL Pengurus Inti
+Koordinator Bidang 9
+Anggota Aktif 7
+Ketua atau Wakil Ketua 12
+5 ORGANISASI* Sekretaris, Bendahara,
+10
+NASIONAL Pengurus Inti
+Koordinator Bidang 8
+Anggota Aktif 6
+Ketua atau Wakil Ketua 11
+REGIONAL/ WILAYAH Sekretaris, Bendahara,
+9
+Pengurus Inti
+NO JENIS KEGIATAN TINGKAT/ BENTUK DESKRIPSI NILAI
+Koordinator Bidang 7
+Anggota Aktif 5
+Ketua atau Wakil Ketua 10
+Sekretaris, Bendahara,
+8
+ORGANISASI KEMAHASISWAAN Pengurus Inti
+Koordinator Bidang 6
+Anggota Aktif 3
+Juara 1 30
+Juara 2 25
+Juara 3 20
+Harapan 17
+INTERNASIONAL
+The Most Inspiring atau
+Penghargaan Setara 15
+Lainnya
+Finalis 10
+Peserta 5
+Juara 1 25
+Juara 2 20
+Juara 3 15
+Hibah (PPK Ormawa,
+P2MD, P2MW, IWDM 15
+dan Sejenisnya)
+KOMPETISI
+6
+Harapan 13
+BELMAWA* NASIONAL
+The Most Inspiring atau
+Penghargaan Setara 12
+Lainnya
+Pendanaan Kompetisi
+10
+(PKM dan Sejenisnya)
+Finalis 8
+Peserta 4
+Juara 1 10
+Juara 2 9
+Juara 3 8
+Harapan 6
+REGIONAL/ WILAYAH
+The Most Inspiring atau
+Penghargaan Setara 5
+Lainnya
+Finalis 3
+NO JENIS KEGIATAN TINGKAT/ BENTUK DESKRIPSI NILAI
+Peserta 2
+Juara 1 15
+Juara 2 14
+Juara 3 13
+Harapan 12
+INTERNASIONAL
+The Most Inspiring atau
+Penghargaan Setara 10
+Lainnya
+Finalis 4
+Peserta 2
+Juara 1 10
+Juara 2 9
+Juara 3 8
+Harapan 7
+KOMPETISI
+7 NASIONAL
+MANDIRI The Most Inspiring atau
+Penghargaan Setara 6
+Lainnya
+Finalis 2
+Peserta 1
+Juara 1 7
+Juara 2 6
+Juara 3 5
+Harapan 4
+REGIONAL/ WILAYAH
+The Most Inspiring atau
+Penghargaan Setara 3
+Lainnya
+Finalis 0
+Peserta 0
+Ketua atau Wakil Ketua 5
+Sekretaris, Bendahara,
+4
+INTERNASIONAL Pengurus Inti
+Koordinator Bidang 3
+KEPANITIAAN/
+8 Anggota/Peserta 2
+KEGIATAN
+Ketua atau Wakil Ketua 4
+Sekretaris, Bendahara,
+NASIONAL 3
+Pengurus Inti
+Koordinator Bidang 2
+NO JENIS KEGIATAN TINGKAT/ BENTUK DESKRIPSI NILAI
+Anggota/Peserta 1
+Ketua atau Wakil Ketua 3
+Sekretaris, Bendahara,
+2
+REGIONAL/ KAMPUS Pengurus Inti
+Koordinator Bidang 1
+Anggota/Peserta 0
+Pembicara 10
+INTERNASIONAL Moderator/MC 5
+Peserta 3
+Pembicara 5
+9 SEMINAR NASIONAL Moderator/MC 3
+Peserta 2
+Pembicara 3
+REGIONAL/ KAMPUS Moderator/MC 2
+Peserta 1
+Skema Pendanaan
+INTERNASIONAL 10
+Internasional
+Skema Pendanaan
+10 PENELITIAN NASIONAL 8
+Eksternal
+Skema Pendanaan
+REGIONAL 5
+Internal
+PUBLIKASI INTERNASIONAL Jurnal/Prosiding 10
+11
+ILMIAH NASIONAL Jurnal/Prosiding 5
+- Ketua atau Wakil Ketua 5
+PENGABDIAN Sekretaris, Bendahara,
+- 4
+12 KEPADA Pengurus Inti
+MASYARAKAT - Koordinator Bidang 3
+- Anggota/ Peserta 2
+KEGIATAN
+MERDEKA
+BELAJAR Kegiatan Yang Termasuk
+13 - 5
+KAMPUS Dalam Kategori MBKM
+MERDEKA
+(MBKM)
+- Paten 5
+KEKAYAAN
+14 - Desain Industri 3
+INTELEKTUAL
+- Hak Cipta, Merek/Logo 2
+15 REKOGNISI INTERNASIONAL - 10
+NO JENIS KEGIATAN TINGKAT/ BENTUK DESKRIPSI NILAI
+NASIONAL - 8
+REGIONAL - 5
+SENIOR RESIDENT, BUDDY, MARKETING Sangat Baik 10
+CREW, TUTOR, PEER COUNSELOR, ASISTEN
+Baik 7
+16 DUTA KAMPUS DOSEN/ LABORATORIUM, FASILITATOR,
+MENTOR, PETUGAS UPACARA, TANJIDOR,
+Cukup 5
+DLL
+(*) Kegiatan yang wajib diikuti
+Ditetapkan di: Bandung
+Pada tanggal : Disesuaikan dengan system
+UNIVERSITAS TELKOM
+Prof. Dr. Adiwijaya, S.Si., M.Si.
+Rektor
+LAMPIRAN III : PERATURAN UNIVERSITAS TELKOM TENTANG TRANSKRIP AKTIVITAS KEMAHASISWAAN (TAK) UNIVERSITAS TELKOM
+NOMOR : DISESUAIKAN DENGAN SISTEM
+TANGGAL : DISESUAIKAN DENGAN SISTEM
+REKOMENDASI PENGAMBILAN KEGIATAN UNTUK PEMENUHAN NILAI KUMULATIF MINIMAL
+TRANSKRIP AKTIVITAS KEMAHASISWAAN UNIVERSITAS TELKOM
+A. JENJANG S1 (TOTAL NILAI MINIMAL 60)
+JUMLAH NILAI
+No. KEGIATAN DESKRIPSI KEGIATAN NILAI TINGKAT SEMESTER PENANGGUNG JAWAB
+WAJIB MINIMAL
+TINGKAT I
+1 PKKMB* 6 Orientasi Mahasiswa Baru 6 I 1 Direktorat Kemahasiswaan
+Self Management 2 I 1 Direktorat Kemahasiswaan
+Relationship Management 2 I 1 Direktorat Kemahasiswaan
+PENGEMBANGAN
+2 8
+KARAKTER*
+Leadership 2 I 2 Direktorat Kemahasiswaan
+Entrepreneur Mindset 2 I 2 Direktorat Kemahasiswaan
+Seminar Pencegahan Kekerasan
+2 I 1 Direktorat Kemahasiswaan
+Seksual dan Perundungan
+3 WAWASAN KEBANGSAAN* 4
+Seminar Anti NAPZA 2 I 2 Direktorat Kemahasiswaan
+KEGIATAN PILIHAN
+4 2 Kegiatan Pilihan Selain Kegiatan Wajib 2 I 2 -
+MAHASISWA
+JUMLAH NILAI 20 JUMLAH NILAI 20
+Catatan: -
+TINGKAT II
+Seminar Anti Korupsi 2 II 3 Direktorat Kemahasiswaan
+1 WAWASAN KEBANGSAAN* 6
+Seminar Anti Radikalisme 2 II 4 Direktorat Kemahasiswaan
+JUMLAH NILAI
+No. KEGIATAN DESKRIPSI KEGIATAN NILAI TINGKAT SEMESTER PENANGGUNG JAWAB
+WAJIB MINIMAL
+Seminar Green Campus 2 II 4 Direktorat Kemahasiswaan
+2 ORGANISASI* 4 Mengikuti Organisasi Kemahasiswaan 4 II 3 Direktorat Kemahasiswaan
+3 KOMPETISI* 3 Tingkat Belmawa/Mandiri 3 II 3 Direktorat Kemahasiswaan
+KEGIATAN PILIHAN
+4 7 Kegiatan Pilihan Selain Kegiatan Wajib 7 II 3 -
+MAHASISWA
+JUMLAH NILAI 20 JUMLAH NILAI 20
+Catatan:
+1. Jika Mahasiswa memilih organisasi kemahasiswaan di tingkat II, maka nilai minimal Kegiatan Pilihan Mahasiswa di tingkat II adalah 7.
+2. Jika Mahasiswa tidak memilih kegiatan Organisasi Kemahasiswaan di tingkat II dan memilihnya di Tingkat III, maka nilai minimal Kegiatan Pilihan Mahasiswa
+di tingkat II adalah 11.
+TINGKAT III
+1 KOMPETISI* 3 Belmawa/Mandiri 3 III 5 Direktorat Kemahasiswaan
+Direktorat Pusat Pengembangan
+Psikotes 2 III 6
+Karir, Alumni dan Endowment
+Direktorat Pusat Pengembangan
+2 PENGEMBANGAN KARIR* 6 Career Preparation Training I (Soft Skill) 2 III 6
+Karir, Alumni dan Endowment
+Career Preparation Training II Direktorat Pusat Pengembangan
+2 III 6
+(Industrial Seminar) Karir, Alumni dan Endowment
+3 ORGANISASI* 4 Organisasi Kemahasiswaan 4 III 5 Direktorat Kemahasiswaan
+KEGIATAN PILIHAN
+4 7 - 7 III 5 -
+MAHASISWA
+JUMLAH NILAI 20 JUMLAH NILAI 20
+Catatan:
+1. Jika Mahasiswa memilih organisasi kemahasiswaan di tingkat III, maka nilai minimal Kegiatan Pilihan Mahasiswa di tingkat III adalah 7.
+2. Jika Mahasiswa tidak memilih kegiatan Organisasi Kemahasiswaan di tingkat III, maka nilai minimal Kegiatan Pilihan Mahasiswa di tingkat III adalah 11.
+B. JENJANG S1 EKSTENSI (TOTAL NILAI MINIMAL 25)
+JUMLAH NILAI
+No. KEGIATAN DESKRIPSI KEGIATAN NILAI TINGKAT SEMESTER PENANGGUNGJAWAN
+WAJIB MINIMAL
+TINGKAT I
+Self Management 2 I 1 Direktorat Kemahasiswaan
+Relationship Management 2 I 1 Direktorat Kemahasiswaan
+PENGEMBANGAN
+1 8
+KARAKTER*
+Leadership 2 I 1 Direktorat Kemahasiswaan
+Entrepreneur Mindset 2 I 1 Direktorat Kemahasiswaan
+Seminar Pencegahan Kekerasan Seksual dan
+2 I 2 Direktorat Kemahasiswaan
+Perundungan
+2 WAWASAN KEBANGSAAN* 6
+Seminar Anti NAPZA 2 I 2 Direktorat Kemahasiswaan
+Seminar Anti Korupsi 2 I Direktorat Kemahasiswaan
+2
+KEGIATAN PILIHAN
+3 1 Kegiatan Pilihan Selain Kegiatan Wajib 7 I 2 -
+MAHASISWA
+JUMLAH NILAI 15 JUMLAH NILAI 15
+Catatan: -
+TINGKAT II
+Seminar Anti Radikalisme 2 II 3 Direktorat Kemahasiswaan
+WAWASAN KEBANGSAAN* 4
+Seminar Green Campus 2 II 3 Direktorat Kemahasiswaan
+Psikotes 2 II 3 Direktorat Kemahasiswaan
+Career Preparation Training I (Soft Skill) 2 II 3 Direktorat Kemahasiswaan
+2 PENGEMBANGAN KARIR* 6
+Career Preparation Training II (Industrial
+2 II 3 Direktorat Kemahasiswaan
+Seminar)
+JUMLAH NILAI 10 JUMLAH NILAI 10
+Catatan: -
+C. JENJANG D3 (TOTAL NILAI MINIMAL 45)
+JUMLAH NILAI
+NO. KEGIATAN DESKRIPSI KEGIATAN NILAI TINGKAT SEMESTER PENANGGUNGJAWAN
+WAJIB MINIMAL
+TINGKAT I
+I PKKMB* 6 Orientasi Mahasiswa Baru 6 I 1 Direktorat Kemahasiswaan
+Self Management 2 I 1 Direktorat Kemahasiswaan
+Relationship Management 2 I 1 Direktorat Kemahasiswaan
+PENGEMBANGAN
+2 8
+KARAKTER*
+Leadership 2 I 2 Direktorat Kemahasiswaan
+Entrepreneur Mindset 2 I 2 Direktorat Kemahasiswaan
+Seminar Pencegahan Kekerasan Seksual dan
+2 I 1 Direktorat Kemahasiswaan
+WAWASAN
+Perundungan
+3 4
+KEBANGSAAN*
+Seminar Anti NAPZA 2 I 2 Direktorat Kemahasiswaan
+JUMLAH NILAI 18 JUMLAH NILAI 18
+Catatan: -
+TINGKAT II
+Seminar Anti Korupsi 2 II 3 Direktorat Kemahasiswaan
+WAWASAN
+1 6 Seminar Anti Radikalisme 2 II 4 Direktorat Kemahasiswaan
+KEBANGSAAN*
+Seminar Green Campus 2 II 4 Direktorat Kemahasiswaan
+2 ORGANISASI* 4 Mengikuti Organisasi Kemahasiswaan 4 II 3 Direktorat Kemahasiswaan
+3 KOMPETISI* 3 Tingkat Belmawa/Mandiri 3 II 3 Direktorat Kemahasiswaan
+KEGIATAN PILIHAN
+4 3 Kegiatan Pilihan Selain Kegiatan Wajib 3 II 4 -
+MAHASISWA
+JUMLAH NILAI 16 JUMLAH NILAI 16
+Catatan: -
+TINGKAT III
+JUMLAH NILAI
+NO. KEGIATAN DESKRIPSI KEGIATAN NILAI TINGKAT SEMESTER PENANGGUNGJAWAN
+WAJIB MINIMAL
+1 KOMPETISI* 3 Belmawa/Mandiri 3 III 5 Direktorat Kemahasiswaan
+Psikotes 2 III 6 Direktorat Kemahasiswaan
+Career Preparation Training I (Soft Skill) 2 III 6 Direktorat Kemahasiswaan
+2 PENGEMBANGAN KARIR* 6
+Career Preparation Training Ii (Industrial
+2 III 6 Direktorat Kemahasiswaan
+Seminar)
+KEGIATAN PILIHAN
+4 2 Kegiatan Pilihan Selain Kegiatan Wajib 2 III 5 -
+MAHASISWA
+JUMLAH NILAI 11 JUMLAH NILAI 11
+Catatan: -
+Ditetapkan di: Bandung
+Pada tanggal : Disesuaikan dengan system
+UNIVERSITAS TELKOM
+Prof. Dr. Adiwijaya, S.Si., M.Si.
+Rektor
+', NOW()),
+    ('Tata-Cara-Pembayaran-Registrasi-Online-Telkom-University.pdf', 'Manual Pembayaran Registrasi Telkom University', 'LAMPIRAN VI
+Tata Cara Pembayaran Biaya Kuliah
+Calon Mahasiswa Baru Telkom University
+Melalui Finnet by Telkom Indonesia
+Pada Bank Mandiri dan BNI
+Teller Bank Mandiri Teller BNI
+(Pembayaran debet rekening Mandiri dan (Pembayaran Debet rekening BNI dan Pembayaran
+Pembayaran Tunai bagi yang tidak memiliki rekening Tunai yang tidak memiliki rekening BNI)
+Mandiri)
+1. Pembayaran Pendidikan dengan sistem H2H
+1. Pembayaran Bill payment menggunakan Switching Student Payment Center (SPC)
+Formulir Multi Pembayaran 2. Nama Universitas atau Institusi Pendidikan:
+2. Nama Perusahaan Penyedia Jasa : Telkom University 7011.
+Isi dengan Universitas Telkom 10020. 3. Nomor Pembayaran/Tagihan:
+3. Nomor Pelanggan/Nomor Rekening: Isi dengan Nomor Tagihan BNI
+Isi dengan Nomor Tagihan Mandiri 4. PENTING! untuk Teller BNI agar dipastikan
+4. Tujuan transaksi: Isi dengan Nama Calon kode transaksi di teller yaitu H2H Switching
+Mahasiswa (Kode Trx: 96511)
+ATM Bank Mandiri ATM BNI
+(Bagi pemilik rekening Bank Mandiri) (Bagi pemilik rekening Bank BNI)
+1. Masukkan kartu ATM dan Pin. 1. Masukkan kartu ATM dan Pin.
+2. Pilih Menu Bayar/Beli. 2. Pilih Menu Lainnya
+3. Pilih menu Pendidikan. 3. Pilih Menu Pembayaran.
+4. Masukkan kode perusahaan 10020 4. Pilih Menu Berikutnya
+(Universitas Telkom), lalu pilih Benar. 5. Pilih menu Universitas
+5. Masukkan kode bayar dengan Nomor Tagihan 6. Pilih menu Student Payment Center (SPC).
+Mandiri, lalu pilih tombol Benar. 7. Masukkan kode lembaga diikuti nomor
+6. Masukkan Angka 1 untuk memilih tagihan, lalu Tagihan (7011+Nomor Tagihan BNI), lalu pilih
+pilih tombol Ya. Benar.
+7. Akan muncul konfirmasi pembayaran, lalu 8. Akan muncul konfirmasi pembayaran, lalu
+pilih tombol Ya. pilih tombol Ya.
+8. Simpan struk sebagai bukti pembayaran Anda. 9. Simpan struk sebagai bukti pembayaran Anda.
+Internet Banking atau Mandiri Online
+(Bagi pemilik rekening Bank Mandiri)
+NOMOR TAGIHAN MANDIRI / BNI
+1. Login Mandiri Online dengan memasukkan
+username dan password. 1. UP3 : 2[Nomor Peserta]
+2. Pilih menu Pembayaran.
+3. Pilih menu Pendidikan. 2. BPP : 3[Nomor Peserta]
+4. Pilih penyedia jasa Universitas Telkom 10020.
+5. Masukkan Nomor Tagihan Mandiri pada 3. SDP2 + Asrama + Asuransi : 4[Nomor Peserta]
+menu Kode Bayar dan Nama Peserta pada
+Nama Pembayaran, lalu pilih Lanjut.
+6. Setelah muncul tagihan, pilih Konfirmasi.
+7. Masukkan PIN/ challange code token.
+8. Transaksi selesai, simpan struk sebagai bukti
+pembayaran Anda.
+Info lebih lanjut hubungi: Mandiri Call 14000 / 022-7512480, BNI Call 1500046 / 022-87521540,
+Keuangan Telkom University via Whatsapp (Chat Only) 082214161954 / 081221424646
+', NOW()),
+    ('Pengumuman-Teknis-Pelaksanaan-Wisuda-Periode-I-TA-2025-2026.pdf', 'Teknis Pelaksanaan Wisuda', 'PENGUMUMAN
+Nomor: 004/AKD18/SPS/2025
+TENTANG
+TEKNIS PELAKSANAAN WISUDA
+PERIODE I TAHUN AKADEMIK 2025/2026
+TANGGAL 27-29 NOVEMBER 2025
+A. GELADI BERSIH WISUDA
+Pelaksanaan geladi bersih akan dilaksanakan secara :
+· Luring : Telkom University Convention Hall (TUCH) Kampus Utama, Bandung, atau;
+· Daring : https://tel-u.ac.id/GRWisudaDesember2025
+Hari/Tanggal Waktu Fakultas
+Fakultas Rekayasa Industri
+Sesi 1
+Fakultas Informatika
+13.30 – 14.30 WIB
+Fakultas Ilmu Terapan
+Rabu,
+Fakultas Teknik Elektro
+26 November 2025
+Sesi 2 Fakultas Ekonomi dan Bisnis
+15.00 – 16.00 WIB Fakultas Komunikasi dan Ilmu Sosial
+Fakultas Industri Kreatif
+Seluruh wisudawan WAJIB mengikuti geladi bersih. Bagi yang belum mengambil
+medali dan selempang summa cumlaude/cumlaude (khusus bagi penerima predikat
+tersebut), dipersilahkan mengambilnya di LAA masing-masing Fakultas.
+B. UNDANGAN WISUDAWAN
+1. Undangan wisuda terbagi menjadi 2 (dua) undangan digital, yaitu :
+a. Undangan untuk wisudawan
+b. Undangan untuk orang tua/wali wisudawan (maksimal 2 orang)
+2. Undangan digital akan dikirimkan ke email masing-masing wisudawan selambat-
+lambatnya pada tanggal 19 November 2025.
+C. PELAKSANAAN WISUDA
+Pelaksanaan Wisuda Periode I Tahun Akademik 2025/2026 akan diselenggarakan
+secara luring di TUCH Kampus Utama, Bandung, dan dihadiri oleh wisudawan dan
+orang tua/wali wisudawan), dengan ketentuan sebagai berikut :
+Hari & Tanggal Waktu Fakultas Wisudawan
+Sesi 1
+Fakultas Rekayasa Industri
+Kamis, 27 November 08.00 – 11.00 WIB
+2025 Sesi 2
+Fakultas Teknik Elektro
+13.00 – 16.00 WIB
+Sesi 1
+Fakultas Informatika
+Jum’at, 28 November 08.00 – 10.30 WIB
+2025 Sesi 2
+Fakultas Ekonomi dan Bisnis
+13.30 – 16.30 WIB
+Sesi 1
+Fakultas Ilmu Terapan
+08.00 – 11.00 WIB
+Sabtu, 29 November
+Sesi 2 Fakultas Komunikasi dan Ilmu Sosial
+2025
+13.00 – 16.00 WIB Fakultas Industri Kreatif
+D. TATA TERTIB WISUDA
+1. Wisudawan :
+a. Diharapkan mengenakan pakaian sipil lengkap bagi wisudawan pria, dan
+busana nasional bagi wisudawan wanita.
+b. Wisudawan wajib hadir 30 (tiga puluh) menit sebelum waktu pelaksanaan
+wisuda, sesuai dengan pembagian sesi wisudawan pada poin (C), di TUCH,
+dengan toga telah dikenakan dan tali topi toga di sebelah kanan.
+c. Wisudawan memasuki ke gedung TUCH dengan menunjukkan Undangan
+Digital Khusus Wisudawan, dan duduk sesuai posisi duduk yang telah
+ditentukan berdasarkan fakultas dan prodi. Wisudawan akan dipandu oleh
+petugas untuk memasuki TUCH melalui pintu utama.
+d. Pintu TUCH ditutup 15 (lima belas) menit sebelum acara dimulai. Wisudawan
+tidak diperkenankan memasuki ruangan apabila pintu telah ditutup.
+e. Wisudawan wajib untuk tetap berada di dalam ruangan hingga acara selesai.
+f. Wisudawan wajib menjaga kekhidmatan dan ketertiban demi kelancaran
+pelaksanaan acara.
+g. Wisudawan wajib menjaga kebersihan selama acara berlangsung.
+h. Wisudawan dilarang merokok di dalam maupun di sekitar area TUCH.
+2. Orang Tua / Wali Wisudawan
+a. Orang tua/wali wisudawan dipersilahkan memasuki TUCH 30 (tiga puluh)
+menit sebelum waktu pelaksanaan wisuda, sebagaimana tercantum pada
+poin (C) di atas.
+b. Orang tua/wali wisudawan wajib menyimpan dan menunjukkan Undangan
+Digital yang berlaku untuk maksimal 2 (dua) orang. Orang tua/wali tanpa
+Undangan Digital tidak diperkenankan memasuki ruangan.
+c. Orang tua/wali wisudawan wajib menjaga kebersihan selama acara
+berlangsung dan dilarang merokok di dalam maupun di area sekitar kampus.
+E. PARADE WISUDAWAN
+Wisudawan diwajibkan segera meninggalkan area kampus setelah prosesi wisuda
+selesai dilaksanakan, serta tidak diperkenankan melakukan kegiatan arak-arakan
+atau parade dalam bentuk apapun, demi menjaga ketertiban dan kenyamanan bersama.
+Demikian informasi ini kami sampaikan untuk menjadi perhatian seluruh wisudawan.
+Terima kasih atas kerja sama dan partisipasinya dalam menyukseskan pelaksanaan
+Wisuda Periode I Tahun Akademik 2025/2026.
+Bandung, 03 November 2025
+Parman Sukarno, ST, M.Sc, Ph.D
+WAKIL REKTOR BIDANG AKADEMIK
+', NOW()),
+    ('JADWAL KULIAH DAN PRAKTIKUM SEMESTER GANJIL TAHUN AKADEMIK 2025 JSONL.pdf', 'JADWAL KULIAH DAN PRAKTIKUM SEMESTER GANJIL TAHUN AKADEMIK 2025/2026
+PROGRAM STUDI S1 TEKNOLOGI INFORMASI
+', 'JADWAL KULIAH DAN PRAKTIKUM SEMESTER GANJIL TAHUN AKADEMIK 2025/2026
+PROGRAM STUDI S1 TEKNOLOGI INFORMASI
+TELKOM UNIVERSITY JAKARTA
+NO: 1432/AKD08/IF-S1-TIFKJ/2025
+{"hari":"Senin","jam":"07.30-08.30","ruang":"101","mata_kuliah":"Pla=orm
+IoT","kelas":"23-02","kode_dosen":"WMN"}
+{"hari":"Senin","jam":"07.30-08.30","ruang":"202","mata_kuliah":"KTPI","kelas":"24-
+03","kode_dosen":"DEC"}
+{"hari":"Senin","jam":"07.30-
+08.30","ruang":"203","mata_kuliah":"Pengguna","kelas":"23-03","kode_dosen":"RJR"}
+{"hari":"Senin","jam":"07.30-08.30","ruang":"201","mata_kuliah":"WEB","kelas":"23-
+01","kode_dosen":"DES"}
+{"hari":"Senin","jam":"07.30-
+08.30","ruang":"301","mata_kuliah":"Kuantum","kelas":"22-01","kode_dosen":"ZKP"}
+{"hari":"Senin","jam":"08.30-09.30","ruang":"101","mata_kuliah":"WMN","kelas":"25-
+02","kode_dosen":"WMN"}
+{"hari":"Senin","jam":"08.30-
+09.30","ruang":"202","mata_kuliah":"Komputasional","kelas":"24-
+01","kode_dosen":"WSM"}
+{"hari":"Senin","jam":"08.30-09.30","ruang":"203","mata_kuliah":"WSM","kelas":"23-
+03","kode_dosen":"WSM"}
+{"hari":"Senin","jam":"08.30-
+09.30","ruang":"201","mata_kuliah":"Strukdat","kelas":"23-01","kode_dosen":"HDW"}
+{"hari":"Senin","jam":"08.30-09.30","ruang":"301","mata_kuliah":"IAU","kelas":"22-
+02","kode_dosen":"IAU"}
+{"hari":"Senin","jam":"08.30-09.30","ruang":"302","mata_kuliah":"ZKP","kelas":"23-
+02","kode_dosen":"ZKP"}
+{"hari":"Senin","jam":"09.30-
+10.30","ruang":"101","mata_kuliah":"Karakter","kelas":"25-01","kode_dosen":"SYJ"}
+{"hari":"Senin","jam":"09.30-10.30","ruang":"202","mata_kuliah":"LogMat","kelas":"24-
+01","kode_dosen":"HDW"}
+{"hari":"Senin","jam":"09.30-10.30","ruang":"203","mata_kuliah":"PBO","kelas":"23-
+02","kode_dosen":"HII"}
+{"hari":"Senin","jam":"09.30-
+10.30","ruang":"201","mata_kuliah":"Kuantum","kelas":"22-02","kode_dosen":"ZKP"}
+{"hari":"Senin","jam":"09.30-10.30","ruang":"301","mata_kuliah":"WEB","kelas":"23-
+01","kode_dosen":"DES"}
+{"hari":"Senin","jam":"10.30-11.30","ruang":"101","mata_kuliah":"MLTI","kelas":"24-
+03","kode_dosen":"MLTI"}
+{"hari":"Senin","jam":"10.30-11.30","ruang":"202","mata_kuliah":"ZII","kelas":"23-
+02","kode_dosen":"ZII"}
+{"hari":"Senin","jam":"10.30-11.30","ruang":"203","mata_kuliah":"RJR","kelas":"25-
+04","kode_dosen":"RJR"}
+{"hari":"Senin","jam":"10.30-11.30","ruang":"201","mata_kuliah":"RPL","kelas":"23-
+02","kode_dosen":"WSM"}
+{"hari":"Senin","jam":"10.30-11.30","ruang":"301","mata_kuliah":"HDW","kelas":"22-
+02","kode_dosen":"HDW"}
+{"hari":"Senin","jam":"10.30-11.30","ruang":"302","mata_kuliah":"NII","kelas":"23-
+01","kode_dosen":"NII"}
+{"hari":"Senin","jam":"11.30-
+12.30","ruang":"101","mata_kuliah":"Pancasila","kelas":"25-03","kode_dosen":"PBO"}
+{"hari":"Senin","jam":"11.30-
+12.30","ruang":"202","mata_kuliah":"Karakter","kelas":"25-01","kode_dosen":"SYJ"}
+{"hari":"Senin","jam":"11.30-12.30","ruang":"203","mata_kuliah":"LogMat","kelas":"24-
+04","kode_dosen":"HDW"}
+{"hari":"Senin","jam":"11.30-12.30","ruang":"201","mata_kuliah":"Pla=orm
+IoT","kelas":"25-06","kode_dosen":"WMN"}
+{"hari":"Senin","jam":"11.30-12.30","ruang":"301","mata_kuliah":"SDN","kelas":"23-
+03","kode_dosen":"WSM"}
+{"hari":"Senin","jam":"11.30-12.30","ruang":"302","mata_kuliah":"PBO","kelas":"22-
+01","kode_dosen":"HII"}
+{"hari":"Senin","jam":"12.30-13.30","ruang":"101","mata_kuliah":"DES","kelas":"25-
+03","kode_dosen":"DES"}
+{"hari":"Senin","jam":"12.30-13.30","ruang":"202","mata_kuliah":"PDO","kelas":"25-
+05","kode_dosen":"PDO"}
+{"hari":"Senin","jam":"12.30-13.30","ruang":"203","mata_kuliah":"XXX","kelas":"-
+","kode_dosen":"-"}
+{"hari":"Senin","jam":"12.30-13.30","ruang":"301","mata_kuliah":"SDN","kelas":"23-
+03","kode_dosen":"WSM"}
+{"hari":"Senin","jam":"12.30-13.30","ruang":"302","mata_kuliah":"ZKP","kelas":"24-
+01","kode_dosen":"ZKP"}
+{"hari":"Senin","jam":"13.30-14.30","ruang":"101","mata_kuliah":"RJR","kelas":"25-
+04","kode_dosen":"RJR"}
+{"hari":"Senin","jam":"13.30-14.30","ruang":"202","mata_kuliah":"HDW","kelas":"22-
+02","kode_dosen":"HDW"}
+{"hari":"Senin","jam":"13.30-14.30","ruang":"203","mata_kuliah":"WMN","kelas":"25-
+02","kode_dosen":"WMN"}
+{"hari":"Senin","jam":"13.30-14.30","ruang":"201","mata_kuliah":"WSM","kelas":"23-
+03","kode_dosen":"WSM"}
+{"hari":"Senin","jam":"13.30-14.30","ruang":"301","mata_kuliah":"NII","kelas":"23-
+01","kode_dosen":"NII"}
+{"hari":"Senin","jam":"13.30-14.30","ruang":"302","mata_kuliah":"HII","kelas":"—
+","kode_dosen":"HII"}
+{"hari":"Selasa","jam":"07.30-
+08.30","ruang":"101","mata_kuliah":"Kalkulus","kelas":"25-03","kode_dosen":"IAU"}
+{"hari":"Selasa","jam":"07.30-08.30","ruang":"202","mata_kuliah":"PTI","kelas":"25-
+02","kode_dosen":"PTI"}
+{"hari":"Selasa","jam":"07.30-
+08.30","ruang":"203","mata_kuliah":"Komputasional","kelas":"25-
+02","kode_dosen":"WSM"}
+{"hari":"Selasa","jam":"07.30-
+08.30","ruang":"201","mata_kuliah":"Strukdat","kelas":"24-03","kode_dosen":"HDW"}
+{"hari":"Selasa","jam":"08.30-
+09.30","ruang":"101","mata_kuliah":"LogMat","kelas":"24-01","kode_dosen":"HDW"}
+{"hari":"Selasa","jam":"08.30-09.30","ruang":"202","mata_kuliah":"MLTI","kelas":"24-
+02","kode_dosen":"MLTI"}
+{"hari":"Selasa","jam":"08.30-09.30","ruang":"203","mata_kuliah":"KTPI","kelas":"25-
+06","kode_dosen":"DEC"}
+{"hari":"Selasa","jam":"08.30-
+09.30","ruang":"201","mata_kuliah":"Mul^media","kelas":"24-03","kode_dosen":"DES"}
+{"hari":"Selasa","jam":"08.30-09.30","ruang":"301","mata_kuliah":"PBO","kelas":"25-
+06","kode_dosen":"HII"}
+{"hari":"Selasa","jam":"08.30-09.30","ruang":"302","mata_kuliah":"24-03 (Bhs
+Indo?)","kelas":"24-03","kode_dosen":"Bhs Indo"}
+{"hari":"Selasa","jam":"09.30-10.30","ruang":"101","mata_kuliah":"LUK","kelas":"24-
+01","kode_dosen":"LUK"}
+{"hari":"Selasa","jam":"09.30-
+10.30","ruang":"202","mata_kuliah":"LogMat","kelas":"24-01","kode_dosen":"HDW"}
+{"hari":"Selasa","jam":"09.30-10.30","ruang":"203","mata_kuliah":"24-01 (Class
+placeholder)","kelas":"24-01","kode_dosen":"-"}
+{"hari":"Selasa","jam":"09.30-10.30","ruang":"201","mata_kuliah":"25-01 (Class
+placeholder)","kelas":"25-01","kode_dosen":"-"}
+{"hari":"Selasa","jam":"09.30-10.30","ruang":"301","mata_kuliah":"24-02 (Class
+placeholder)","kelas":"24-02","kode_dosen":"-"}
+{"hari":"Selasa","jam":"09.30-10.30","ruang":"302","mata_kuliah":"Bhs
+Indo","kelas":"24-04","kode_dosen":"Bhs Indo"}
+{"hari":"Selasa","jam":"09.30-10.30","ruang":"403","mata_kuliah":"HII","kelas":"—
+","kode_dosen":"HII"}
+{"hari":"Selasa","jam":"10.30-
+11.30","ruang":"101","mata_kuliah":"Peluang","kelas":"25-05","kode_dosen":"ZYR"}
+{"hari":"Selasa","jam":"10.30-11.30","ruang":"202","mata_kuliah":"STZ","kelas":"25-
+05","kode_dosen":"STZ"}
+{"hari":"Selasa","jam":"10.30-11.30","ruang":"203","mata_kuliah":"OGO","kelas":"23-
+03","kode_dosen":"OGO"}
+{"hari":"Selasa","jam":"10.30-11.30","ruang":"201","mata_kuliah":"IAU","kelas":"25-
+04","kode_dosen":"IAU"}
+{"hari":"Selasa","jam":"10.30-11.30","ruang":"301","mata_kuliah":"PIE","kelas":"25-
+05","kode_dosen":"PIE"}
+{"hari":"Selasa","jam":"10.30-11.30","ruang":"302","mata_kuliah":"WSM","kelas":"—
+","kode_dosen":"WSM"}
+{"hari":"Selasa","jam":"11.30-
+12.30","ruang":"101","mata_kuliah":"Peluang","kelas":"24-03","kode_dosen":"ZYR"}
+{"hari":"Selasa","jam":"11.30-
+12.30","ruang":"202","mata_kuliah":"Strukdat","kelas":"24-02","kode_dosen":"HDW"}
+{"hari":"Selasa","jam":"11.30-
+12.30","ruang":"203","mata_kuliah":"Mul^media","kelas":"23-03","kode_dosen":"DES"}
+{"hari":"Selasa","jam":"11.30-12.30","ruang":"201","mata_kuliah":"Siber","kelas":"25-
+04","kode_dosen":"SYJ"}
+{"hari":"Selasa","jam":"11.30-
+12.30","ruang":"301","mata_kuliah":"Karakter","kelas":"25-02","kode_dosen":"SYJ"}
+{"hari":"Selasa","jam":"11.30-12.30","ruang":"302","mata_kuliah":"PBO","kelas":"23-
+01","kode_dosen":"HII"}
+{"hari":"Selasa","jam":"12.30-
+13.30","ruang":"101","mata_kuliah":"Peluang","kelas":"24-01","kode_dosen":"ZYR"}
+{"hari":"Selasa","jam":"12.30-13.30","ruang":"202","mata_kuliah":"LUK","kelas":"24-
+03","kode_dosen":"LUK"}
+{"hari":"Selasa","jam":"12.30-13.30","ruang":"203","mata_kuliah":"STZ","kelas":"24-
+03","kode_dosen":"STZ"}
+{"hari":"Selasa","jam":"12.30-13.30","ruang":"201","mata_kuliah":"RJR","kelas":"25-
+06","kode_dosen":"RJR"}
+{"hari":"Selasa","jam":"12.30-13.30","ruang":"301","mata_kuliah":"Bhs
+Indo","kelas":"25-01","kode_dosen":"Bhs Indo"}
+{"hari":"Selasa","jam":"12.30-13.30","ruang":"302","mata_kuliah":"NII","kelas":"23-
+01","kode_dosen":"NII"}
+{"hari":"Selasa","jam":"13.30-
+14.30","ruang":"101","mata_kuliah":"Kalkulus","kelas":"25-03","kode_dosen":"IAU"}
+{"hari":"Selasa","jam":"13.30-14.30","ruang":"202","mata_kuliah":"PTI","kelas":"25-
+03","kode_dosen":"PTI"}
+{"hari":"Selasa","jam":"13.30-14.30","ruang":"203","mata_kuliah":"PIE","kelas":"25-
+05","kode_dosen":"PIE"}
+{"hari":"Selasa","jam":"13.30-14.30","ruang":"201","mata_kuliah":"ZII","kelas":"25-
+01","kode_dosen":"ZII"}
+{"hari":"Selasa","jam":"13.30-
+14.30","ruang":"301","mata_kuliah":"Orarkom","kelas":"24-04","kode_dosen":"OGO"}
+{"hari":"Selasa","jam":"13.30-14.30","ruang":"302","mata_kuliah":"PBO","kelas":"23-
+01","kode_dosen":"HII"}
+{"hari":"Selasa","jam":"14.30-
+15.30","ruang":"101","mata_kuliah":"Peluang","kelas":"24-02","kode_dosen":"ZYR"}
+{"hari":"Selasa","jam":"14.30-15.30","ruang":"202","mata_kuliah":"HII","kelas":"24-
+04","kode_dosen":"HII"}
+{"hari":"Selasa","jam":"14.30-
+15.30","ruang":"203","mata_kuliah":"Kalkulus","kelas":"25-03","kode_dosen":"IAU"}
+{"hari":"Selasa","jam":"14.30-15.30","ruang":"201","mata_kuliah":"PTI","kelas":"25-
+05?","kode_dosen":"PTI"}
+{"hari":"Selasa","jam":"14.30-15.30","ruang":"301","mata_kuliah":"ZII","kelas":"—
+","kode_dosen":"ZII"}
+{"hari":"Selasa","jam":"14.30-
+15.30","ruang":"302","mata_kuliah":"Orarkom","kelas":"24-04","kode_dosen":"OGO"}
+{"hari":"Selasa","jam":"15.30-16.30","ruang":"101","mata_kuliah":"OGO","kelas":"25-
+01","kode_dosen":"OGO"}
+{"hari":"Selasa","jam":"15.30-16.30","ruang":"202","mata_kuliah":"PDO","kelas":"25-
+04","kode_dosen":"PDO"}
+{"hari":"Selasa","jam":"15.30-16.30","ruang":"203","mata_kuliah":"WMN","kelas":"25-
+04","kode_dosen":"WMN"}
+{"hari":"Selasa","jam":"15.30-16.30","ruang":"201","mata_kuliah":"NII","kelas":"23-
+01","kode_dosen":"NII"}
+{"hari":"Selasa","jam":"16.30-17.30","ruang":"101","mata_kuliah":"24-03
+OGO","kelas":"24-03","kode_dosen":"OGO"}
+{"hari":"Selasa","jam":"16.30-17.30","ruang":"202","mata_kuliah":"25-01
+OGO","kelas":"25-01","kode_dosen":"OGO"}
+{"hari":"Selasa","jam":"16.30-17.30","ruang":"203","mata_kuliah":"STZ","kelas":"25-
+05","kode_dosen":"STZ"}
+{"hari":"Rabu","jam":"06.30-07.30","ruang":"101","mata_kuliah":"RPL","kelas":"24-
+01","kode_dosen":"WSM"}
+{"hari":"Rabu","jam":"07.30-08.30","ruang":"202","mata_kuliah":"WEB","kelas":"23-
+02","kode_dosen":"DES"}
+{"hari":"Rabu","jam":"07.30-08.30","ruang":"203","mata_kuliah":"SDN","kelas":"22-
+02","kode_dosen":"WSM"}
+{"hari":"Rabu","jam":"07.30-08.30","ruang":"201","mata_kuliah":"Kalkulus","kelas":"25-
+02","kode_dosen":"IAU"}
+{"hari":"Rabu","jam":"08.30-
+09.30","ruang":"101","mata_kuliah":"Komputasional","kelas":"25-
+04","kode_dosen":"WSM"}
+{"hari":"Rabu","jam":"08.30-09.30","ruang":"202","mata_kuliah":"ZKP","kelas":"25-
+03","kode_dosen":"ZKP"}
+{"hari":"Rabu","jam":"08.30-09.30","ruang":"203","mata_kuliah":"PTI","kelas":"25-
+03","kode_dosen":"PTI"}
+{"hari":"Rabu","jam":"08.30-09.30","ruang":"201","mata_kuliah":"DEC","kelas":"24-
+02","kode_dosen":"DEC"}
+{"hari":"Rabu","jam":"08.30-09.30","ruang":"301","mata_kuliah":"RPL","kelas":"—
+","kode_dosen":"WSM"}
+{"hari":"Rabu","jam":"08.30-09.30","ruang":"302","mata_kuliah":"WSM","kelas":"—
+","kode_dosen":"WSM"}
+{"hari":"Rabu","jam":"09.30-
+10.30","ruang":"101","mata_kuliah":"Karakter","kelas":"25-01","kode_dosen":"SYJ"}
+{"hari":"Rabu","jam":"09.30-10.30","ruang":"202","mata_kuliah":"PBO","kelas":"24-
+02","kode_dosen":"HII"}
+{"hari":"Rabu","jam":"09.30-
+10.30","ruang":"203","mata_kuliah":"Mul^media","kelas":"24-04","kode_dosen":"DES"}
+{"hari":"Rabu","jam":"09.30-10.30","ruang":"201","mata_kuliah":"Kalkulus","kelas":"23-
+01","kode_dosen":"IAU"}
+{"hari":"Rabu","jam":"09.30-10.30","ruang":"302","mata_kuliah":"WEB","kelas":"23-
+02","kode_dosen":"DES"}
+{"hari":"Rabu","jam":"10.30-11.30","ruang":"101","mata_kuliah":"ZII","kelas":"25-
+02","kode_dosen":"ZII"}
+{"hari":"Rabu","jam":"10.30-11.30","ruang":"202","mata_kuliah":"RJR","kelas":"23-
+03","kode_dosen":"RJR"}
+{"hari":"Rabu","jam":"10.30-11.30","ruang":"203","mata_kuliah":"XXX","kelas":"—
+","kode_dosen":"—"}
+{"hari":"Rabu","jam":"10.30-11.30","ruang":"201","mata_kuliah":"DES","kelas":"25-
+01","kode_dosen":"DES"}
+{"hari":"Rabu","jam":"10.30-11.30","ruang":"301","mata_kuliah":"23-02 (class
+placeholder)","kelas":"23-02","kode_dosen":"—"}
+{"hari":"Rabu","jam":"11.30-12.30","ruang":"101","mata_kuliah":"NII","kelas":"24-
+02","kode_dosen":"NII"}
+{"hari":"Rabu","jam":"11.30-12.30","ruang":"202","mata_kuliah":"LogMat","kelas":"25-
+04","kode_dosen":"HDW"}
+{"hari":"Rabu","jam":"11.30-12.30","ruang":"203","mata_kuliah":"STZ","kelas":"25-
+04","kode_dosen":"STZ"}
+{"hari":"Rabu","jam":"11.30-12.30","ruang":"201","mata_kuliah":"LUK","kelas":"24-
+03","kode_dosen":"LUK"}
+{"hari":"Rabu","jam":"11.30-12.30","ruang":"301","mata_kuliah":"Siber","kelas":"23-
+01","kode_dosen":"SYJ"}
+{"hari":"Rabu","jam":"11.30-12.30","ruang":"302","mata_kuliah":"ZKP","kelas":"25-
+03","kode_dosen":"ZKP"}
+{"hari":"Rabu","jam":"12.30-13.30","ruang":"101","mata_kuliah":"PTI","kelas":"25-
+03","kode_dosen":"PTI"}
+{"hari":"Rabu","jam":"12.30-
+13.30","ruang":"202","mata_kuliah":"Orarkom","kelas":"24-01","kode_dosen":"OGO"}
+{"hari":"Rabu","jam":"12.30-
+13.30","ruang":"203","mata_kuliah":"Pancasila","kelas":"25-03","kode_dosen":"VVI"}
+{"hari":"Rabu","jam":"12.30-
+13.30","ruang":"201","mata_kuliah":"Karakter","kelas":"25-03","kode_dosen":"SYJ"}
+{"hari":"Rabu","jam":"12.30-13.30","ruang":"301","mata_kuliah":"Peluang","kelas":"23-
+01","kode_dosen":"ZYR"}
+{"hari":"Rabu","jam":"13.30-14.30","ruang":"101","mata_kuliah":"DEC","kelas":"25-
+01","kode_dosen":"DEC"}
+{"hari":"Rabu","jam":"13.30-14.30","ruang":"202","mata_kuliah":"PDO","kelas":"25-
+04","kode_dosen":"PDO"}
+{"hari":"Rabu","jam":"13.30-14.30","ruang":"203","mata_kuliah":"HDW","kelas":"—
+","kode_dosen":"HDW"}
+{"hari":"Rabu","jam":"13.30-14.30","ruang":"201","mata_kuliah":"WMN","kelas":"25-
+06","kode_dosen":"WMN"}
+{"hari":"Rabu","jam":"13.30-14.30","ruang":"301","mata_kuliah":"24-04
+LUK","kelas":"24-04","kode_dosen":"LUK"}
+{"hari":"Rabu","jam":"13.30-14.30","ruang":"302","mata_kuliah":"SYJ","kelas":"—
+","kode_dosen":"SYJ"}
+{"hari":"Rabu","jam":"13.30-14.30","ruang":"404","mata_kuliah":"PBO","kelas":"23-
+01","kode_dosen":"HII"}
+{"hari":"Rabu","jam":"14.30-15.30","ruang":"101","mata_kuliah":"MLTI","kelas":"24-
+03","kode_dosen":"MLTI"}
+{"hari":"Rabu","jam":"14.30-15.30","ruang":"202","mata_kuliah":"ZKP","kelas":"25-
+03","kode_dosen":"ZKP"}
+{"hari":"Rabu","jam":"14.30-15.30","ruang":"203","mata_kuliah":"STZ","kelas":"25-
+04","kode_dosen":"STZ"}
+{"hari":"Rabu","jam":"14.30-15.30","ruang":"201","mata_kuliah":"23-03 (class
+placeholder)","kelas":"23-03","kode_dosen":"—"}
+{"hari":"Rabu","jam":"15.30-16.30","ruang":"101","mata_kuliah":"24-03 (class
+placeholder)","kelas":"24-03","kode_dosen":"—"}
+{"hari":"Rabu","jam":"15.30-16.30","ruang":"202","mata_kuliah":"NII","kelas":"—
+","kode_dosen":"NII"}
+{"hari":"Rabu","jam":"16.30-17.30","ruang":"101","mata_kuliah":"DES","kelas":"—
+","kode_dosen":"DES"}
+{"hari":"Kamis","jam":"06.30-07.30","ruang":"101","mata_kuliah":"KTPI","kelas":"—
+","kode_dosen":"DEC"}
+{"hari":"Kamis","jam":"06.30-
+07.30","ruang":"202","mata_kuliah":"Pengguna","kelas":"24-01","kode_dosen":"RJR"}
+{"hari":"Kamis","jam":"06.30-07.30","ruang":"203","mata_kuliah":"WEB","kelas":"23-
+03","kode_dosen":"DES"}
+{"hari":"Kamis","jam":"06.30-07.30","ruang":"201","mata_kuliah":"PTI","kelas":"24-
+01","kode_dosen":"PTI"}
+{"hari":"Kamis","jam":"07.30-08.30","ruang":"101","mata_kuliah":"23-03 (class
+placeholder)","kelas":"23-03","kode_dosen":"—"}
+{"hari":"Kamis","jam":"07.30-08.30","ruang":"202","mata_kuliah":"25-06
+DEC","kelas":"25-06","kode_dosen":"DEC"}
+{"hari":"Kamis","jam":"07.30-08.30","ruang":"203","mata_kuliah":"WSM","kelas":"—
+","kode_dosen":"WSM"}
+{"hari":"Kamis","jam":"07.30-08.30","ruang":"201","mata_kuliah":"IAU","kelas":"25-
+02","kode_dosen":"IAU"}
+{"hari":"Kamis","jam":"07.30-
+08.30","ruang":"301","mata_kuliah":"Komputasional","kelas":"—
+","kode_dosen":"WSM"}
+{"hari":"Kamis","jam":"08.30-09.30","ruang":"101","mata_kuliah":"ZKP","kelas":"25-
+05","kode_dosen":"ZKP"}
+{"hari":"Kamis","jam":"08.30-
+09.30","ruang":"202","mata_kuliah":"LogMat","kelas":"25-03","kode_dosen":"HDW"}
+{"hari":"Kamis","jam":"08.30-
+09.30","ruang":"203","mata_kuliah":"Pengguna","kelas":"23-02","kode_dosen":"RJR"}
+{"hari":"Kamis","jam":"08.30-
+09.30","ruang":"201","mata_kuliah":"Kalkulus","kelas":"23-02","kode_dosen":"IAU"}
+{"hari":"Kamis","jam":"08.30-09.30","ruang":"301","mata_kuliah":"Siber","kelas":"25-
+03","kode_dosen":"SYJ"}
+{"hari":"Kamis","jam":"09.30-10.30","ruang":"101","mata_kuliah":"Inggris
+2","kelas":"25-05","kode_dosen":"VVI"}
+{"hari":"Kamis","jam":"09.30-10.30","ruang":"202","mata_kuliah":"DEC","kelas":"25-
+02","kode_dosen":"DEC"}
+{"hari":"Kamis","jam":"09.30-
+10.30","ruang":"203","mata_kuliah":"Pengguna","kelas":"23-01","kode_dosen":"RJR"}
+{"hari":"Kamis","jam":"09.30-10.30","ruang":"201","mata_kuliah":"IAU","kelas":"25-
+04","kode_dosen":"IAU"}
+{"hari":"Kamis","jam":"09.30-10.30","ruang":"301","mata_kuliah":"OGO","kelas":"—
+","kode_dosen":"OGO"}
+{"hari":"Kamis","jam":"09.30-10.30","ruang":"302","mata_kuliah":"SYJ","kelas":"—
+","kode_dosen":"SYJ"}
+{"hari":"Kamis","jam":"09.30-10.30","ruang":"403","mata_kuliah":"ZII","kelas":"—
+","kode_dosen":"ZII"}
+{"hari":"Kamis","jam":"09.30-10.30","ruang":"404","mata_kuliah":"HII","kelas":"—
+","kode_dosen":"HII"}
+{"hari":"Kamis","jam":"10.30-11.30","ruang":"101","mata_kuliah":"23-03
+VVI","kelas":"23-03","kode_dosen":"VVI"}
+{"hari":"Kamis","jam":"10.30-
+11.30","ruang":"202","mata_kuliah":"Komputasional","kelas":"—
+","kode_dosen":"WSM"}
+{"hari":"Kamis","jam":"10.30-11.30","ruang":"203","mata_kuliah":"HDW","kelas":"—
+","kode_dosen":"HDW"}
+{"hari":"Kamis","jam":"10.30-11.30","ruang":"201","mata_kuliah":"IAU","kelas":"—
+","kode_dosen":"IAU"}
+{"hari":"Kamis","jam":"10.30-11.30","ruang":"301","mata_kuliah":"OGO","kelas":"—
+","kode_dosen":"OGO"}
+{"hari":"Kamis","jam":"10.30-11.30","ruang":"302","mata_kuliah":"SYJ","kelas":"—
+","kode_dosen":"SYJ"}
+{"hari":"Kamis","jam":"10.30-11.30","ruang":"403","mata_kuliah":"ZII","kelas":"—
+","kode_dosen":"ZII"}
+{"hari":"Kamis","jam":"10.30-11.30","ruang":"404","mata_kuliah":"HII","kelas":"—
+","kode_dosen":"HII"}
+{"hari":"Kamis","jam":"11.30-12.30","ruang":"101","mata_kuliah":"MLTI","kelas":"25-
+05","kode_dosen":"MLTI"}
+{"hari":"Kamis","jam":"11.30-12.30","ruang":"202","mata_kuliah":"RPL","kelas":"24-
+04","kode_dosen":"WSM"}
+{"hari":"Kamis","jam":"11.30-
+12.30","ruang":"203","mata_kuliah":"Kalkulus","kelas":"24-03","kode_dosen":"IAU"}
+{"hari":"Kamis","jam":"11.30-
+12.30","ruang":"201","mata_kuliah":"Blockchain","kelas":"25-06","kode_dosen":"ZKP"}
+{"hari":"Kamis","jam":"11.30-12.30","ruang":"301","mata_kuliah":"Pla=orm
+IoT","kelas":"23-01","kode_dosen":"WMN"}
+{"hari":"Kamis","jam":"11.30-12.30","ruang":"302","mata_kuliah":"WEB","kelas":"23-
+03","kode_dosen":"DES"}
+{"hari":"Kamis","jam":"11.30-
+12.30","ruang":"403","mata_kuliah":"Strukdat","kelas":"24-02","kode_dosen":"HDW"}
+{"hari":"Kamis","jam":"12.30-13.30","ruang":"101","mata_kuliah":"NII","kelas":"24-
+04","kode_dosen":"NII"}
+{"hari":"Kamis","jam":"12.30-13.30","ruang":"202","mata_kuliah":"DES","kelas":"25-
+03","kode_dosen":"DES"}
+{"hari":"Kamis","jam":"12.30-13.30","ruang":"203","mata_kuliah":"XXX","kelas":"—
+","kode_dosen":"—"}
+{"hari":"Kamis","jam":"12.30-13.30","ruang":"201","mata_kuliah":"OGO","kelas":"—
+","kode_dosen":"OGO"}
+{"hari":"Kamis","jam":"12.30-13.30","ruang":"301","mata_kuliah":"SYJ","kelas":"—
+","kode_dosen":"SYJ"}
+{"hari":"Kamis","jam":"12.30-13.30","ruang":"302","mata_kuliah":"WMN","kelas":"25-
+06","kode_dosen":"WMN"}
+{"hari":"Kamis","jam":"12.30-13.30","ruang":"403","mata_kuliah":"ZKP","kelas":"—
+","kode_dosen":"ZKP"}
+{"hari":"Kamis","jam":"12.30-13.30","ruang":"404","mata_kuliah":"HII","kelas":"—
+","kode_dosen":"HII"}
+{"hari":"Jumat","jam":"07.30-
+08.30","ruang":"101","mata_kuliah":"Pancasila","kelas":"25-02","kode_dosen":"VVI"}
+{"hari":"Jumat","jam":"07.30-
+08.30","ruang":"202","mata_kuliah":"Strukdat","kelas":"—","kode_dosen":"HDW"}
+{"hari":"Jumat","jam":"08.30-09.30","ruang":"101","mata_kuliah":"PDO","kelas":"25-
+02","kode_dosen":"PDO"}
+{"hari":"Jumat","jam":"08.30-09.30","ruang":"202","mata_kuliah":"RPL","kelas":"23-
+03","kode_dosen":"WSM"}
+{"hari":"Jumat","jam":"08.30-09.30","ruang":"203","mata_kuliah":"MLTI","kelas":"24-
+01","kode_dosen":"MLTI"}
+{"hari":"Jumat","jam":"08.30-
+09.30","ruang":"201","mata_kuliah":"Karakter","kelas":"25-03","kode_dosen":"SYJ"}
+{"hari":"Jumat","jam":"08.30-09.30","ruang":"301","mata_kuliah":"KTPI","kelas":"24-
+04","kode_dosen":"DEC"}
+{"hari":"Jumat","jam":"09.30-
+10.30","ruang":"101","mata_kuliah":"Pancasila","kelas":"25-03","kode_dosen":"VVI"}
+{"hari":"Jumat","jam":"09.30-10.30","ruang":"202","mata_kuliah":"Bhs
+Indo","kelas":"24-02","kode_dosen":"Bhs Indo"}
+{"hari":"Jumat","jam":"09.30-10.30","ruang":"203","mata_kuliah":"Inggris
+2","kelas":"24-01","kode_dosen":"VVI"}
+{"hari":"Jumat","jam":"09.30-10.30","ruang":"201","mata_kuliah":"24-01 (class
+placeholder)","kelas":"24-01","kode_dosen":"—"}
+{"hari":"Jumat","jam":"09.30-10.30","ruang":"301","mata_kuliah":"25-03 (class
+placeholder)","kelas":"25-03","kode_dosen":"—"}
+{"hari":"Jumat","jam":"09.30-10.30","ruang":"302","mata_kuliah":"24-02 (class
+placeholder)","kelas":"24-02","kode_dosen":"—"}
+{"hari":"Jumat","jam":"09.30-10.30","ruang":"403","mata_kuliah":"HII","kelas":"—
+","kode_dosen":"HII"}
+{"hari":"Jumat","jam":"10.30-11.30","ruang":"101","mata_kuliah":"PDO","kelas":"25-
+06","kode_dosen":"PDO"}
+{"hari":"Jumat","jam":"10.30-11.30","ruang":"202","mata_kuliah":"25-01
+PIE","kelas":"25-01","kode_dosen":"PIE"}
+{"hari":"Jumat","jam":"10.30-11.30","ruang":"203","mata_kuliah":"DES","kelas":"23-
+02","kode_dosen":"DES"}
+{"hari":"Jumat","jam":"10.30-11.30","ruang":"201","mata_kuliah":"VVI","kelas":"—
+","kode_dosen":"VVI"}
+{"hari":"Jumat","jam":"10.30-11.30","ruang":"301","mata_kuliah":"IAU","kelas":"—
+","kode_dosen":"IAU"}
+{"hari":"Jumat","jam":"10.30-11.30","ruang":"302","mata_kuliah":"RJR","kelas":"—
+","kode_dosen":"RJR"}
+{"hari":"Jumat","jam":"10.30-11.30","ruang":"403","mata_kuliah":"WSM","kelas":"—
+","kode_dosen":"WSM"}
+{"hari":"Jumat","jam":"13.30-
+14.30","ruang":"101","mata_kuliah":"Pancasila","kelas":"25-05","kode_dosen":"VVI"}
+{"hari":"Jumat","jam":"13.30-14.30","ruang":"202","mata_kuliah":"PDO","kelas":"25-
+06","kode_dosen":"PDO"}
+{"hari":"Jumat","jam":"13.30-14.30","ruang":"203","mata_kuliah":"PIE","kelas":"23-
+01","kode_dosen":"PIE"}
+{"hari":"Jumat","jam":"13.30-
+14.30","ruang":"201","mata_kuliah":"Orarkom","kelas":"24-01","kode_dosen":"OGO"}
+{"hari":"Jumat","jam":"13.30-
+14.30","ruang":"301","mata_kuliah":"Orarkom","kelas":"23-02","kode_dosen":"OGO"}
+{"hari":"Jumat","jam":"13.30-14.30","ruang":"302","mata_kuliah":"RPL","kelas":"24-
+04","kode_dosen":"WSM"}
+{"hari":"Jumat","jam":"13.30-
+14.30","ruang":"403","mata_kuliah":"Strukdat","kelas":"24-04","kode_dosen":"HDW"}
+{"hari":"Jumat","jam":"14.30-15.30","ruang":"101","mata_kuliah":"Bhs
+Indo","kelas":"25-04","kode_dosen":"Bhs Indo"}
+{"hari":"Jumat","jam":"14.30-15.30","ruang":"202","mata_kuliah":"WMN","kelas":"—
+","kode_dosen":"WMN"}
+{"hari":"Jumat","jam":"14.30-15.30","ruang":"203","mata_kuliah":"ZKP","kelas":"—
+","kode_dosen":"ZKP"}
+{"hari":"Jumat","jam":"14.30-15.30","ruang":"201","mata_kuliah":"DES","kelas":"—
+","kode_dosen":"DES"}
+{"hari":"Jumat","jam":"14.30-15.30","ruang":"301","mata_kuliah":"HII","kelas":"—
+","kode_dosen":"HII"}
+{"hari":"Jumat","jam":"15.30-16.30","ruang":"101","mata_kuliah":"PIE","kelas":"25-
+04","kode_dosen":"PIE"}
+', NOW());
+

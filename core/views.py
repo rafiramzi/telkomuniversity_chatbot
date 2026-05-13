@@ -19,11 +19,18 @@ from .services.vector_store import search
 from .services.reranker import rerank
 from .services.generator import generate_answer_stream
 from django.http import StreamingHttpResponse
+import bcrypt
+import jwt
+from datetime import datetime, timedelta, timezone
+from django.conf import settings
 
 
 from django.conf import settings
 
 from chromadb.utils import embedding_functions
+from supabase import create_client
+
+supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_KEY"))
 
 class CohereEmbeddingFunction(EmbeddingFunction):
     def __init__(self, api_key, model="embed-multilingual-v3.0"):
@@ -251,3 +258,172 @@ class ChatBot(View):
                 {"error": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+        
+@method_decorator(csrf_exempt, name='dispatch')
+class RegisterView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body.decode("utf-8"))
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+        username = data.get("username", "").strip()
+        email = data.get("email", "").strip().lower()
+        password = data.get("password", "")
+
+        # Validation
+        if not username or not email or not password:
+            return JsonResponse(
+                {"error": "username, email, and password are required"},
+                status=400
+            )
+
+        if len(password) < 8:
+            return JsonResponse(
+                {"error": "Password must be at least 8 characters"},
+                status=400
+            )
+
+        try:
+            # Check if user already exists
+            existing = supabase.table("users").select("id").or_(
+                f"username.eq.{username},email.eq.{email}"
+            ).execute()
+
+            if existing.data:
+                return JsonResponse(
+                    {"error": "Username or email already registered"},
+                    status=409
+                )
+
+            # Hash password with bcrypt
+            password_bytes = password.encode("utf-8")
+            hashed = bcrypt.hashpw(password_bytes, bcrypt.gensalt(rounds=12))
+            hashed_str = hashed.decode("utf-8")
+
+            # Insert into Supabase
+            result = supabase.table("users").insert({
+                "username": username,
+                "email": email,
+                "password": hashed_str,
+            }).execute()
+
+            if not result.data:
+                return JsonResponse(
+                    {"error": "Failed to create user"},
+                    status=500
+                )
+
+            user = result.data[0]
+            return JsonResponse({
+                "message": "User registered successfully",
+                "user": {
+                    "id": user["id"],
+                    "username": user["username"],
+                    "email": user["email"],
+                }
+            }, status=201)
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class LoginView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body.decode("utf-8"))
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+        identifier = data.get("username") or data.get("email", "")
+        identifier = identifier.strip().lower() if identifier else ""
+        password = data.get("password", "")
+
+        if not identifier or not password:
+            return JsonResponse(
+                {"error": "username/email and password are required"},
+                status=400
+            )
+
+        try:
+            # Look up user by username OR email
+            result = supabase.table("users").select("*").or_(
+                f"username.eq.{identifier},email.eq.{identifier}"
+            ).limit(1).execute()
+
+            if not result.data:
+                # Same message for both cases — don't leak which field was wrong
+                return JsonResponse(
+                    {"error": "Invalid credentials"},
+                    status=401
+                )
+
+            user = result.data[0]
+
+            # Verify password
+            password_bytes = password.encode("utf-8")
+            stored_hash = user["password"].encode("utf-8")
+
+            if not bcrypt.checkpw(password_bytes, stored_hash):
+                return JsonResponse(
+                    {"error": "Invalid credentials"},
+                    status=401
+                )
+
+            # Generate JWT token
+            payload = {
+                "user_id": user["id"],
+                "username": user["username"],
+                "exp": datetime.now(timezone.utc) + timedelta(days=7),
+                "iat": datetime.now(timezone.utc),
+            }
+            token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+
+            return JsonResponse({
+                "message": "Login successful",
+                "token": token,
+                "user": {
+                    "id": user["id"],
+                    "username": user["username"],
+                    "email": user["email"],
+                }
+            })
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+        
+@method_decorator(csrf_exempt, name='dispatch')
+class GetUser(View):
+    def get(self, request):
+        # Extract token from Authorization header
+        auth_header = request.headers.get("Authorization", "")
+        if not auth_header.startswith("Bearer "):
+            return JsonResponse({"error": "Missing or invalid Authorization header"}, status=401)
+
+        token = auth_header[7:]  # strip "Bearer "
+
+        try:
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+            user_id = payload.get("user_id")
+        except jwt.ExpiredSignatureError:
+            return JsonResponse({"error": "Token has expired"}, status=401)
+        except jwt.InvalidTokenError:
+            return JsonResponse({"error": "Invalid token"}, status=401)
+
+        try:
+            result = supabase.table("users").select("id, username, email, user_role").eq("id", user_id).limit(1).execute()
+            if not result.data:
+                return JsonResponse({"error": "User not found"}, status=404)
+
+            user = result.data[0]
+            return JsonResponse({
+                "user": {
+                    "id": user["id"],
+                    "username": user["username"],
+                    "email": user["email"],
+                    "role": user["user_role"],
+                }
+            })
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
