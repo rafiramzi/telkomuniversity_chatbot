@@ -1,8 +1,10 @@
 import chromadb
 import cohere
 import os
+import cohere
 
 co = cohere.Client(os.getenv("COHERE_API_KEY"))
+
 
 # client = chromadb.Client()
 # collection = client.get_or_create_collection(name="telkom_university")
@@ -58,3 +60,5 @@ def search(query, n_results=8, category=None):
     )
 
     return results
+
+# views.py — tambahkan fungsi ini dan panggil saat startup

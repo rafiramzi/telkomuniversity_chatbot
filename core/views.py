@@ -6,8 +6,8 @@ from django.utils.decorators import method_decorator
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 import json, ollama
-import csv
 import time
+import uuid
 import chromadb
 import pdfplumber
 import os
@@ -18,14 +18,11 @@ from chromadb.api.types import EmbeddingFunction
 from .services.vector_store import search
 from .services.reranker import rerank
 from .services.generator import generate_answer_stream
-from django.http import StreamingHttpResponse
 import bcrypt
 import jwt
 from datetime import datetime, timedelta, timezone
 from django.conf import settings
 
-
-from django.conf import settings
 
 from chromadb.utils import embedding_functions
 from supabase import create_client
@@ -44,22 +41,55 @@ class CohereEmbeddingFunction(EmbeddingFunction):
             input_type="search_document"
         )
         return response.embeddings
-    
-cohere_ef = CohereEmbeddingFunction(
-    api_key=os.getenv("COHERE_API_KEY")
-)
+
 
 from .services.vector_store import get_collection
 
 cohere_ef = CohereEmbeddingFunction(api_key=os.getenv("COHERE_API_KEY"))
 collection = get_collection(cohere_ef)
 
-class UploadPDFView(View):
-    parser_classes = [MultiPartParser, FormParser]
+print(f"Using API Key: {os.getenv('COHERE_API_KEY')[:4]}...")
 
+
+
+CHUNK_SIZE = 800
+
+def warmup_chromadb_from_supabase():
+    """Re-populate ChromaDB from Supabase on server start."""
+    try:
+        # Cek apakah ChromaDB sudah ada datanya
+        existing_count = collection.count()
+        if existing_count > 0:
+            print(f"[WARMUP] ChromaDB sudah ada {existing_count} docs, skip.")
+            return
+
+        print("[WARMUP] ChromaDB kosong, loading dari Supabase...")
+        result = supabase.table("datasets").select("*").execute()
+        rows = result.data or []
+
+        if not rows:
+            print("[WARMUP] Supabase juga kosong.")
+            return
+
+        ids = [str(r["id"]) for r in rows]
+        texts = [r["text"] for r in rows]
+        metadatas = [{"category": r["category"], "source": r["file"]} for r in rows]
+
+        collection.add(ids=ids, documents=texts, metadatas=metadatas)
+        print(f"[WARMUP] Berhasil load {len(rows)} docs dari Supabase ke ChromaDB.")
+
+    except Exception as e:
+        print(f"[WARMUP ERROR] {e}")
+
+# Panggil di bawah inisialisasi collection
+collection = get_collection(cohere_ef)
+warmup_chromadb_from_supabase()  # ← tambahkan ini
+
+@method_decorator(csrf_exempt, name='dispatch')
+class UploadPDFView(View):
     def post(self, request):
         pdf_file = request.FILES.get("file")
-        category = request.data.get("category")
+        category = request.POST.get("category")
 
         if not pdf_file or not category:
             return JsonResponse(
@@ -67,7 +97,7 @@ class UploadPDFView(View):
                 status=400
             )
 
-        # Save file
+        # ---- Save file to disk ----
         upload_dir = os.path.join(settings.MEDIA_ROOT, "uploads")
         os.makedirs(upload_dir, exist_ok=True)
         file_path = os.path.join(upload_dir, pdf_file.name)
@@ -76,94 +106,97 @@ class UploadPDFView(View):
             for chunk in pdf_file.chunks():
                 f.write(chunk)
 
-        # Extract text
+        # ---- Extract text ----
         text = ""
         with pdfplumber.open(file_path) as pdf:
             for page in pdf.pages:
-                if page.extract_text():
-                    text += page.extract_text() + "\n"
+                page_text = page.extract_text()
+                if page_text:
+                    text += page_text + "\n"
 
         if not text.strip():
             return JsonResponse({"error": "PDF kosong"}, status=400)
 
-        # 🔑 CHUNKING
-        CHUNK_SIZE = 800
+        # ---- Chunk text ----
         chunks = [
             text[i:i + CHUNK_SIZE]
             for i in range(0, len(text), CHUNK_SIZE)
         ]
 
-        ids = [f"{pdf_file.name}_{i}" for i in range(len(chunks))]
-        metadatas = [
-            {
-                "category": category,
-                "source": pdf_file.name
-            }
-            for _ in chunks
-        ]
+        # Shared UUIDs - same id in both Supabase and ChromaDB
+        chunk_ids = [str(uuid.uuid4()) for _ in chunks]
 
-        # ✅ ADD ONCE
-        collection.add(
-            ids=ids,
-            documents=chunks,
-            metadatas=metadatas
-        )
+        # ---- 1) Insert into Supabase (source of truth) ----
+        
+        try:
+            rows = [
+                {
+                    "id": chunk_ids[i],
+                    "file": pdf_file.name,
+                    "category": category,
+                    "text": chunk_text,
+                }
+                for i, chunk_text in enumerate(chunks)
+            ]
+
+            result = supabase.table("datasets").insert(rows).execute()
+
+            if not result.data:
+                return JsonResponse(
+                    {"error": "Failed to insert into Supabase"},
+                    status=500
+                )
+        except Exception as e:
+            return JsonResponse(
+                {"error": f"Supabase insert failed: {str(e)}"},
+                status=500
+            )
+
+        # ---- 2) Add to ChromaDB (vector index) ----
+        try:
+            collection.add(
+                ids=chunk_ids,
+                documents=chunks,
+                metadatas=[
+                    {
+                        "category": category,
+                        "source": pdf_file.name,
+                        "dataset_id": chunk_ids[i],  # links back to Supabase row
+                    }
+                    for i in range(len(chunks))
+                ],
+            )
+        except Exception as e:
+            # Supabase already has the data - log and return partial success
+            print(f"WARNING: ChromaDB indexing failed: {e}")
+            return JsonResponse({
+                "message": "Saved to database, but vector indexing failed",
+                "chunks": len(chunks),
+                "category": category,
+                "warning": str(e),
+            }, status=207)
 
         return JsonResponse({
             "message": "PDF berhasil di-embed",
             "chunks": len(chunks),
-            "category": category
+            "category": category,
+            "file": pdf_file.name,
         })
 
-    
 
-
-
-
-def load_csv_data(file_path="dataset.csv"):
-    docs = []
-    with open(file_path, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            docs.append({
-                "id": row["file"],
-                "category": row["category"],
-                "text": row["text"],
-                "created_at":row['created_at']
-            })
-    return docs
-
-
-data = load_csv_data("dataset.csv")
-
-for d in data:
-    try:
-        collection.add(
-            ids=[d["id"]],
-            documents=[d["text"]],
-            metadatas=[{"category": d["category"]}]
-        )
-    except Exception:
-        # Already exists
-        pass
-
-
-
-categories = list({d["category"] for d in data})
-print(f"✅ Indexed {len(data)} documents into ChromaDB")
-print(f"📂 Found categories: {categories}")
-print(f"Using API Key: {os.getenv('COHERE_API_KEY')[:4]}...")
-
-
+# =============================================================================
+# CHATBOT
+# =============================================================================
 CONVERSATION_MEMORY = {}
 MAX_MEMORY = 2
 USER_CATEGORY = {}   # kategori tiap session
 
+
 @method_decorator(csrf_exempt, name='dispatch')
 class ChatBot(View):
     renderer_classes = []
-    def post(self, request):
 
+    def post(self, request):
         try:
             body = json.loads(request.body.decode("utf-8"))
         except:
@@ -178,14 +211,11 @@ class ChatBot(View):
                 status=400
             )
 
-
         try:
-
             # =========================
-            # MODEL 1 — WITH CATEGORY
+            # MODEL 1 - WITH CATEGORY
             # =========================
             if model == "model1":
-
                 category = body.get("category")
 
                 results = search(query=query, n_results=6, category=category)
@@ -195,28 +225,27 @@ class ChatBot(View):
                 strict = False
 
             # =========================
-            # MODEL 2 — WITH RERANK
+            # MODEL 2 - WITH RERANK
             # =========================
             elif model == "model2":
-
                 results = search(query=query, n_results=12)
                 docs = results.get("documents", [[]])[0]
                 distances = results.get("distances", [[]])[0]
                 metadatas = results.get("metadatas", [[]])[0]
 
-                print("\n" + "="*60)
+                print("\n" + "=" * 60)
                 print(f"[MODEL2] QUERY: '{query}'")
                 print(f"[MODEL2] Total docs ditemukan: {len(docs)}")
-                print("-"*60)
+                print("-" * 60)
                 for i, (doc, dist, meta) in enumerate(zip(docs, distances, metadatas)):
                     print(f"  [{i+1}] dist={dist:.4f} | category={meta.get('category','?')} | text={doc[:80]}...")
-                print("-"*60)
+                print("-" * 60)
 
                 filtered_docs = [
                     d for d, dist in zip(docs, distances)
                     if dist < 0.6
                 ]
-                print(f"[MODEL2] Setelah filter dist<1.0: {len(filtered_docs)} docs tersisa")
+                print(f"[MODEL2] Setelah filter dist<0.6: {len(filtered_docs)} docs tersisa")
 
                 final_docs = rerank(query, filtered_docs, top_n=4) if filtered_docs else []
                 print(f"[MODEL2] Setelah rerank top_n=4: {len(final_docs)} docs")
@@ -226,7 +255,7 @@ class ChatBot(View):
                 context = "\n\n".join(final_docs)
                 print(f"[MODEL2] Context length: {len(context)} chars")
                 print(f"[MODEL2] Context kosong: {not context.strip()}")
-                print("="*60 + "\n")
+                print("=" * 60 + "\n")
 
                 strict = True
 
@@ -258,7 +287,11 @@ class ChatBot(View):
                 {"error": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-        
+
+
+# =============================================================================
+# AUTH
+# =============================================================================
 @method_decorator(csrf_exempt, name='dispatch')
 class RegisterView(View):
     def post(self, request):
@@ -353,7 +386,6 @@ class LoginView(View):
             ).limit(1).execute()
 
             if not result.data:
-                # Same message for both cases — don't leak which field was wrong
                 return JsonResponse(
                     {"error": "Invalid credentials"},
                     status=401
@@ -392,7 +424,8 @@ class LoginView(View):
 
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
-        
+
+
 @method_decorator(csrf_exempt, name='dispatch')
 class GetUser(View):
     def get(self, request):

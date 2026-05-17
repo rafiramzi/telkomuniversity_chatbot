@@ -14,9 +14,16 @@ Answer using context below.
 STRICT RULES:
 - Answer ONLY from the provided context.
 - Do NOT use external knowledge.
-- If there are mathematical calculations, show the mathematical symbols and numbers as they are, do NOT convert them into words.
 - If answer not found, reply EXACTLY with:
-"Maaf, informasi tersebut tidak tersedia dalam data yang saya miliki."
+  "Maaf, informasi tersebut tidak tersedia dalam data yang saya miliki."
+- For ALL mathematical expressions, formulas, and symbols — ALWAYS use LaTeX notation:
+  * Use \\( ... \\) for inline math (e.g. \\( \\frac{{N}}{{N_m}} \\times 4 \\))
+  * Use \\[ ... \\] for block/display math
+  * Use \\frac{{a}}{{b}} for division (NEVER use "/")
+  * Use \\times for multiplication (NEVER use "x" or "*")
+  * Use \\sqrt{{x}} for square roots (NEVER use "sqrt()")
+  * Use subscripts like N_{{m}} with underscore
+  * NEVER write math as plain text
 
 Context:
 {context}
